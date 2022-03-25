@@ -1,7 +1,29 @@
 import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
 import LogoHeader from "../Components/LogoHeader";
+import React, {useState, useEffet} from 'react'
+import { useHistory } from 'react-router-dom'
+import {LANDING_ROUTE } from "../utils/consts";
 
+async function loginUser(credentials) {
+
+  return fetch('http://192.168.3.197.:6969/api/auth/signin', {
+    method: 'POST',
+    headers: {
+     'Content-Type': 'application/json'
+   },
+    body: JSON.stringify(credentials)
+ 
+  })
+    .then(response => {
+     return response;
+     
+      
+ 
+    })
+    
+ }
+ 
 export default function Login() {
   const error = true;
   return (
