@@ -1,25 +1,36 @@
-import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail'
-import { Fragment } from 'react';
-import Image from '../image/circle.png';
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon, ChatIcon, ChevronDownIcon, UserIcon, DesktopComputerIcon, HeartIcon, LogoutIcon, CogIcon, BookmarkIcon} from '@heroicons/react/outline'
-import logo from '../image/logo.png';
-import { Link } from 'react-router-dom';
+import Badge from "@mui/material/Badge";
+import MailIcon from "@mui/icons-material/Mail";
+import { Fragment } from "react";
+import Image from "../image/circle.png";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import {
+  BellIcon,
+  MenuIcon,
+  XIcon,
+  ChatIcon,
+  ChevronDownIcon,
+  UserIcon,
+  DesktopComputerIcon,
+  HeartIcon,
+  LogoutIcon,
+  CogIcon,
+  BookmarkIcon,
+} from "@heroicons/react/outline";
+import logo from "../image/logo.png";
+import { Link } from "react-router-dom";
 const navigation = [
-  { name: 'Найти ассистента', href: '/assistant', current: true },
-  { name: 'Стать ассистентом', href: '/Стать ассистентом', current: false },
-
-]
+  { name: "Найти ассистента", href: "/assistant", current: true },
+  { name: "Стать ассистентом", href: "/Стать ассистентом", current: false },
+];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
-function Btn(){
-  return(
-    <button class="bg-white text-black font-semibold py-2 px-6 border border-blue-700 rounded mx-2">
-        Войти
+function Btn() {
+  return (
+    <button className="bg-white text-black font-semibold py-2 px-6 border border-blue-700 rounded mx-2">
+      Войти
     </button>
   );
 }
@@ -46,11 +57,11 @@ export default function Example() {
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start mx-8">
                 <div className="flex-shrink-0 flex items-center">
                   <Link to="/">
-                  <img
-                    className="hidden lg:block h-8 w-auto mr-12"
-                    src={logo}
-                    alt="logo"
-                  />
+                    <img
+                      className="hidden lg:block h-8 w-auto mr-12"
+                      src={logo}
+                      alt="logo"
+                    />
                   </Link>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
@@ -60,10 +71,10 @@ export default function Example() {
                         key={item.name}
                         to={item.href}
                         className={classNames(
-                          item.current ? '' : ' ',
-                          'px-3 py-2 rounded-md text-md font-medium'
+                          item.current ? "" : " ",
+                          "px-3 py-2 rounded-md text-md font-medium"
                         )}
-                        aria-current={item.current ? 'page' : undefined}
+                        aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
                       </Link>
@@ -72,7 +83,7 @@ export default function Example() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 space-x-2 md:space-x-4">
-              <button
+                <button
                   type="button"
                   className="bg-white p-1 rounded-full text-gray-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 >
@@ -80,21 +91,19 @@ export default function Example() {
                   <ChatIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
                 <Menu as="div" className="-ml-4">
-                  <div className='block'>
+                  <div className="block">
                     <div>
                       <Menu.Button className="inline-flex justify-center w-full rounded-md py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-offset-gray-100 focus:ring-indigo-500">
-                      
-                          {/* <span className="sr-only">View notifications</span>
+                        {/* <span className="sr-only">View notifications</span>
                           <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
-                            <Badge badgeContent={4} color="primary">
-                              <MailIcon color="action" />
-                            </Badge>
-                   
-                    </Menu.Button>
+                        <Badge badgeContent={4} color="primary">
+                          <MailIcon color="action" />
+                        </Badge>
+                      </Menu.Button>
+                    </div>
                   </div>
-                </div>
-              <Transition
-                    as={Fragment} 
+                  <Transition
+                    as={Fragment}
                     enter="transition ease-out duration-100"
                     enterFrom="transform opacity-0 scale-95"
                     enterTo="transform opacity-100 scale-100"
@@ -107,9 +116,12 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 items-center')}
-                          > 
-                          <div className='flex justify-between'>
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700 items-center"
+                            )}
+                          >
+                            <div className="flex justify-between">
                               <p>Уведомления</p>
                               <p>Очистить</p>
                             </div>
@@ -120,11 +132,14 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
-                            <div className='flex'>
-                              <DesktopComputerIcon className='h-auto w-4 mr-4'/>
-                               Мои курсы
+                            <div className="flex">
+                              <DesktopComputerIcon className="h-auto w-4 mr-4" />
+                              Мои курсы
                             </div>
                           </a>
                         )}
@@ -133,11 +148,14 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
-                            <div className='flex'>
-                              <HeartIcon className='h-auto w-4 mr-4'/>
-                               Избранное
+                            <div className="flex">
+                              <HeartIcon className="h-auto w-4 mr-4" />
+                              Избранное
                             </div>
                           </a>
                         )}
@@ -146,11 +164,14 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
-                            <div className='flex'>
-                              <BookmarkIcon className='h-auto w-4 mr-4'/>
-                               Мои книги
+                            <div className="flex">
+                              <BookmarkIcon className="h-auto w-4 mr-4" />
+                              Мои книги
                             </div>
                           </a>
                         )}
@@ -159,33 +180,40 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
-                            <div className='flex'>
-                              <CogIcon className='h-auto w-4 mr-4'/>
-                               Настройки
+                            <div className="flex">
+                              <CogIcon className="h-auto w-4 mr-4" />
+                              Настройки
                             </div>
                           </a>
                         )}
                       </Menu.Item>
-                    
                     </Menu.Items>
                   </Transition>
                 </Menu>
-               
+
                 {/* Profile dropdown */}
                 <Menu as="div" className="-ml-4 relative">
-                  <div className='block'>
-                   { loggedIn ? (
+                  <div className="block">
+                    {loggedIn ? (
                       <Menu.Button className="inline-flex items-center justify-center w-full rounded-md md:py-2 bg-white text-sm font-medium text-gray-700">
-                          <img className="h-8 w-8 mr-1" src={Image} alt=""/>
-                          <p className='hidden md:block'>user 123</p>
-                          <ChevronDownIcon className="-mr-2 ml-1 h-5 w-5" aria-hidden="true" />  
-                      </Menu.Button> ) : <Btn />
-                   }
+                        <img className="h-8 w-8 mr-1" src={Image} alt="" />
+                        <p className="hidden md:block">user 123</p>
+                        <ChevronDownIcon
+                          className="-mr-2 ml-1 h-5 w-5"
+                          aria-hidden="true"
+                        />
+                      </Menu.Button>
+                    ) : (
+                      <Btn />
+                    )}
                   </div>
                   <Transition
-                    as={Fragment} 
+                    as={Fragment}
                     enter="transition ease-out duration-100"
                     enterFrom="transform opacity-0 scale-95"
                     enterTo="transform opacity-100 scale-100"
@@ -196,13 +224,17 @@ export default function Example() {
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
-                          <Link to="/profile"
+                          <Link
+                            to="/profile"
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 items-center')}
-                          > 
-                          <div className='flex'>
-                            <UserIcon className='h-auto w-4 mr-4'/>
-                            Your Profile
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700 items-center"
+                            )}
+                          >
+                            <div className="flex">
+                              <UserIcon className="h-auto w-4 mr-4" />
+                              Your Profile
                             </div>
                           </Link>
                         )}
@@ -211,11 +243,14 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
-                            <div className='flex'>
-                              <DesktopComputerIcon className='h-auto w-4 mr-4'/>
-                               Мои курсы
+                            <div className="flex">
+                              <DesktopComputerIcon className="h-auto w-4 mr-4" />
+                              Мои курсы
                             </div>
                           </a>
                         )}
@@ -224,11 +259,14 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
-                            <div className='flex'>
-                              <HeartIcon className='h-auto w-4 mr-4'/>
-                               Избранное
+                            <div className="flex">
+                              <HeartIcon className="h-auto w-4 mr-4" />
+                              Избранное
                             </div>
                           </a>
                         )}
@@ -237,11 +275,14 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
-                            <div className='flex'>
-                              <BookmarkIcon className='h-auto w-4 mr-4'/>
-                               Мои книги
+                            <div className="flex">
+                              <BookmarkIcon className="h-auto w-4 mr-4" />
+                              Мои книги
                             </div>
                           </a>
                         )}
@@ -250,11 +291,14 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
-                            <div className='flex'>
-                              <CogIcon className='h-auto w-4 mr-4'/>
-                               Настройки
+                            <div className="flex">
+                              <CogIcon className="h-auto w-4 mr-4" />
+                              Настройки
                             </div>
                           </a>
                         )}
@@ -263,11 +307,14 @@ export default function Example() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
-                            <div className='flex'>
-                              <LogoutIcon className='h-auto w-4 mr-4'/>
-                               Выход
+                            <div className="flex">
+                              <LogoutIcon className="h-auto w-4 mr-4" />
+                              Выход
                             </div>
                           </a>
                         )}
@@ -275,7 +322,7 @@ export default function Example() {
                     </Menu.Items>
                   </Transition>
                 </Menu>
-                </div>
+              </div>
             </div>
           </div>
 
@@ -287,10 +334,12 @@ export default function Example() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block px-3 py-2 rounded-md text-base font-medium'
+                    item.current
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    "block px-3 py-2 rounded-md text-base font-medium"
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>
@@ -300,5 +349,5 @@ export default function Example() {
         </>
       )}
     </Disclosure>
-  )
+  );
 }
