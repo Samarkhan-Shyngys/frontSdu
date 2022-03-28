@@ -6,6 +6,9 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon, ChatIcon, ChevronDownIcon, UserIcon, DesktopComputerIcon, HeartIcon, LogoutIcon, CogIcon, BookmarkIcon} from '@heroicons/react/outline'
 import logo from '../image/logo.png';
 import { Link } from 'react-router-dom';
+
+import React, { useState, useEffect } from 'react';
+
 const navigation = [
   { name: 'Найти ассистента', href: '/assistant', current: true },
   { name: 'Стать ассистентом', href: '/Стать ассистентом', current: false },
@@ -25,7 +28,16 @@ function Btn(){
 }
 
 export default function Example() {
-  const loggedIn = false;
+  let loggedIn = false;
+  const loggedInUser = localStorage.getItem("user");
+  let username;
+  if (loggedInUser) {
+    loggedIn = true;
+    const foundUser = JSON.parse(loggedInUser);
+    username = foundUser.username;
+  }
+
+
   return (
     <Disclosure as="nav" className="bg-white shadow-md">
       {({ open }) => (
@@ -179,7 +191,7 @@ export default function Example() {
                    { loggedIn ? (
                       <Menu.Button className="inline-flex items-center justify-center w-full rounded-md md:py-2 bg-white text-sm font-medium text-gray-700">
                           <img className="h-8 w-8 mr-1" src={Image} alt=""/>
-                          <p className='hidden md:block'>user 123</p>
+                          <p className='hidden md:block'>{username}</p>
                           <ChevronDownIcon className="-mr-2 ml-1 h-5 w-5" aria-hidden="true" />  
                       </Menu.Button> ) : <Btn />
                    }

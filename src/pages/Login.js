@@ -25,7 +25,45 @@ async function loginUser(credentials) {
  }
  
 export default function Login() {
-  const error = true;
+   
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [username, setUsername]=useState("");
+  const [password, setPassword]=useState("");
+  const history = useHistory();
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const token = await loginUser({
+      username,
+      password
+    });
+    if(token.status===200){
+      
+      token.json().then(json => {
+        console.log(json);
+        localStorage.setItem('user', JSON.stringify(json));
+        history.push(LANDING_ROUTE);  
+      });
+    }else{
+      setError(true);
+      token.json().then(json => {
+
+        setErrorMessage(json.message);
+        
+        console.log(json.message);
+      });
+      
+      
+    }
+    
+   
+    
+
+  }
+
+
+
   return (
     <div>
       <LogoHeader />
@@ -46,9 +84,10 @@ export default function Login() {
                   </label>
                   <input
                     id="email-address"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
+                    onChange={e => setUsername(e.target.value)}
+                    // name="email"
+                    // type="email"
+                    // autoComplete="email"
                     required
                     className="relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md sm:text-sm my-2"
                     placeholder="Email address"
@@ -69,6 +108,7 @@ export default function Login() {
                     id="password"
                     name="password"
                     type="password"
+                    onChange={e => setPassword(e.target.value)}
                     autoComplete="current-password"
                     required
                     className="rounded-md relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md sm:text-sm my-2"
@@ -76,16 +116,13 @@ export default function Login() {
                   />
                 </div>
                 {error && (
-                  <p className="text-sm">
-                    Адрес почты или пароль не верны. Попробуйте еще раз или
-                    восстановите пароль.
-                  </p>
+                  <p className="text-sm">{errorMessage}</p>
                 )}
               </div>
 
               <div className="mt-2">
                 <button
-                  type="submit"
+                  type="submit" onClick = {handleSubmit}
                   className="group relative w-full flex justify-center py-4 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-800"
                 >
                   <span className="text-center pl-3">Войти</span>
