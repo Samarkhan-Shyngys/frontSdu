@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "./Header";
-import TopCourse from "./TopCourse";
 import Footer from "./Footer";
 import CourseCard from "./CourseCard";
 import TextField from "@mui/material/TextField";
@@ -71,9 +70,8 @@ const Assistant = () => {
                   label="Формат урока"
                   onChange={handleChange}
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  <MenuItem value={1}>Онлайн</MenuItem>
+                  <MenuItem value={2}>Оффлайн</MenuItem>
                 </Select>
               </FormControl>
             </div>
