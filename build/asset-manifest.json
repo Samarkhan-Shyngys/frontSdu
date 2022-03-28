@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.73641b86.css",
+    "main.js": "/static/js/main.697b4255.js",
+    "static/media/img_teacher.png": "/static/media/img_teacher.0e689dee0ecbea9ffcc1.png",
+    "static/media/Image.png": "/static/media/Image.2aac07ede9892cdcdb55.png",
+    "static/media/book2.png": "/static/media/book2.2d94b592aa141d2e01ee.png",
+    "static/media/amico.png": "/static/media/amico.142f01140127d154f2c7.png",
+    "static/media/img_course.png": "/static/media/img_course.ea58e76fcf57b3feb462.png",
+    "static/media/book4.png": "/static/media/book4.12dea4f43be47aa5b020.png",
+    "static/media/book1.png": "/static/media/book1.ed304258031d81610b16.png",
+    "static/media/book3.png": "/static/media/book3.c3c4d894f03173da8e74.png",
+    "static/media/mobile.png": "/static/media/mobile.de6a9b91ff0fe31f9e98.png",
+    "static/media/logo.png": "/static/media/logo.5147b9b09e995171916c.png",
+    "static/media/rafiki1.png": "/static/media/rafiki1.7e794cea7ed29d427408.png",
+    "static/media/circle.png": "/static/media/circle.24597bee3be40f0962b7.png",
+    "static/media/book5.png": "/static/media/book5.be4febde69b829cadfb1.png",
+    "static/media/rafiki2.png": "/static/media/rafiki2.b2c77f81ce48580dbeb7.png",
+    "static/media/rafiki3.png": "/static/media/rafiki3.348d1673762079f713bb.png",
+    "index.html": "/index.html",
+    "main.73641b86.css.map": "/static/css/main.73641b86.css.map",
+    "main.697b4255.js.map": "/static/js/main.697b4255.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.73641b86.css",
+    "static/js/main.697b4255.js"
+  ]
+}
