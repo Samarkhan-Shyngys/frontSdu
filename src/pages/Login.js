@@ -1,68 +1,50 @@
 import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
 import LogoHeader from "../Components/LogoHeader";
-import React, {useState, useEffet} from 'react'
-import { useHistory } from 'react-router-dom'
-import {LANDING_ROUTE } from "../utils/consts";
+import React, { useState, useEffet } from "react";
+import { useHistory } from "react-router-dom";
+import { LANDING_ROUTE } from "../utils/consts";
 
 async function loginUser(credentials) {
-
-  return fetch('7fba-95-141-136-228.ngrok.io/api/auth/signin', {
-    method: 'POST',
+  return fetch("http://b0a9-95-141-136-228.ngrok.io/api/auth/signin", {
+    method: "POST",
     headers: {
-     'Content-Type': 'application/json'
-   },
-    body: JSON.stringify(credentials)
- 
-  })
-    .then(response => {
-     return response;
-     
-      
- 
-    })
-    
- }
- 
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  }).then((response) => {
+    return response;
+  });
+}
+
 export default function Login() {
-   
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [username, setUsername]=useState("");
-  const [password, setPassword]=useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const history = useHistory();
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const token = await loginUser({
       username,
-      password
+      password,
     });
-    if(token.status===200){
-      
-      token.json().then(json => {
+    if (token.status === 200) {
+      token.json().then((json) => {
         console.log(json);
-        localStorage.setItem('user', JSON.stringify(json));
-        history.push(LANDING_ROUTE);  
+        localStorage.setItem("user", JSON.stringify(json));
+        history.push(LANDING_ROUTE);
       });
-    }else{
+    } else {
       setError(true);
-      token.json().then(json => {
-
+      token.json().then((json) => {
         setErrorMessage(json.message);
-        
+
         console.log(json.message);
       });
-      
-      
     }
-    
-   
-    
-
-  }
-
-
+  };
 
   return (
     <div>
@@ -84,7 +66,7 @@ export default function Login() {
                   </label>
                   <input
                     id="email-address"
-                    onChange={e => setUsername(e.target.value)}
+                    onChange={(e) => setUsername(e.target.value)}
                     // name="email"
                     // type="email"
                     // autoComplete="email"
@@ -108,21 +90,20 @@ export default function Login() {
                     id="password"
                     name="password"
                     type="password"
-                    onChange={e => setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                     autoComplete="current-password"
                     required
                     className="rounded-md relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md sm:text-sm my-2"
                     placeholder="Password"
                   />
                 </div>
-                {error && (
-                  <p className="text-sm">{errorMessage}</p>
-                )}
+                {error && <p className="text-sm">{errorMessage}</p>}
               </div>
 
               <div className="mt-2">
                 <button
-                  type="submit" onClick = {handleSubmit}
+                  type="submit"
+                  onClick={handleSubmit}
                   className="group relative w-full flex justify-center py-4 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-800"
                 >
                   <span className="text-center pl-3">Войти</span>
