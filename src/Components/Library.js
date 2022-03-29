@@ -42,7 +42,7 @@ const Library = () => {
         title="Доступная библиотека"
         subtitle="Получайте самые необходимые и рекомендуемые книги от ассистентов"
       />
-      <div className="flex items-center justify-between">
+      <div className="relative flex items-center justify-between">
         <ChevronLeftIcon
           className="h-8 w-auto absolute inset-y-2/5 -ml-4 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
           onClick={prevSlide}
@@ -77,8 +77,8 @@ const Library = () => {
           className="h-64 w-44 rounded-lg"
           alt="author"
         />
-        <ChevronRightIcon
-          className="h-8 w-auto absolute right-48 inset-y-2/5 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
+9        <ChevronRightIcon
+          className="absolute h-8 w-auto absolute -right-4 inset-y-2/5 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
           onClick={nextSlide}
         />
       </div>
