@@ -7,7 +7,7 @@ import {LANDING_ROUTE } from "../utils/consts";
 
 async function loginUser(credentials) {
 
-  return fetch('http://192.168.3.197.:6969/api/auth/signin', {
+  return fetch('7fba-95-141-136-228.ngrok.io/api/auth/signin', {
     method: 'POST',
     headers: {
      'Content-Type': 'application/json'

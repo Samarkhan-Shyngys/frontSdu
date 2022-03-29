@@ -17,6 +17,7 @@ import {
   BookmarkIcon,
 } from "@heroicons/react/outline";
 import logo from "../image/logo.png";
+import { useHistory } from 'react-router-dom'
 import { Link } from "react-router-dom";
 
 
@@ -40,6 +41,7 @@ function Btn() {
 export default function Example() {
   let loggedIn = false;
   const loggedInUser = localStorage.getItem("user");
+  const history = useHistory();
   let username;
   if (loggedInUser) {
     loggedIn = true;
@@ -80,7 +82,8 @@ export default function Example() {
                     {navigation.map((item) => (
                       <Link
                         key={item.name}
-                        to={item.href}
+                    
+                        to={loggedIn? item.href:"/login"}
                         className={classNames(
                           item.current ? "" : " ",
                           "px-3 py-2 rounded-md text-md font-medium"
