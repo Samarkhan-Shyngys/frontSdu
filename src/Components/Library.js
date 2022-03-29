@@ -1,33 +1,36 @@
 import React, { useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import DivTitle from "./DivTitle";
-const images = [
-  {
-    title: "Архитектура компьютера",
-    author: "Э. Таненбаум, Т. Остин",
-    url: require("../image/book1.png"),
-  },
-  {
-    title: "bbb",
-    author: "bbb",
-    url: require("../image/book2.png"),
-  },
-  {
-    title: "ccc",
-    author: "bbb",
-    url: require("../image/book3.png"),
-  },
-  {
-    title: "ccc",
-    author: "bbb",
-    url: require("../image/book4.png"),
-  },
-  {
-    title: "ccc",
-    author: "bbb",
-    url: require("../image/book5.png"),
-  },
-];
+// const images = [
+//   {
+//     title: "Архитектура компьютера",
+//     author: "Э. Таненбаум, Т. Остин",
+//     url: require("../image/book1.png"),
+//   },
+//   {
+//     title: "bbb",
+//     author: "bbb",
+//     url: require("../image/book2.png"),
+//   },
+//   {
+//     title: "ccc",
+//     author: "bbb",
+//     url: require("../image/book3.png"),
+//   },
+//   {
+//     title: "ccc",
+//     author: "bbb",
+//     url: require("../image/book4.png"),
+//   },
+//   {
+//     title: "ccc",
+//     author: "bbb",
+//     url: require("../image/book5.png"),
+//   },
+// ];
+
+const images = JSON.parse(localStorage.getItem("library")).library;
+console.log(JSON.parse(localStorage.getItem("library")).library);
 const Library = () => {
   const nextSlide = () => {
     setCur((cur + 1) % images.length);
@@ -49,27 +52,27 @@ const Library = () => {
         />
 
         <img
-          src={images[cur - 2 < 0 ? images.length + (cur - 2) : cur - 2].url}
+          src={'http://7fba-95-141-136-228.ngrok.io' + images[cur - 2 < 0 ? images.length + (cur - 2) : cur - 2].url}
           className="h-64 w-44 rounded-lg"
           alt="image1"
         />
         <img
-          src={images[cur === 0 ? images.length - 1 : cur - 1].url}
+          src={'http://7fba-95-141-136-228.ngrok.io' +images[cur === 0 ? images.length - 1 : cur - 1].url}
           className="h-80 w-52 rounded-lg"
           alt="image1"
         />
         <img
-          src={images[cur].url}
+          src={'http://7fba-95-141-136-228.ngrok.io' +images[cur].url}
           className="h-96 w-72 rounded-lg"
           alt="image1"
         />
         <img
-          src={images[cur === images.length - 1 ? 0 : cur + 1].url}
+          src={'http://7fba-95-141-136-228.ngrok.io' +images[cur === images.length - 1 ? 0 : cur + 1].url}
           className="h-80 w-52 rounded-lg"
           alt="image1"
         />
         <img
-          src={
+          src={'http://7fba-95-141-136-228.ngrok.io' +
             images[
               cur + 2 >= images.length ? (cur + 2) % images.length : cur + 2
             ].url
