@@ -31,7 +31,7 @@ export const SidebarData = [
   },
   {
     title: "Моя библиотека",
-    path: "/",
+    path: "/sidebar/mylibrary",
     icon: <LibraryIcon />,
     cName: "h-8 w-8",
     current: false,

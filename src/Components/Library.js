@@ -82,7 +82,7 @@ const Library = () => {
           alt="author"
         />
        <ChevronRightIcon
-          className="absolute h-8 w-auto absolute -right-4 inset-y-2/5 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
+          className="absolute h-8 w-auto -right-4 inset-y-2/5 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
           onClick={nextSlide}
         />
       </div>
