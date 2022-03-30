@@ -3,6 +3,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import { Fragment } from "react";
 import Image from "../image/circle.png";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
+import {useHistory} from "react-router-dom";
 import {
   MenuIcon,
   XIcon,
@@ -29,8 +30,11 @@ function classNames(...classes) {
 }
 
 function Btn() {
+  const router = useHistory();
+
   return (
-    <button className="bg-white text-black font-semibold py-2 px-6 border border-blue-700 rounded mx-2">
+    <button className="bg-white text-black font-semibold py-2 px-6 border border-blue-700 rounded mx-2"
+    onClick={()=>router.push("/login")}>
       Войти
     </button>
   );

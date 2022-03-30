@@ -1,15 +1,15 @@
 import React from "react";
 import Footer from "../Components/Footer";
-import GetForgetCode from "../Components/GetForgetCode";
+import ConfirmEmail from "../Components/ConfirmEmail";
 import LogoHeader from "../Components/LogoHeader";
-function ForgetPassword() {
+function ConfirmRegistartion() {
   return (
     <>
       <LogoHeader />
-      <GetForgetCode />
+      <ConfirmEmail />
       <Footer />
     </>
   );
 }
 
-export default ForgetPassword;
+export default ConfirmRegistartion;

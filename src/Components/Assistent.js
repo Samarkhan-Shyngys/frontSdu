@@ -110,11 +110,11 @@ const Assistant = () => {
       <div className="max-w-7xl mx-auto ">
         <div className="flex items-center space-x-4 justify-end mt-4">
           <ChevronLeftIcon className="h-4 w-4" />
-          <a className="border-b border-black items-baseline">1</a>
-          <a>2</a>
-          <a>3</a>
-          <a>...</a>
-          <a>18</a>
+          <span className="border-b border-black items-baseline">1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>...</span>
+          <span>18</span>
           <ChevronRightIcon className="h-4 w-4" />
         </div>
       </div>
