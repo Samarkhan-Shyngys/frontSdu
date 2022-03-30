@@ -3,8 +3,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import { Fragment } from "react";
 import Image from "../image/circle.png";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
+import {useHistory} from "react-router-dom";
 import {
-  BellIcon,
   MenuIcon,
   XIcon,
   ChatIcon,
@@ -17,7 +17,6 @@ import {
   BookmarkIcon,
 } from "@heroicons/react/outline";
 import logo from "../image/logo.png";
-import { useHistory } from 'react-router-dom'
 import { Link } from "react-router-dom";
 
 
@@ -31,8 +30,11 @@ function classNames(...classes) {
 }
 
 function Btn() {
+  const router = useHistory();
+
   return (
-    <button className="bg-white text-black font-semibold py-2 px-6 border border-blue-700 rounded mx-2">
+    <button className="bg-white text-black font-semibold py-2 px-6 border border-blue-700 rounded mx-2"
+    onClick={()=>router.push("/login")}>
       Войти
     </button>
   );
@@ -41,7 +43,6 @@ function Btn() {
 export default function Example() {
   let loggedIn = false;
   const loggedInUser = localStorage.getItem("user");
-  const history = useHistory();
   let username;
   if (loggedInUser) {
     loggedIn = true;
@@ -129,7 +130,7 @@ export default function Example() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700 items-center"
@@ -145,7 +146,7 @@ export default function Example() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -161,7 +162,7 @@ export default function Example() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -177,7 +178,7 @@ export default function Example() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -193,7 +194,7 @@ export default function Example() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -236,7 +237,7 @@ export default function Example() {
                         {({ active }) => (
                           <Link
                             to="/profile"
-                            href="#"
+                            href="/"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700 items-center"
@@ -252,7 +253,7 @@ export default function Example() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -268,7 +269,7 @@ export default function Example() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -284,7 +285,7 @@ export default function Example() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -300,7 +301,7 @@ export default function Example() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -316,7 +317,7 @@ export default function Example() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"

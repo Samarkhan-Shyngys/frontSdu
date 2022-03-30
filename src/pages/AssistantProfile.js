@@ -7,6 +7,7 @@ import Footer from "../Components/Footer";
 import Settings from "../Components/AssistantProfile/Settings";
 import WorkExperience from "../Components/AssistantProfile/WorkExperience";
 import MyCourses from "../Components/AssistantProfile/MyCourses";
+import MyLibrary from "../Components/AssistantProfile/MyLibrary";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -44,6 +45,7 @@ function AssistantProfile() {
           </ul>
         </nav>
         <Switch>
+        <Route path="/sidebar/mylibrary" component={MyLibrary} />
           <Route path="/sidebar/assistant" component={UserProfile} />
           <Route path="/sidebar/mycourses" component={MyCourses} />
           <Route path="/sidebar/settings" component={Settings} />

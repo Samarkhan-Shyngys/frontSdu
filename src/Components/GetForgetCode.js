@@ -1,4 +1,4 @@
-const ConfirmMail = (props) => {
+const GetForgetCode = (props) => {
   return (
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -35,4 +35,4 @@ const ConfirmMail = (props) => {
   );
 };
 
-export default ConfirmMail;
+export default GetForgetCode;

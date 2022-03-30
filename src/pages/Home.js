@@ -15,9 +15,7 @@ async function getMain() {
             console.log(data.library);
             localStorage.setItem('library', JSON.stringify(data));
         }
-        
-        
-      
+              
 }
 
 

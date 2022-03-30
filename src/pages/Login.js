@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
 import LogoHeader from "../Components/LogoHeader";
-import React, { useState, useEffet } from "react";
+import React, { useState} from "react";
 import { useHistory } from "react-router-dom";
 import { LANDING_ROUTE } from "../utils/consts";
 

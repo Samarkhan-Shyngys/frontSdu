@@ -7,6 +7,7 @@ import Profile from "./pages/Profile";
 import Apply from "./pages/Apply";
 import AssistantProfile from "./pages/AssistantProfile";
 import ForgetPassword from "./pages/ForgetPassword";
+import ConfirmRegistartion from "./pages/ConfirmRegistration";
 import { Route, Switch } from "react-router-dom";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           </Switch>
         </Route>
         <Route path="/forget" component={ForgetPassword} />
+        <Route path="/confirm" component={ConfirmRegistartion} />
         <Route path="/profile" component={Profile} />
         <Route path="/Стать ассистентом" component={AssistantPage} />
         <Route path="/apply" component={Apply} />
