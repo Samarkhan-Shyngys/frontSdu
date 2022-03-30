@@ -28,6 +28,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/assistant" component={Assistant} />
         <Route path="/" component={Home} />
+        
       </Switch>
     </>
   );

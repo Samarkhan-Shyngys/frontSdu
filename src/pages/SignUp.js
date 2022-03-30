@@ -1,23 +1,63 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
 import UserContext from "../context/UserContext";
 import LogoHeader from "../Components/LogoHeader";
+import React, { useState, useEffet } from "react";
+import { useHistory } from "react-router-dom";
+import { LANDING_ROUTE } from "../utils/consts";
+
+async function signUpUser(credentials) {
+  return fetch("http://localhost:6969/api/auth/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  }).then((response) => {
+    return response;
+  });
+}
 
 export default function SignUp() {
-  const ctx = useContext(UserContext);
+  // const ctx = useContext(UserContext);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [error, setError] = useState(false);
   const [email, setEmail] = useState("");
-  const [password1, setPassword1] = useState("");
+  const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const history = useHistory();
 
-  const signup = () => {
-    if (password1 === password2) {
-      ctx.signupUser(email, password1);
-      console.log("aaa");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await signUpUser({
+      email,
+      password,
+      password2
+    });
+    if (response.status === 200) {
+      response.json().then((json) => {
+        console.log(json);
+        // history.push(LANDING_ROUTE);
+      });
     } else {
+      setError(true);
+      response.json().then((json) => {
+        setErrorMessage(json.message);
+
+        console.log(json.message);
+      });
     }
-    console.log(email, password1);
   };
+
+  // const signup = () => {
+  //   if (password1 === password2) {
+  //     ctx.signupUser(email, password1);
+  //     console.log("aaa");
+  //   } else {
+  //   }
+  //   console.log(email, password1);
+  // };
   return (
     <div>
       <LogoHeader />
@@ -28,7 +68,7 @@ export default function SignUp() {
               Регистрация через SDU-почта
             </h2>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form className="mt-8 space-y-6" >
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div className="mb-4">
@@ -39,7 +79,7 @@ export default function SignUp() {
                   id="email-address"
                   name="email"
                   type="email"
-                  autoComplete="email"
+                  // autoComplete="email"
                   required
                   className="relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm my-2"
                   placeholder="Email address"
@@ -58,7 +98,7 @@ export default function SignUp() {
                   required
                   className="rounded-md relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md  sm:text-sm my-2"
                   placeholder="Password"
-                  onChange={(e) => setPassword1(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="mt-4">
@@ -76,10 +116,12 @@ export default function SignUp() {
                   onChange={(e) => setPassword2(e.target.value)}
                 />
               </div>
+              {error && <p className="text-sm">{errorMessage}</p>}
             </div>
             <div className="mt-4">
               <button
                 type="submit"
+                onClick={handleSubmit}
                 className="group relative w-full flex justify-center py-4 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-800 text-lg"
                 // onClick={}
               >
