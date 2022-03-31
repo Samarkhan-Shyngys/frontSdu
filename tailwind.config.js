@@ -8,6 +8,9 @@ module.exports = {
       gridTemplateColumns: {
         sidebar: "300px 1fr",
       },
+      height: {
+        '128': '32rem',
+      }
     },
   },
   plugins: [require("@tailwindcss/line-clamp")],
