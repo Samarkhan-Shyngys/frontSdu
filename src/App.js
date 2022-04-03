@@ -11,6 +11,7 @@ import ForgetPassword from "./pages/ForgetPassword";
 import ConfirmRegistartion from "./pages/ConfirmRegistration";
 import { StudentProfile } from "./pages/StudentProfile";
 import { MyBooks } from "./Components/StudentProfile/MyBooks";
+import CheckoutPage from "./componentss/CheckoutPage/CheckoutPage";
 function App() {
   return (
     <>
@@ -30,6 +31,7 @@ function App() {
             <Route path="/" exact component={Home} />
           </Switch>
         </Route>
+        <Route path="/stepper" component={CheckoutPage} />
         <Route path="/forget" component={ForgetPassword} />
         <Route path="/confirm" component={ConfirmRegistartion} />
         <Route path="/profile" component={Profile} />

@@ -5,6 +5,9 @@ import Footer from "../Components/Footer";
 import {StudentSidebar} from '../Constants/StudentSidebar';
 import Settings from "../Components/AssistantProfile/Settings";
 import { MyBooks } from "../Components/StudentProfile/MyBooks";
+import Favourite from "../Components/StudentProfile/Favourite";
+import Profilee from "../Components/StudentProfile/Profilee";
+import StudentCourses from "../Components/StudentProfile/StudentCourses";
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
@@ -45,9 +48,12 @@ export function StudentProfile(){
             {/* <Route path="/student/mylibrary" component={MyLibrary} /> */}
               {/* <Route path="/student/assistant" component={d.UserProfile} />
             <Route path="/student/experience" component={d.WorkExperience} /> */}
+                <Route path="/student/profile" component={Profilee} />
+                <Route path="/student/mycourses" component={StudentCourses} />
                 <Route path="/student/mybooks" component={MyBooks} />
+                <Route path="/student/liked" component={Favourite} />
                 <Route path="/student/settings" component={Settings} />
-                <Route path="/student" component={Header} />
+              
             </Switch>
           </div>
           <Footer />
