@@ -23,7 +23,7 @@ const AssistantPage = () => {
         </div>
         <div className="flex flex-col items-center justify-between pt-10 md:flex-row">
           <div className="mt-8 space-y-1 w-1/2">
-            <h2 className=" text-xl sm:text-4xl font-bold font-normal tracking-normal">
+            <h2 className=" text-xl sm:text-4xl font-bold tracking-normal">
               SDU Assistant
             </h2>
             <h1 className="text-lg sm:text-3xl font-semibold text-black">
@@ -47,8 +47,8 @@ const AssistantPage = () => {
           Помогаем достичь цели и развивать карьеру
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 pt-8">
-          <div className="border rounded-md border-2 border-gary-400">
-            <div className="bg-white mt-4 px-6 shadow-md border-b border-b-4 border-gray-400">
+          <div className="rounded-md border-2 border-gary-400">
+            <div className="bg-white mt-4 px-6 shadow-md border-b-4 border-gray-400">
               <h1 className="text-xl bg-red-800 w-8 h-8 rounded-full text-center text-white">
                 1
               </h1>
@@ -66,8 +66,8 @@ const AssistantPage = () => {
               />
             </div>
           </div>
-          <div className="border rounded-md border-2 border-gary-400">
-            <div className="bg-white mt-4 px-6 shadow-md border-b border-b-4 border-gray-400">
+          <div className="rounded-md border-2 border-gary-400">
+            <div className="bg-white mt-4 px-6 shadow-md border-b-4 border-gray-400">
               <h1 className="text-xl bg-red-800 w-8 h-8 rounded-full text-center text-white">
                 2
               </h1>
@@ -85,8 +85,8 @@ const AssistantPage = () => {
               />
             </div>
           </div>
-          <div className="border rounded-md border-2 border-gary-400">
-            <div className="bg-white mt-4 px-6 shadow-md border-b border-b-4 border-gray-400">
+          <div className="rounded-md border-2 border-gary-400">
+            <div className="bg-white mt-4 px-6 shadow-md border-b-4 border-gray-400">
               <h1 className="text-xl bg-red-800 w-8 h-8 rounded-full text-center text-white">
                 3
               </h1>
@@ -108,7 +108,7 @@ const AssistantPage = () => {
           </div>
         </div>
       </div>
-      <div className="w-full bg-assistant bg-cover mt-24 h-96 bg-center">
+      <div className="w-full bg-assistant bg-cover mt-24 h-[128clear] bg-center">
         <div className="max-w-7xl mx-auto space-y-1 py-10 items-center pt-16">
           <h1 className="text-2xl font-medium ">Станьте ассистентом!</h1>
           <p className="text-lg text-gray-500 pb-4 line-clamp-2 w-1/3">

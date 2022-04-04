@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Switch, Route } from "react-router-dom";
-import { SidebarData } from "../Constants/SidebarData";
+import { AssistantData } from "../Constants/AssistantData";
 import Header from "../Components/Header";
 import UserProfile from "../Components/AssistantProfile/UserProfile";
 import Footer from "../Components/Footer";
@@ -18,7 +18,7 @@ function AssistantProfile() {
       <div className="max-w-7xl mx-auto grid grid-cols-sidebar mt-12 gap-8">
         <nav className="overflow-y-auto py-4 bg-gray-50 rounded w-64 h-80">
           <ul className="space-y-2">
-            {SidebarData.map((item, index) => {
+            {AssistantData.map((item, index) => {
               return (
                 <li
                   key={index}
@@ -45,11 +45,11 @@ function AssistantProfile() {
           </ul>
         </nav>
         <Switch>
-        <Route path="/sidebar/mylibrary" component={MyLibrary} />
-          <Route path="/sidebar/assistant" component={UserProfile} />
-          <Route path="/sidebar/mycourses" component={MyCourses} />
-          <Route path="/sidebar/settings" component={Settings} />
-          <Route path="/sidebar/experience" component={WorkExperience} />
+        <Route path="/assistant/mylibrary" component={MyLibrary} />
+          <Route path="/assistant/profile" component={UserProfile} />
+          <Route path="/assistant/mycourses" component={MyCourses} />
+          <Route path="/assistant/settings" component={Settings} />
+          <Route path="/assistant/experience" component={WorkExperience} />
           <Route path="/sidebar/" component={Header} />
         </Switch>
       </div>
