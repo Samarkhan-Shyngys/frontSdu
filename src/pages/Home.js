@@ -20,6 +20,7 @@ async function getMain() {
 
 
 const Home = () => {
+    sessionStorage.removeItem("email");
     getMain();
     
     return (

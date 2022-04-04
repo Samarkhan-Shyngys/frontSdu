@@ -5,10 +5,13 @@ import UserContext from "../context/UserContext";
 import LogoHeader from "../Components/LogoHeader";
 import React, { useState, useEffet } from "react";
 import { useHistory } from "react-router-dom";
-import { LANDING_ROUTE } from "../utils/consts";
+import { CONFIRM_ROUTE } from "../utils/consts";
+import {base_url} from "../utils/request";
+import ConfirmEmail from "../Components/ConfirmEmail";
+
 
 async function signUpUser(credentials) {
-  return fetch("http://localhost:6969/api/auth/signup", {
+  return fetch(base_url+"/api/auth/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -37,14 +40,18 @@ export default function SignUp() {
     });
     if (response.status === 200) {
       response.json().then((json) => {
+        
+        sessionStorage.setItem("email",json.email);
         console.log(json);
-        // history.push(LANDING_ROUTE);
+        history.push(CONFIRM_ROUTE);
       });
     } else {
       setError(true);
       response.json().then((json) => {
         setErrorMessage(json.message);
-
+        
+      
+        
         console.log(json.message);
       });
     }
@@ -134,7 +141,7 @@ export default function SignUp() {
                   <span>Уже зарегистрированы?</span>
                 </Link>
 
-                <span className="text-gray-900 font-semibold"> Войти</span>
+                <span className="text-gray-900 font-semibold"> <Link to="/login" >Войти</Link></span>
               </p>
             </div>
           </form>

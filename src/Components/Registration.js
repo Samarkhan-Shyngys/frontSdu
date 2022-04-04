@@ -1,7 +1,7 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import logo from '../image/logo.png';
 import Footer from './Footer';
-
+import {base_url} from "../utils/request";
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }

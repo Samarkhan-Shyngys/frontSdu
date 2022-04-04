@@ -4,9 +4,9 @@ import LogoHeader from "../Components/LogoHeader";
 import React, { useState} from "react";
 import { useHistory } from "react-router-dom";
 import { LANDING_ROUTE } from "../utils/consts";
-
+import {base_url} from "../utils/request";
 async function loginUser(credentials) {
-  return fetch("http://b0a9-95-141-136-228.ngrok.io/api/auth/signin", {
+  return fetch(base_url+"/api/auth/signin", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -110,7 +110,7 @@ export default function Login() {
                 </button>
                 <p className="text-center mt-2 text-gray-500">
                   Нет аккаунта?{" "}
-                  <span className="text-gray-900"> Зарегистрироваться </span>
+                  <span className="text-gray-900"> <Link to="/signup">Зарегистрироваться</Link>  </span>
                 </p>
               </div>
             </form>
