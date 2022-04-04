@@ -108,7 +108,7 @@ const AssistantPage = () => {
           </div>
         </div>
       </div>
-      <div className="w-full bg-assistant bg-cover mt-24 h-[128clear] bg-center">
+      <div className="w-full bg-assistant bg-cover mt-24 h-128 bg-center">
         <div className="max-w-7xl mx-auto space-y-1 py-10 items-center pt-16">
           <h1 className="text-2xl font-medium ">Станьте ассистентом!</h1>
           <p className="text-lg text-gray-500 pb-4 line-clamp-2 w-1/3">

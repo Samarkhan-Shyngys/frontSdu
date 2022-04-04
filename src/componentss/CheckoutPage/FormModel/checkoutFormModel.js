@@ -66,6 +66,23 @@ export default {
         label: 'По настоящее время',
         requiredErrorMsg: 'CVV is required',
         invalidErrorMsg: 'CVV is invalid (e.g. 357)'
+      },
+      certificate_name: {
+        name: 'certificate_name',
+        label: 'Название сертификата'
+
+      },
+      certificate_description: {
+        name: 'certificate_name',
+        label: 'Описание сертификата'
+      },
+      no_certificate: {
+        name: 'no_certificate',
+        label: 'У меня пока нет сертифкатов'
+      },
+      video_link: {
+        name: 'video_link',
+        label: 'Ссылка на видео'
       }
     }
   };

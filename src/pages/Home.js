@@ -5,10 +5,11 @@ import Mobile from '../Components/Mobile';
 import Footer from '../Components/Footer';
 import TopCourse from "../Components/TopCourse";
 import Library from "../Components/Library";
+import {base_url} from '../utils/request';
 
 async function getMain() {
 
-    const response = await fetch('http://7fba-95-141-136-228.ngrok.io/api/main/');
+    const response = await fetch('http://7c60-95-141-136-228.ngrok.io/api/main/');
         const data = await response.json();
         // console.log(response);
         if(response.status===200){

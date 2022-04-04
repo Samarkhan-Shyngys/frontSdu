@@ -119,7 +119,7 @@ export default function SignUp() {
                   autoComplete="password"
                   required
                   className="relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md sm:text-sm my-2"
-                  placeholder="Email address"
+                  placeholder="Password"
                   onChange={(e) => setPassword2(e.target.value)}
                 />
               </div>

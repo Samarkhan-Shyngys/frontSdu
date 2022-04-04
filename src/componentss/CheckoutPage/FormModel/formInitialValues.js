@@ -11,9 +11,14 @@ const {
     level,
     position,
     startWork,
-    about
+    about,
+    certificate_name,
+    certificate_description,
+    no_certificate,
+    video_link
   }
 } = checkoutFormModel;
+
 
 export default {
   [firstName.name]: '',
@@ -26,5 +31,9 @@ export default {
   [level.name]: '',
   [position.name]: '',
   [startWork.name]: '',
-  [about.name]: ''
+  [about.name]: '',
+  [certificate_name.name]: '',
+  [certificate_description.name]: '',
+  [no_certificate]: '',
+  [video_link]: ''
 };
