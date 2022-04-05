@@ -18,6 +18,7 @@ async function loginUser(credentials) {
 }
 
 export default function Login() {
+  localStorage.removeItem("user");
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [username, setUsername] = useState("");
