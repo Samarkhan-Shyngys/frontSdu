@@ -5,10 +5,12 @@ import Mobile from '../Components/Mobile';
 import Footer from '../Components/Footer';
 import TopCourse from "../Components/TopCourse";
 import Library from "../Components/Library";
+
 import {base_url} from "../utils/request";
 async function getMain() {
 
     const response = await fetch(base_url+'/api/main/');
+
         const data = await response.json();
         // console.log(response);
         if(response.status===200){

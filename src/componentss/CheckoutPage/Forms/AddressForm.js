@@ -55,6 +55,7 @@ export default function AddressForm(props) {
   const [avatarPreview, setAvatarPreview] = useState("../../image/amico.png");
   const {
     formField: {
+      image,
       firstName,
       lastName,
       email,
@@ -69,24 +70,18 @@ export default function AddressForm(props) {
   return (
     <Box sx={{ width: "60%", mx: "auto" }}>
       <Typography variant="h6">Личные данные</Typography>
-      <Typography variant="subtitle1" style={{ color: "gray" }}>
+      <Typography variant="subtitle1" sx={{ color: "gray" }}>
         Заполните свои данные, чтобы перейте к следующему шагу
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          {/* <Box
-            display='flex'
-            textAlign='center'
-            justifyContent='center'
-            flexDirection='column'> */}
-
           <Badge
             overlap="circular"
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             badgeContent={
               <Button variant="text" component="label" startIcon={<AddIcon />}>
                 <input
-                  name="avatar"
+                  name="image"
                   display="none"
                   accept="image/*"
                   id="contained-button-file"
@@ -96,7 +91,7 @@ export default function AddressForm(props) {
                     const fileReader = new FileReader();
                     fileReader.onload = () => {
                       if (fileReader.readyState === 2) {
-                        // setFieldValue('avatar', fileReader.result);
+                        //setFieldValue('avatar', fileReader.result);
                         setAvatarPreview(fileReader.result);
                       }
                     };

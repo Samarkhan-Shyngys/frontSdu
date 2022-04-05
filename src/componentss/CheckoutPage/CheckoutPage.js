@@ -14,11 +14,10 @@ import checkoutFormModel from './FormModel/checkoutFormModel';
 import { Formik, Form } from 'formik';
 
 import AddressForm from './Forms/AddressForm';
-import PaymentForm from './Forms/PaymentForm';
-// import ReviewOrder from './ReviewOrder';
+import Experience from './Forms/Experience';
+import Certificate from './Forms/Certificate';
+import Video from './Forms/Video';
 import CheckoutSuccess from './CheckoutSuccess/CheckoutSuccess';
-import i from '../../image/amico.png';
-
 
 const steps = ['Личные данные', 'Опыт работы', 'Сертификаты', 'Видео'];
 const { formId, formField } = checkoutFormModel;
@@ -28,9 +27,11 @@ function _renderStepContent(step) {
     case 0:
       return <AddressForm formField={formField} />;
     case 1:
-      return <PaymentForm formField={formField} />;
+      return <Experience formField={formField} />;
     case 2:
-      // return <ReviewOrder />;
+       return <Certificate formField={formField} />;
+    case 3:
+       return <Video formField={formField}/>
     default:
       return <div>Not Found</div>;
   }
@@ -95,7 +96,7 @@ export default function CheckoutPage() {
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
                     <Button onClick={_handleBack} className={classes.button}>
-                      Back
+                      Назад
                     </Button>
                   )}
                   <div className={classes.wrapper}>
@@ -106,7 +107,7 @@ export default function CheckoutPage() {
                       color="primary"
                       className={classes.button}
                     >
-                      {isLastStep ? 'Place order' : 'Next'}
+                      {isLastStep ? 'Отправить' : 'Следующий'}
                     </Button>
                     {isSubmitting && (
                       <CircularProgress

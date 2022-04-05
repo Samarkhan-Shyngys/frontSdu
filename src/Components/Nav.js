@@ -1,6 +1,9 @@
 import React from "react";
-import { CalendarIcon } from "@heroicons/react/outline";
 import image from "../image/Image.png";
+import employee from '../image/empoyee.png';
+import calendar from "../image/calendar.png";
+import icons from '../image/icon.png';
+import progress from '../image/progress.png';
 const Nav = () => {
   return (
     <>
@@ -38,41 +41,41 @@ const Nav = () => {
           </span>
         </div>
         <div className="mt-6 grid md:grid-cols-2 gap-y-6 gap-x-6">
-          <div className="flex flex-row space-x-4">
-            <CalendarIcon className="w-auto h-10" />
+          <div className="flex flex-row space-x-4 items-center">
+            <img src={employee} alt="emp" className="h-14 w-14"/>
             <div>
               <h3 className="text-xl font-semibold">Доступно и выгодно</h3>
-              <p className="text-gray-500 text-lg tracking-normal w-96">
+              <p className="text-gray-500 text-lg tracking-normal w-72 md:w-96">
                 Студентам предлагается возможность свободного выбора курсов и
                 материала.
               </p>
             </div>
           </div>
-          <div className="flex flex-row space-x-4">
-            <CalendarIcon className="w-auto h-10" />
+          <div className="flex flex-row space-x-4 items-center">
+            <img src={icons} alt="emp" className="h-14 w-14"/>
             <div>
               <h3 className="text-xl font-semibold">Удобное расписание</h3>
-              <p className="text-gray-500 text-lg w-96 tracking-normal">
+              <p className="text-gray-500 text-lg w-72 md:w-96 tracking-normal">
                 Вы сами выбираете время занятий, чтобы учиться в удобное время
                 для вас.
               </p>
             </div>
           </div>
-          <div className="flex flex-row space-x-4">
-            <CalendarIcon className="w-auto h-10" />
+          <div className="flex flex-row space-x-4 items-center">
+            <img src={calendar} alt="emp" className="h-14 w-14"/>
             <div>
               <h3 className="text-xl font-semibold">Удобное расписание</h3>
-              <p className="text-gray-500 text-lg w-96 tracking-normal">
+              <p className="text-gray-500 text-lg w-72 md:w-96 tracking-normal">
                 Студентам предлагается возможность свободного выбора курсов и
                 материала.
               </p>
             </div>
           </div>
-          <div className="flex flex-row space-x-4">
-            <CalendarIcon className="w-auto h-10" />
+          <div className="flex flex-row space-x-4 items-center">
+            <img src={progress} alt="emp" className="h-14 w-14"/>
             <div>
               <h3 className="text-xl font-semibold">Высокий результат</h3>
-              <p className="text-gray-500 text-lg w-96 tracking-normal">
+              <p className="text-gray-500 text-lg w-72 md:w-96 tracking-normal">
                 Следуя рекомендациям ассистентов, вы обязательно увидите хороший
                 прогресс.
               </p>

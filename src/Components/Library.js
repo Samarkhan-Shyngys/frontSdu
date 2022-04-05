@@ -2,36 +2,36 @@ import React, { useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import DivTitle from "./DivTitle";
 import {base_url} from "../utils/request";
-// const images = [
-//   {
-//     title: "Архитектура компьютера",
-//     author: "Э. Таненбаум, Т. Остин",
-//     url: require("../image/book1.png"),
-//   },
-//   {
-//     title: "bbb",
-//     author: "bbb",
-//     url: require("../image/book2.png"),
-//   },
-//   {
-//     title: "ccc",
-//     author: "bbb",
-//     url: require("../image/book3.png"),
-//   },
-//   {
-//     title: "ccc",
-//     author: "bbb",
-//     url: require("../image/book4.png"),
-//   },
-//   {
-//     title: "ccc",
-//     author: "bbb",
-//     url: require("../image/book5.png"),
-//   },
-// ];
+const images = [
+  {
+    title: "Архитектура компьютера",
+    author: "Э. Таненбаум, Т. Остин",
+    url: require("../image/book1.png"),
+  },
+  {
+    title: "Архитектура компьютера",
+    author: "Э. Таненбаум",
+    url: require("../image/book2.png"),
+  },
+  {
+    title: "ccc",
+    author: "bbb",
+    url: require("../image/book3.png"),
+  },
+  {
+    title: "ccc",
+    author: "bbb",
+    url: require("../image/book4.png"),
+  },
+  {
+    title: "ccc",
+    author: "bbb",
+    url: require("../image/book5.png"),
+  },
+];
 
-const images = JSON.parse(localStorage.getItem("library")).library;
-console.log(JSON.parse(localStorage.getItem("library")).library);
+// const images = JSON.parse(localStorage.getItem("library")).library;
+// console.log(JSON.parse(localStorage.getItem("library")).library);
 const Library = () => {
   const nextSlide = () => {
     setCur((cur + 1) % images.length);
@@ -41,7 +41,7 @@ const Library = () => {
   };
   const [cur, setCur] = useState(2);
   return (
-    <div className="max-w-7xl mx-auto pt-12">
+    <div className="max-w-7xl mx-auto pt-12 overflow-y-auto">
       <DivTitle
         title="Доступная библиотека"
         subtitle="Получайте самые необходимые и рекомендуемые книги от ассистентов"
@@ -53,29 +53,27 @@ const Library = () => {
         />
 
         <img
-          src={base_url + images[cur - 2 < 0 ? images.length + (cur - 2) : cur - 2].url}
+          src={images[cur - 2 < 0 ? images.length + (cur - 2) : cur - 2].url}
           className="h-64 w-44 rounded-lg"
           alt="image1"
         />
         <img
-          src={base_url +images[cur === 0 ? images.length - 1 : cur - 1].url}
+          src={images[cur === 0 ? images.length - 1 : cur - 1].url}
           className="h-80 w-52 rounded-lg"
           alt="image1"
         />
         <img
-          src={base_url +images[cur].url}
+          src={images[cur].url}
           className="h-96 w-72 rounded-lg"
           alt="image1"
         />
         <img
-          src={base_url +images[cur === images.length - 1 ? 0 : cur + 1].url}
+          src={images[cur === images.length - 1 ? 0 : cur + 1].url}
           className="h-80 w-52 rounded-lg"
           alt="image1"
         />
         <img
-          src={base_url +
-            images[
-              cur + 2 >= images.length ? (cur + 2) % images.length : cur + 2
+          src={images[cur + 2 >= images.length ? (cur + 2) % images.length : cur + 2
             ].url
           }
           className="h-64 w-44 rounded-lg"

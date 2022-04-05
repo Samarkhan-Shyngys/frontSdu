@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       <Switch>
-        <Route path="/assistant">
+        <Route path="/assistantt">
           <AssistantProfile />
           <Switch>
             <Route path="/assistant/profile" component={Profile} />
