@@ -1,6 +1,7 @@
 export default {
     formId: 'checkoutForm',
     formField: {
+      image: {},
       firstName: {
         name: 'firstName',
         label: 'Имя',

@@ -30,7 +30,7 @@ const images = [
   },
 ];
 
-// const images = JSON.parse(localStorage.getItem("library")).library;
+// const image = JSON.parse(localStorage.getItem("library")).library;
 // console.log(JSON.parse(localStorage.getItem("library")).library);
 const Library = () => {
   const nextSlide = () => {
@@ -41,12 +41,12 @@ const Library = () => {
   };
   const [cur, setCur] = useState(2);
   return (
-    <div className="max-w-7xl mx-auto pt-12 overflow-y-auto">
+    <div className="max-w-7xl mx-auto pt-12">
       <DivTitle
         title="Доступная библиотека"
         subtitle="Получайте самые необходимые и рекомендуемые книги от ассистентов"
       />
-      <div className="relative flex items-center justify-between">
+      <div className="relative flex flex-col items-center justify-between md:flex-row">
         <ChevronLeftIcon
           className="h-8 w-auto absolute inset-y-2/5 -ml-4 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
           onClick={prevSlide}
@@ -54,7 +54,7 @@ const Library = () => {
 
         <img
           src={images[cur - 2 < 0 ? images.length + (cur - 2) : cur - 2].url}
-          className="h-64 w-44 rounded-lg"
+          className="h-auto md:h-64 w-1/2 md:w-44 rounded-lg"
           alt="image1"
         />
         <img

@@ -91,7 +91,8 @@ export default function AddressForm(props) {
                     const fileReader = new FileReader();
                     fileReader.onload = () => {
                       if (fileReader.readyState === 2) {
-                        //setFieldValue('avatar', fileReader.result);
+                        //props.formField.image=fileReader.result;
+                        //setFieldValue('image', fileReader.result);
                         setAvatarPreview(fileReader.result);
                       }
                     };

@@ -1,7 +1,7 @@
 import React from "react";
 import { ChevronRightIcon } from "@heroicons/react/outline";
-
-const DivTitle = ({ title, subtitle }) => {
+import { Link } from "react-router-dom";
+const DivTitle = ({ title, subtitle , link }) => {
   return (
     <div className="space-y-2 mb-8">
       <h1 className="text-3xl font-semibold leading-6 text-gray-900">
@@ -9,10 +9,10 @@ const DivTitle = ({ title, subtitle }) => {
       </h1>
       <div className="flex justify-between ">
         <p className="text-base tracking-normal text-gray-500">{subtitle}</p>
-        <span className="flex">
+        <Link className="flex" to={link}>
           <h3 className="text-black font-medium">Посмотреть все</h3>
           <ChevronRightIcon className="w-auto h-6  " />
-        </span>
+        </Link>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import checkoutFormModel from './checkoutFormModel';
 const {
   formField: {
+    image,
     firstName,
     lastName,
     email,
@@ -21,6 +22,7 @@ const {
 
 
 export default {
+  [image]: '',
   [firstName.name]: '',
   [lastName.name]: '',
   [email.name]: '',

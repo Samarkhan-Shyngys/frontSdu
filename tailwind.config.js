@@ -7,6 +7,8 @@ module.exports = {
       },
       gridTemplateColumns: {
         sidebar: "300px 1fr",
+        course: "800px, 550px"
+      
       },
       height: {
         '128': '32rem',
