@@ -1,6 +1,6 @@
 const level = [
-  { label: "A1", value: 1 },
-  { label: "B1", value: 2 },
-  { label: "C1", value: 3 },
+  { label: "A1", value: "level" },
+  { label: "B1", value: "level" },
+  { label: "C1", value: "level" },
 ];
 export default level;

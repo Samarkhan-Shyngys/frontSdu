@@ -13,6 +13,7 @@ import SelectField from "../../FormFields/SelectField";
 import Language from "../../../Constants/Language";
 import Level from "../../../Constants/Level";
 import AddIcon from "@mui/icons-material/Add";
+
 const faculties = [
   {
     value: undefined,
@@ -91,8 +92,8 @@ export default function AddressForm(props) {
                     const fileReader = new FileReader();
                     fileReader.onload = () => {
                       if (fileReader.readyState === 2) {
-                        //props.formField.image=fileReader.result;
-                        //setFieldValue('image', fileReader.result);
+                        //formField.image=fileReader.result;
+                        //Formik.setFieldValue('image', fileReader.result);
                         setAvatarPreview(fileReader.result);
                       }
                     };
@@ -137,7 +138,7 @@ export default function AddressForm(props) {
           />
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="subtitle1" style={{ color: "black" }}>
+          <Typography variant="subtitle1" sx={{ color: "black" }}>
             Номер телефона
           </Typography>
           <InputField name={phone.name} label={phone.label} fullWidth />
@@ -162,9 +163,7 @@ export default function AddressForm(props) {
           <Typography variant="subtitle1" style={{ color: "black" }}>
             О себе
           </Typography>
-          <TextField multiline maxRows={4} fullWidth>
-            О себе
-          </TextField>
+          <TextField multiline maxRows={4} name={about.name} label={about.label} fullWidth />
         </Grid>
       </Grid>
     </Box>

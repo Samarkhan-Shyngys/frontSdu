@@ -3,7 +3,7 @@ import image from "../image/mobile.png";
 const Mobile = () => {
   return (
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 mt-24">
-      <div className="items-center pt-44">
+      <div className="items-center pt-44 ml-10 md:ml-0">
         <div className=" mt-8 space-y-2">
           <h2 className="text-3xl font-semibold tracking-normal">
             SDU App

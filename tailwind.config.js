@@ -7,7 +7,8 @@ module.exports = {
       },
       gridTemplateColumns: {
         sidebar: "300px 1fr",
-        course: "800px, 550px"
+        course: "800px, 550px",
+        mobilesidebar: "10px, 1fr",
       
       },
       height: {
@@ -15,5 +16,8 @@ module.exports = {
       }
     },
   },
-  plugins: [require("@tailwindcss/line-clamp")],
+  plugins: [
+      require("@tailwindcss/line-clamp"),
+      require('tailwind-scrollbar-hide')
+    ],
 };

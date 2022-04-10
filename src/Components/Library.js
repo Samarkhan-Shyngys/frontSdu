@@ -41,46 +41,47 @@ const Library = () => {
   };
   const [cur, setCur] = useState(2);
   return (
-    <div className="max-w-7xl mx-auto pt-12">
+    <div className="max-w-7xl mx-auto pt-12 container p-6">
       <DivTitle
         title="Доступная библиотека"
         subtitle="Получайте самые необходимые и рекомендуемые книги от ассистентов"
+        link="/books"
       />
-      <div className="relative flex flex-col items-center justify-between md:flex-row">
+      <div className="relative flex flex-col items-center justify-between md:flex-row mx-16 md:mx-0 space-y-4">
         <ChevronLeftIcon
-          className="h-8 w-auto absolute inset-y-2/5 -ml-4 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
+          className="hidden md:block h-8 w-auto absolute inset-y-2/5 -ml-4 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
           onClick={prevSlide}
         />
 
         <img
           src={images[cur - 2 < 0 ? images.length + (cur - 2) : cur - 2].url}
-          className="h-auto md:h-64 w-1/2 md:w-44 rounded-lg"
+          className="h-auto md:h-64 w-full md:w-44 rounded-lg"
           alt="image1"
         />
         <img
           src={images[cur === 0 ? images.length - 1 : cur - 1].url}
-          className="h-80 w-52 rounded-lg"
+          className="h-auto w-full md:h-80 md:w-52 rounded-lg"
           alt="image1"
         />
         <img
           src={images[cur].url}
-          className="h-96 w-72 rounded-lg"
+          className="h-auto md:h-96 w-full md:w-72 rounded-lg"
           alt="image1"
         />
         <img
           src={images[cur === images.length - 1 ? 0 : cur + 1].url}
-          className="h-80 w-52 rounded-lg"
+          className="h-auto w-full md:h-80 md:w-52 rounded-lg"
           alt="image1"
         />
         <img
           src={images[cur + 2 >= images.length ? (cur + 2) % images.length : cur + 2
             ].url
           }
-          className="h-64 w-44 rounded-lg"
+          className="h-auto md:h-64 w-full md:w-44 rounded-lg"
           alt="author"
         />
        <ChevronRightIcon
-          className="absolute h-8 w-auto -right-4 inset-y-2/5 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
+          className="hidden md:block absolute h-8 w-auto -right-4 inset-y-2/5 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
           onClick={nextSlide}
         />
       </div>

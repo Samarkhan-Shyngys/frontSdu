@@ -10,14 +10,14 @@ import {
 export const AssistantData = [
   {
     title: "Профиль",
-    path: "/assistant/profile",
+    path: "/assistantt/profile",
     icon: <UserIcon />,
     cName: "h-8 w-8",
     current: true,
   },
   {
     title: "Мои курсы",
-    path: "/assistant/mycourses",
+    path: "/assistantt/mycourses",
     icon: <LibraryIcon />,
     cName: "h-8 w-8",
     current: false,
@@ -31,21 +31,21 @@ export const AssistantData = [
   },
   {
     title: "Моя библиотека",
-    path: "/assistant/mylibrary",
+    path: "/assistantt/mylibrary",
     icon: <LibraryIcon />,
     cName: "h-8 w-8",
     current: false,
   },
   {
     title: "Опыт работы",
-    path: "/assistant/experience",
+    path: "/assistantt/experience",
     icon: <BriefcaseIcon />,
     cName: "h-8 w-8",
     current: false,
   },
   {
     title: "Настройки",
-    path: "/assistant/settings",
+    path: "/assistantt/settings",
     icon: <CogIcon />,
     cName: "h-8 w-8",
     current: false,

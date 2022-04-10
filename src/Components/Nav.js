@@ -8,9 +8,9 @@ const Nav = () => {
   return (
     <>
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center">
-        <div className="">
+        <div className="ml-10 sm:ml-0">
           <div className=" mt-8">
-            <h2 className="text-2xl md:text-3xl font-bold  tracking-normal text-red-700">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-normal text-red-700">
               Подтягивайте знание
             </h2>
             <h1 className="text-2xl md:text-4xl font-bold text-black">
@@ -31,8 +31,8 @@ const Nav = () => {
         </div>
       </div>
 
-      <div className="md:max-w-7xl mx-auto pt-24 items-center">
-        <div className="space-y-2">
+      <div className="max-w-7xl mx-auto pt-24 items-center">
+        <div className="space-y-2 mx-6 md:mx-0">
           <h1 className="text-black text-2xl md:text-3xl font-semibold">
             Наши приемущества
           </h1>
@@ -40,7 +40,7 @@ const Nav = () => {
             4 причини почему вы должны выбрать SDU Assistant
           </span>
         </div>
-        <div className="mt-6 grid md:grid-cols-2 gap-y-6 gap-x-6">
+        <div className="mt-6 grid md:grid-cols-2 gap-y-6 gap-x-6 mx-6 md:mx-0">
           <div className="flex flex-row space-x-4 items-center">
             <img src={employee} alt="emp" className="h-14 w-14"/>
             <div>

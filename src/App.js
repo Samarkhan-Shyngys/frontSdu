@@ -12,17 +12,19 @@ import { StudentProfile } from "./pages/StudentProfile";
 import { MyBooks } from "./Components/StudentProfile/MyBooks";
 import CheckoutPage from "./componentss/CheckoutPage/CheckoutPage";
 import ApplyCourse from "./pages/ApplyCourse";
+import Allbooks from "./pages/AllBooks";
 function App() {
   return (
     <>
       <Switch>
         <Route path="/assistantt">
           <AssistantProfile />
-          <Switch>
+          {/* <Switch>
             <Route path="/assistant/profile" component={Profile} />
             <Route path="/" exact component={Home} />
-          </Switch>
+          </Switch> */}
         </Route>
+        <Route path="/books" component={Allbooks} />
         <Route path="/student" component={StudentProfile} />
         <Route path="/applycourse" component={ApplyCourse}/>
         <Route path="/stepper" component={CheckoutPage} />
