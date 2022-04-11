@@ -49,6 +49,7 @@ export default function CheckoutPage() {
 
   async function _submitForm(values, actions) {
     await _sleep(1000);
+    console.log(values);
     alert(JSON.stringify(values, null, 2));
     actions.setSubmitting(false);
 

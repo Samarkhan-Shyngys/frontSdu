@@ -118,7 +118,10 @@ const AssistantPage = () => {
             студентов
           </p>
           <button className="bg-red-800 py-3 px-5 rounded-md text-white text-base">
-            Начать преподавать
+          <Link to="/stepper">
+          Начать преподавать
+                  </Link>
+            
           </button>
           </div>
           

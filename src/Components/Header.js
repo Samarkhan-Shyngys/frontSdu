@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 
 const navigation = [
   { name: "Найти ассистента", href: "/assistant", current: true },
-  { name: "Стать ассистентом", href: "/Стать ассистентом", current: false },
+  { name: "Стать ассистентом", href: "/beassistant", current: false },
 ];
 
 function classNames(...classes) {
