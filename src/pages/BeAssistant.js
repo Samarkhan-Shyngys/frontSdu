@@ -18,7 +18,7 @@ const AssistantPage = () => {
             Главная{" "}
           </Link>
           <p className="text-xl font-semibold text-gray-900">
-            {history.pathname}
+            /Стать ассистентом
           </p>
         </div>
         <div className="flex flex-col items-center justify-between pt-10 md:flex-row">
@@ -116,7 +116,10 @@ const AssistantPage = () => {
             студентов
           </p>
           <button className="bg-red-800 py-3 px-5 rounded-md text-white text-base">
-            Начать преподавать
+          <Link to="/stepper">
+          Начать преподавать
+                  </Link>
+            
           </button>
         </div>
       </div>

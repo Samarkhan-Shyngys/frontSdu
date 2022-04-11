@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       <Switch>
-        <Route path="/assistantt">
+        <Route path="/assistant">
           <AssistantProfile />
           <Switch>
             <Route path="/assistant/profile" component={Profile} />
@@ -35,7 +35,7 @@ function App() {
         <Route path="/forget" component={ForgetPassword} />
         <Route path="/confirm" component={ConfirmRegistartion} />
         <Route path="/profile" component={Profile} />
-        <Route path="/Стать ассистентом" component={AssistantPage} />
+        <Route path="/beassistant" component={AssistantPage} />
         <Route path="/apply" component={Apply} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
