@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <Switch>
-        <Route path="/assistant">
+        <Route path="/assistantt">
           <AssistantProfile />
           {/* <Switch>
             <Route path="/assistant/profile" component={Profile} />
@@ -32,10 +32,10 @@ function App() {
         <Route path="/confirm" component={ConfirmRegistartion} />
         <Route path="/profile" component={Profile} />
         <Route path="/beassistant" component={AssistantPage} />
-        <Route path="/apply" component={Apply} />
+        {/* <Route path="/apply" component={Apply} /> */}
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
-        <Route path="/assistant" component={Assistant} />
+        <Route path="/assistantt" component={Assistant} />
         <Route path="/" component={Home} />
         
       </Switch>
