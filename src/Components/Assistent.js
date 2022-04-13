@@ -38,12 +38,13 @@ const Assistant = () => {
                     <p className="hidden md:block text-gray-200 ml-4">Название курса</p>
                     <input type='text'className=" block w-48 md:w-96 h-8 md:h-12  text-gray-700 px-4 leading-tight focus:outline-none  focus:border-gray-500"  placeholder="Doe"  onChange={handleChange}/>
                   </div> */}
-            <div>
+            <div className="">
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
                 options={top100Films}
-                sx={{ width: 460, bgcolor: "white" }}
+                sx={{minWidth:"450px", bgcolor: "white" }}
+                fullWidth
                 renderInput={(params) => (
                   <TextField {...params} label="Название курса" />
                 )}
@@ -58,6 +59,7 @@ const Assistant = () => {
                     </select> */}
             <div>
               <FormControl
+                fullWidth
                 sx={{ minWidth: 200, minHeight: 50, bgcolor: "white" }}
               >
                 <InputLabel id="demo-simple-select-label">
@@ -76,7 +78,7 @@ const Assistant = () => {
               </FormControl>
             </div>
             <div>
-              <button className=" w-full md:w-36 bg-red-800 text-xl text-white px-12 py-2 md:py-3 font-semibold rounded md:ml-8">
+              <button className="w-full md:w-36 bg-red-800 text-xl text-white px-12 py-2 md:py-3 font-semibold rounded md:ml-8">
                 Найти
               </button>
             </div>
@@ -84,18 +86,18 @@ const Assistant = () => {
         </div>
       </div>
       <div className="max-w-7xl mx-auto pt-12">
-        <div className="flex justify-between">
-          <h1 className="text-lg font-medium tracking-tight text-gray-400">
+        <div className="flex justify-between mx-4 md:mx-0">
+          <h1 className="text-base md:text-lg font-medium tracking-tight text-gray-400">
             Найдено 12 результатов
           </h1>
           <div className="inline-flex items-center space-x-1">
             <FilterIcon className="w-4 h-4" />
-            <h1 className="text-lg tracking-tight font-medium">
+            <h1 className="text-base md:text-lg tracking-tight font-medium">
               Сортировать по: Популярности
             </h1>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-x-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-8">
           <CourseCard />
           <CourseCard />
           <CourseCard />
@@ -127,11 +129,8 @@ const Assistant = () => {
 export default Assistant;
 
 const top100Films = [
-  { label: "The Shawshank Redemption", year: 1994 },
-  { label: "The Godfather", year: 1972 },
-  { label: "The Godfather: Part II", year: 1974 },
-  { label: "The Dark Knight", year: 2008 },
-  { label: "12 Angry Men", year: 1957 },
-  { label: "Schindler's List", year: 1993 },
-  { label: "Pulp Fiction", year: 1994 },
+  { label: "Алгоритмы, структуры данных и программирования", year: 1994 },
+  { label: "Алгоритмы, структуры данных и программирования", year: 1972 },
+  { label: "Алгоритмы, структуры данных и программирования", year: 1974 },
+
 ];

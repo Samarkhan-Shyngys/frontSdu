@@ -6,7 +6,7 @@ module.exports = {
         assistant: "url('/src/image/img_teacher.png')",
       },
       gridTemplateColumns: {
-        sidebar: "300px 1fr",
+        sidebar: "200px 1fr",
         course: "800px, 550px",
         mobilesidebar: "10px, 1fr",
       
