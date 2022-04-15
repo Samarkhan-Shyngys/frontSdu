@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import useStyles from './styles';
+import React, { useState } from "react";
+import useStyles from "./styles";
 import {
   Stepper,
   Step,
@@ -7,19 +7,19 @@ import {
   Button,
   Typography,
   CircularProgress,
-  Box
-} from '@material-ui/core';
-import formInitialValues from './FormModel/formInitialValues';
-import checkoutFormModel from './FormModel/checkoutFormModel';
-import { Formik, Form } from 'formik';
+  Box,
+} from "@material-ui/core";
+import formInitialValues from "./FormModel/formInitialValues";
+import checkoutFormModel from "./FormModel/checkoutFormModel";
+import { Formik, Form } from "formik";
+import Header from "../../Components/Header";
+import AddressForm from "./Forms/AddressForm";
+import Experience from "./Forms/Experience";
+import Certificate from "./Forms/Certificate";
+import Video from "./Forms/Video";
+import CheckoutSuccess from "./CheckoutSuccess/CheckoutSuccess";
 
-import AddressForm from './Forms/AddressForm';
-import Experience from './Forms/Experience';
-import Certificate from './Forms/Certificate';
-import Video from './Forms/Video';
-import CheckoutSuccess from './CheckoutSuccess/CheckoutSuccess';
-
-const steps = ['Личные данные', 'Опыт работы', 'Сертификаты', 'Видео'];
+const steps = ["Личные данные", "Опыт работы", "Сертификаты", "Видео"];
 const { formId, formField } = checkoutFormModel;
 
 function _renderStepContent(step) {
@@ -29,9 +29,9 @@ function _renderStepContent(step) {
     case 1:
       return <Experience formField={formField} />;
     case 2:
-       return <Certificate formField={formField} />;
+      return <Certificate formField={formField} />;
     case 3:
-       return <Video formField={formField}/>
+      return <Video formField={formField} />;
     default:
       return <div>Not Found</div>;
   }
@@ -41,10 +41,9 @@ export default function CheckoutPage() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const isLastStep = activeStep === steps.length - 1;
-  
 
   function _sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   async function _submitForm(values, actions) {
@@ -71,58 +70,58 @@ export default function CheckoutPage() {
   }
 
   return (
-    <Box sx={{width:'80%', mx:"auto", mt:4}}>
-      <Typography component="h1" variant="h4" align="center">
-        Заполнение анкеты
-      </Typography>
-      <Stepper activeStep={activeStep} className={classes.stepper}>
-        {steps.map(label => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-      <>
-        {activeStep === steps.length ? (
-          <CheckoutSuccess />
-        ) : (
-          <Formik
-            initialValues={formInitialValues}
-            onSubmit={_handleSubmit}
-          >
-            {({ isSubmitting }) => (
-              <Form id={formId}>
-                {_renderStepContent(activeStep)}
+    <>
+      <Header />
+      <Box sx={{ width: "80%", mx: "auto", mt: 4 }}>
+        <Typography component="h1" variant="h4" align="center">
+          Заполнение анкеты
+        </Typography>
+        <Stepper activeStep={activeStep} className={classes.stepper}>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        <>
+          {activeStep === steps.length ? (
+            <CheckoutSuccess />
+          ) : (
+            <Formik initialValues={formInitialValues} onSubmit={_handleSubmit}>
+              {({ isSubmitting }) => (
+                <Form id={formId}>
+                  {_renderStepContent(activeStep)}
 
-                <div className={classes.buttons}>
-                  {activeStep !== 0 && (
-                    <Button onClick={_handleBack} className={classes.button}>
-                      Назад
-                    </Button>
-                  )}
-                  <div className={classes.wrapper}>
-                    <Button
-                      disabled={isSubmitting}
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      className={classes.button}
-                    >
-                      {isLastStep ? 'Отправить' : 'Следующий'}
-                    </Button>
-                    {isSubmitting && (
-                      <CircularProgress
-                        size={24}
-                        className={classes.buttonProgress}
-                      />
+                  <div className={classes.buttons}>
+                    {activeStep !== 0 && (
+                      <Button onClick={_handleBack} className={classes.button}>
+                        Назад
+                      </Button>
                     )}
+                    <div className={classes.wrapper}>
+                      <Button
+                        disabled={isSubmitting}
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
+                      >
+                        {isLastStep ? "Отправить" : "Следующий"}
+                      </Button>
+                      {isSubmitting && (
+                        <CircularProgress
+                          size={24}
+                          className={classes.buttonProgress}
+                        />
+                      )}
+                    </div>
                   </div>
-                </div>
-              </Form>
-            )}
-          </Formik>
-        )}
-      </>
-    </Box>
+                </Form>
+              )}
+            </Formik>
+          )}
+        </>
+      </Box>
+    </>
   );
 }

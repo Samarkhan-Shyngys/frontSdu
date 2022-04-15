@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Field, Formik} from "formik";
 import {
   Badge,
   Grid,
@@ -20,16 +21,16 @@ const faculties = [
     label: "None",
   },
   {
-    value: "1",
+    value: "Engineering",
     label: "Engineering",
   },
   {
-    value: "2",
+    value: "Business",
     label: "Business",
   },
   {
-    value: "3",
-    label: "law",
+    value: "Law",
+    label: "Law",
   },
 ];
 
@@ -39,15 +40,15 @@ const professions = [
     label: "None",
   },
   {
-    value: "111",
+    value: "IT",
     label: "IT",
   },
   {
-    value: "222",
+    value: "CS",
     label: "CS",
   },
   {
-    value: "333",
+    value: "Lawyer",
     label: "Lawyer",
   },
 ];
@@ -80,20 +81,21 @@ export default function AddressForm(props) {
             overlap="circular"
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             badgeContent={
-              <Button variant="text" component="label" startIcon={<AddIcon />}>
+              <Button name="a" variant="text" component="label" startIcon={<AddIcon />}>
                 <input
-                  name="image"
+                  name={image.name}
                   display="none"
                   accept="image/*"
-                  id="contained-button-file"
+                  label={image.label}
                   type="file"
                   hidden
                   onChange={(e) => {
                     const fileReader = new FileReader();
                     fileReader.onload = () => {
                       if (fileReader.readyState === 2) {
-                        //formField.image=fileReader.result;
-                        //Formik.setFieldValue('image', fileReader.result);
+                        console.log(fileReader.result);
+                        props.formField.image.name =fileReader.result;
+                        // Formik.setFieldValue('image', fileReader.result);
                         setAvatarPreview(fileReader.result);
                       }
                     };
@@ -163,7 +165,8 @@ export default function AddressForm(props) {
           <Typography variant="subtitle1" style={{ color: "black" }}>
             О себе
           </Typography>
-          <TextField multiline maxRows={4} name={about.name} label={about.label} fullWidth />
+          {/* <TextField multiline maxRows={4} name={about.name} label={about.label} fullWidth /> */}
+          <InputField multiline name={about.name} label={about.label} fullWidth />
         </Grid>
       </Grid>
     </Box>

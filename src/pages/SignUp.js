@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
 import UserContext from "../context/UserContext";
 import LogoHeader from "../Components/LogoHeader";
-import React, { useState, useEffet } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { CONFIRM_ROUTE } from "../utils/consts";
 import {base_url} from "../utils/request";

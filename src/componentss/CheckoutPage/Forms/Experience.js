@@ -1,21 +1,27 @@
-import React from 'react';
-import { Grid, Typography , Box} from '@mui/material';
-import InputField from '../../FormFields/InputField';
-import SelectField from '../../FormFields/SelectField';
-import Months from '../../../Constants/Months';
-import Years from '../../../Constants/Years';
-import CheckboxField from '../../FormFields/CheckBoxField';
+import React from "react";
+import { Grid, Typography, Box } from "@mui/material";
+import InputField from "../../FormFields/InputField";
+import SelectField from "../../FormFields/SelectField";
+import Months from "../../../Constants/Months";
+import Years from "../../../Constants/Years";
+import CheckboxField from "../../FormFields/CheckBoxField";
 
 export default function PaymentForm(props) {
   const {
-    formField: { organisation, position, startWork, endDate }
+    formField: {
+      organisation,
+      position,
+      startWorkYear,
+      startWorkMonth,
+      endDate,
+      endWorkMonth,
+      endWorkYear,
+    },
   } = props;
- 
+
   return (
-    <Box sx={{width:'60%', mx:"auto"}}>
-      <Typography variant="h6">
-      Опыт работы
-      </Typography>
+    <Box sx={{ width: "60%", mx: "auto" }}>
+      <Typography variant="h6">Опыт работы</Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <InputField
@@ -25,11 +31,7 @@ export default function PaymentForm(props) {
           />
         </Grid>
         <Grid item xs={12}>
-          <InputField
-            name={position.name}
-            label={position.label}
-            fullWidth
-          />
+          <InputField name={position.name} label={position.label} fullWidth />
         </Grid>
         {/* <Grid item xs={12} md={6}>
           <DatePickerField
@@ -44,32 +46,41 @@ export default function PaymentForm(props) {
         </Grid> */}
         <Grid item xs={9}>
           <SelectField
-            name={startWork.name}
-            label={startWork.label}
+            name={startWorkMonth.name}
+            label={startWorkMonth.label}
             data={Months}
             fullWidth
           />
         </Grid>
-        <Grid item xs={3} >
+        <Grid item xs={3}>
           <SelectField
-            name={startWork.name}
-            label={startWork.label}
+            name={startWorkYear.name}
+            label={startWorkYear.label}
             data={Years}
             fullWidth
           />
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="h6">
-            Окончание
-          </Typography>
-          <CheckboxField
-            name={endDate.name}
-            label={endDate.label}
-          />
+          <Typography variant="h6">Окончание</Typography>
+          <CheckboxField name={endDate.name} label={endDate.label} />
+            </Grid>
+          <Grid item xs={9}>
+            <SelectField
+              name={endWorkMonth.name}
+              label={endWorkMonth.label}
+              data={Months}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <SelectField
+              name={endWorkYear.name}
+              label={endWorkYear.label}
+              data={Years}
+              fullWidth
+            />
+          </Grid>
         </Grid>
-      </Grid>
-      
-     
     </Box>
   );
 }

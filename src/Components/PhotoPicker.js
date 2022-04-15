@@ -10,8 +10,8 @@ const PhotoPicker = ({ preview, handleImage }) => {
   return (
     <form>
     <label>
-      <img src={preview} className="w-32 h-32 rounded-full" alt="profile" />
-      <PlusIcon className="absolute z-10 h-6 w-6 ml-24 -mt-8 bg-gray-900 rounded-full text-white" />
+      <img src={image} className="relative w-2/5 h-36 rounded-md" alt="profile" />
+      <PlusIcon className="absolute z-10 h-6 w-6 ml-52 -mt-32 bg-gray-900 rounded-full text-white" />
       <input
         name="photo"
         type="file"
