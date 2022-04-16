@@ -69,6 +69,14 @@ export default {
         name: 'endWorkYear',
         label: 'Год'
       },
+      certificate: [
+        {
+          index : "ccc",
+          name: '',
+          description: '',
+          photo: ""
+        },
+      ],
       certificate_name: {
         name: 'certificate_name',
         label: 'Название сертификата'

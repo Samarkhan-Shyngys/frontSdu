@@ -3,7 +3,7 @@ import PhotoPicker from "../PhotoPicker";
 import Input from "../Input";
 import Button from "../AssistantProfile/Button";
 import { PlusIcon } from "@heroicons/react/outline";
-import {base_url} from "/home/shyngys/frontSdu/src/utils/request";
+import {base_url} from "../../utils/request";
 import { data } from "autoprefixer";
 import axios from "axios";
 
@@ -22,7 +22,7 @@ async function editProfile(credentials) {
   }
   
 
-  return fetch(base_url+"/api/student/edit/profile", {
+  return fetch(`${base_url}/api/student/edit/profile`, {
     method: "POST",
     body: data2,
   }).then((response) => {

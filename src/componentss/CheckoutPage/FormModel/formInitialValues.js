@@ -20,7 +20,8 @@ const {
     certificate_image,
     certificate_description,
     no_certificate,
-    video_link
+    video_link,
+    certificate
   }
 } = checkoutFormModel;
 
@@ -33,7 +34,7 @@ export default {
   [faculty.name]: '',
   [profession.name]: '',
   [phone.name]: '',
-  [language.name]: false,
+  [language.name]: "",
   [level.name]: '',
   [position.name]: '',
   [startWorkYear.name]: '',
@@ -45,5 +46,7 @@ export default {
   [certificate_image.name]: '',
   [certificate_description.name]: '',
   [no_certificate]: '',
-  [video_link]: ''
+  [video_link]: '',
+  [certificate]: [],
+ 
 };

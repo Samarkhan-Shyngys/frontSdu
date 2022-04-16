@@ -1,18 +1,15 @@
 import React from 'react';
-import InputField from "../../FormFields/InputField";
 import {Button, Grid, Typography , Box} from '@mui/material';
-
+import { TextField } from "formik-material-ui";
+import {Field } from "formik";
 export default function Video(props){
-    const {
-        formField: { video_link }
-      } = props;
     return (
-        <Box sx={{width:'60%', mx:"auto"}}>
+        <Box >
             <Typography variant='h5'>Видео</Typography>
             <Typography variant='subtitle1'>Запишите видео и представтесь студентам</Typography>
-            <Grid container>
+            <Grid container spacing={3} component="section">
                 <Grid item xs={12}>
-                    <InputField name={video_link.name} label={video_link.label} fullWidth />
+                    <Field name="video" label="Video" fullWidth component={TextField}/>
                 </Grid>
                 <Grid item xs={12} sx={{mt:4}}>
                     <Typography variant='h6'>Советы для отличного видео</Typography>
@@ -32,3 +29,5 @@ export default function Video(props){
     );
 
 }
+
+Video.label = "Видео";

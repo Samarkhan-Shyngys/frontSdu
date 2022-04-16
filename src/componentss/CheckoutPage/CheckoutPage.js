@@ -18,110 +18,85 @@ import Experience from "./Forms/Experience";
 import Certificate from "./Forms/Certificate";
 import Video from "./Forms/Video";
 import CheckoutSuccess from "./CheckoutSuccess/CheckoutSuccess";
+import SwipeableViews from "react-swipeable-views";
 
-const steps = ["Личные данные", "Опыт работы", "Сертификаты", "Видео"];
-const { formId, formField } = checkoutFormModel;
+const steps = [AddressForm, Experience, Certificate, Video];
 
-function _renderStepContent(step) {
-  switch (step) {
-    case 0:
-      return <AddressForm formField={formField} />;
-    case 1:
-      return <Experience formField={formField} />;
-    case 2:
-      return <Certificate formField={formField} />;
-    case 3:
-      return <Video formField={formField} />;
-    default:
-      return <div>Not Found</div>;
-  }
-}
-
-export default function CheckoutPage() {
-  const classes = useStyles();
+export default function CheckoutPage(props) {
   const [activeStep, setActiveStep] = useState(0);
-  const isLastStep = activeStep === steps.length - 1;
 
-  function _sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
+  const isLastStep = () => {
+    return activeStep === steps.length - 1;
+  };
 
-  async function _submitForm(values, actions) {
-    await _sleep(1000);
-    console.log(values);
-    alert(JSON.stringify(values, null, 2));
-    actions.setSubmitting(false);
+  const handlePrev = () => {
+    setActiveStep(Math.max(activeStep - 1, 0));
+  };
 
-    setActiveStep(activeStep + 1);
-  }
+  const handleNext = () => [
+    setActiveStep(Math.min(activeStep + 1, steps.length - 1)),
+  ];
 
-  function _handleSubmit(values, actions) {
-    if (isLastStep) {
-      _submitForm(values, actions);
-    } else {
-      setActiveStep(activeStep + 1);
-      actions.setTouched({});
-      actions.setSubmitting(false);
+  const onSubmit = (values, formikBag) => {
+    const { setSubmitting } = formikBag;
+
+    if (!isLastStep()) {
+      setSubmitting(false);
+      handleNext();
+      return;
     }
-  }
 
-  function _handleBack() {
-    setActiveStep(activeStep - 1);
-  }
+    console.log(values);
 
+    setTimeout(() => {
+      setSubmitting(false);
+    }, 1000);
+  };
+
+  const initialValues = steps.reduce(
+    (values, { initialValues }) => ({
+      ...values,
+      ...initialValues,
+    }),
+    {}
+  );
   return (
     <>
-      <Header />
-      <Box sx={{ width: "80%", mx: "auto", mt: 4 }}>
-        <Typography component="h1" variant="h4" align="center">
-          Заполнение анкеты
-        </Typography>
-        <Stepper activeStep={activeStep} className={classes.stepper}>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-        <>
-          {activeStep === steps.length ? (
-            <CheckoutSuccess />
-          ) : (
-            <Formik initialValues={formInitialValues} onSubmit={_handleSubmit}>
-              {({ isSubmitting }) => (
-                <Form id={formId}>
-                  {_renderStepContent(activeStep)}
+    <Header />
+    <Box sx={{ width: "70%", mx: "auto", pt:10 }}>
+      <Formik initialValues={initialValues} onSubmit={onSubmit}>
+        {({ isSubmitting, values }) => (
+          <>
+            <Form>
+              <Stepper alternativeLabel activeStep={activeStep}>
+                {steps.map((step, index) => (
+                  <Step key={index}>
+                    <StepLabel>{steps[index].label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
 
-                  <div className={classes.buttons}>
-                    {activeStep !== 0 && (
-                      <Button onClick={_handleBack} className={classes.button}>
-                        Назад
-                      </Button>
-                    )}
-                    <div className={classes.wrapper}>
-                      <Button
-                        disabled={isSubmitting}
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        className={classes.button}
-                      >
-                        {isLastStep ? "Отправить" : "Следующий"}
-                      </Button>
-                      {isSubmitting && (
-                        <CircularProgress
-                          size={24}
-                          className={classes.buttonProgress}
-                        />
-                      )}
-                    </div>
-                  </div>
-                </Form>
-              )}
-            </Formik>
-          )}
-        </>
-      </Box>
+              <SwipeableViews index={activeStep}>
+                {steps.map((step, index) => {
+                  const Component = steps[index];
+                  return <Component key={index} />;
+                })}
+              </SwipeableViews>
+              <Button
+                disabled={activeStep === 0 || isSubmitting}
+                onClick={handlePrev}
+              >
+                Previous
+              </Button>
+              <Button disabled={isSubmitting} type="submit">
+                {isLastStep() ? "Submit" : "Next"}
+              </Button>
+            </Form>
+            <pre>{JSON.stringify(values, null, 2)}</pre>
+          </>
+        )}
+      </Formik>
+    </Box>
     </>
   );
 }
