@@ -1,16 +1,16 @@
 const months = [
-  { label: "Январь", value: 1 },
-  { label: "Февраль", value: 2 },
-  { label: "Март", value: 3 },
-  { label: "Апрель", value: 4 },
-  { label: "Май", value: 5 },
-  { label: "Июнь", value: 6 },
-  { label: "Июль", value: 7 },
-  { label: "Август", value: 8 },
-  { label: "Сентябрь", value: 9 },
-  { label: "Октябрь", value: 10 },
-  { label: "Ноябрь", value: 11 },
-  { label: "Декабрь", value: 12 },
+  { label: "Январь", value: "Январь" },
+  { label: "Февраль", value: "Февраль" },
+  { label: "Март", value: "Март" },
+  { label: "Апрель", value: "Апрель" },
+  { label: "Май", value: "Май" },
+  { label: "Июнь", value:  "Июнь" },
+  { label: "Июль", value: "Июль" },
+  { label: "Август", value: "Август" },
+  { label: "Сентябрь", value: "Сентябрь" },
+  { label: "Октябрь", value: "Октябрь" },
+  { label: "Ноябрь", value: "Ноябрь" },
+  { label: "Декабрь", value: "Декабрь" },
 ];
 
 export default months;

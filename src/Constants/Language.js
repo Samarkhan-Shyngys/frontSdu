@@ -1,6 +1,6 @@
 const languages = [
-  { label: "Русский", value: "language"},
-  { label: "Английский", value: "language" },
+  { label: "Русский", value: "Русский"},
+  { label: "Английский", value: "Английский" },
 ];
 
 export default languages;

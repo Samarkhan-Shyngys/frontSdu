@@ -16,7 +16,7 @@ const UserProfile = () => {
     faculty: "",
     profession: "",
     phone: "",
-    language: "",
+    languages: [{name:"", level:""},],
     level: "",
     about: "",
 
@@ -33,7 +33,7 @@ const UserProfile = () => {
     console.log(e.label)
     setData({
       ...data,
-      [e.value] : e.label,
+      //languages({[e.value] : e.label}),
     })
   }
   const handleImage=(e)=>{
@@ -52,7 +52,7 @@ const UserProfile = () => {
   };
   console.log(data);
   return (
-    <div className="w-2/3 mx-auto">
+    <div className="w-2/3">
       <h1 className="text-2xl font-semibold">Профиль</h1>
       <div>
        {/* <PhotoPicker /> */}

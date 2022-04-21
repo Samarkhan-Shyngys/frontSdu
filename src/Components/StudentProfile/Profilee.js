@@ -1,12 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PhotoPicker from "../PhotoPicker";
 import Input from "../Input";
 import Button from "../AssistantProfile/Button";
 import { PlusIcon } from "@heroicons/react/outline";
+import {base_url} from "../../utils/request";
+import { data } from "autoprefixer";
+import axios from "axios";
+
+async function editProfile(credentials) {
+  const data2 = new FormData();
+  data2.append('firstname', credentials.firstname)
+  data2.append('lastname', credentials.lastname)
+  data2.append('email', credentials.email)
+  data2.append('faculty', credentials.faculty)
+  data2.append('profession', credentials.profession)
+  data2.append('phone', credentials.phone)
+  console.log("cred:", credentials)
+  if(credentials.photo!="null"){
+    console.log("sssss");
+    data2.append('file', credentials.photo)
+  }
+  
+
+  return fetch(`${base_url}/api/student/edit/profile`, {
+    method: "POST",
+    body: data2,
+  }).then((response) => {
+    return response;
+  });
+}
+
+
+
 const Profilee = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const id = user.id;
+
+
+    
+  
   const [preview, setPreview] = useState(require("../../image/12.webp"));
   const [data, setData] = useState({
-    photo: "",
+    photo: "null",
     firstname: "",
     lastname: "",
     email: "",
@@ -14,6 +49,27 @@ const Profilee = () => {
     profession: "",
     phone: "",
   });
+  
+
+  useEffect(async () => {
+    const result = await axios(base_url+
+      '/api/student/profile/'+id
+    );
+    const profile = JSON.parse(JSON.stringify(result.data));
+    console.log(profile.firstname);
+    
+    setData({
+      ...data,
+      ["email"]: user.email,
+      ["firstname"]: profile.firstname,
+      ["lastname"]: profile.lastname,
+      ["faculty"]: profile.faculty,
+      ["profession"]: profile.profession,
+      ["phone"]: profile.phone,
+
+    });
+  }, []);
+
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -23,17 +79,33 @@ const Profilee = () => {
     });
   };
   const handleImage=(e)=>{
+    
     if (window.FileReader) {
+      
       var file = e.target.files[0];
+      
       var reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = function (e) {
         setPreview(e.target.result);
         setData({
           ...data,
-          ["photo"]: e.target.result,
+          ["photo"]: file,
         });
       };
+    }
+
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(data)
+    const token = await editProfile(data);
+    if (token.status === 200) {
+      token.json().then((json) => {
+        console.log(json);
+        
+        
+      });
     }
   };
   console.log(data);
@@ -53,24 +125,25 @@ const Profilee = () => {
             <input
               name="photo"
               type="file"
-              accept="image/*"
+              accept="im age/*"
               className="hidden"
               onChange={handleImage}
             />
           </label>
         </form>
-
         <Input
           name="firstname"
           text="Имя"
           type="text"
-          placeholder="Введите ваше имя"
+          value={data.firstname}
+          placeholder={data.firstname!=""?data.firstname:"Введите ваше имя"}
           onChanged={handleChange}
         />
         <Input
           name="lastname"
           text="Фамилия"
           type="text"
+          value={data.lastname}
           placeholder="Введите вашу фамилию"
           onChanged={handleChange}
         />
@@ -78,13 +151,15 @@ const Profilee = () => {
           name="email"
           text="SDU-почта"
           type="text"
-          placeholder="220102456@stu.sdu.edu.kz"
+          value={data.email}
+          placeholder={data.email}
           onChanged={handleChange}
         />
         <Input
           name="faculty"
           text="Факультет"
           type="text"
+          value={data.faculty}
           placeholder="Инженерии и естественных наук"
           onChanged={handleChange}
         />
@@ -92,6 +167,7 @@ const Profilee = () => {
           name="profession"
           text="Специализация"
           type="text"
+          value={data.profession}
           placeholder="Информационная система"
           onChanged={handleChange}
         />
@@ -99,11 +175,17 @@ const Profilee = () => {
           name="phone"
           text="Номер телефона"
           type="text"
-          placeholder="+7 (701) 123 45-67|"
+          value={data.phone}
+          placeholder="+7 (701) 123 45-67"
           onChanged={handleChange}
         />
 
-        <Button text="Сохранить изменения" />
+        <div className="mt-8">
+        <button type="submit"
+                    onClick={handleSubmit} className="w-full py-2 bg-white border rounded-md border-gray-800 font-medium text-xl">
+            {"Сохранить изменения"}
+        </button>
+        </div>
       </div>
     </div>
   );

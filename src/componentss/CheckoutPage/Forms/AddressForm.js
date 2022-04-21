@@ -1,35 +1,34 @@
 import React, { useState } from "react";
+import {Field, Formik} from "formik";
 import {
   Badge,
   Grid,
   Typography,
   Box,
-  Button,
   Avatar,
-  TextField,
+  Button
 } from "@mui/material";
-import InputField from "../../FormFields/InputField";
 import SelectField from "../../FormFields/SelectField";
 import Language from "../../../Constants/Language";
 import Level from "../../../Constants/Level";
 import AddIcon from "@mui/icons-material/Add";
-
+import { TextField } from "formik-material-ui";
 const faculties = [
   {
-    value: undefined,
-    label: "None",
+    label: undefined,
+    value: "None",
   },
   {
-    value: "1",
+    value: "Engineering",
     label: "Engineering",
   },
   {
-    value: "2",
+    value: "Business",
     label: "Business",
   },
   {
-    value: "3",
-    label: "law",
+    value: "Law",
+    label: "Law",
   },
 ];
 
@@ -39,66 +38,41 @@ const professions = [
     label: "None",
   },
   {
-    value: "111",
+    value: "IT",
     label: "IT",
   },
   {
-    value: "222",
+    value: "CS",
     label: "CS",
   },
   {
-    value: "333",
+    value: "Lawyer",
     label: "Lawyer",
   },
 ];
 
-export default function AddressForm(props) {
+const AddressForm=(props)=> {
   const [avatarPreview, setAvatarPreview] = useState("../../image/amico.png");
-  const {
-    formField: {
-      image,
-      firstName,
-      lastName,
-      email,
-      faculty,
-      profession,
-      phone,
-      language,
-      level,
-      about,
-    },
-  } = props;
   return (
-    <Box sx={{ width: "60%", mx: "auto" }}>
+    <Box  component="section">
       <Typography variant="h6">Личные данные</Typography>
       <Typography variant="subtitle1" sx={{ color: "gray" }}>
         Заполните свои данные, чтобы перейте к следующему шагу
       </Typography>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} component="section">
         <Grid item xs={12}>
           <Badge
             overlap="circular"
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             badgeContent={
-              <Button variant="text" component="label" startIcon={<AddIcon />}>
-                <input
+              <Button name="image" variant="text" component="label" startIcon={<AddIcon />}>
+                <Field
                   name="image"
                   display="none"
                   accept="image/*"
-                  id="contained-button-file"
+                  label="image"
                   type="file"
                   hidden
-                  onChange={(e) => {
-                    const fileReader = new FileReader();
-                    fileReader.onload = () => {
-                      if (fileReader.readyState === 2) {
-                        //formField.image=fileReader.result;
-                        //Formik.setFieldValue('image', fileReader.result);
-                        setAvatarPreview(fileReader.result);
-                      }
-                    };
-                    fileReader.readAsDataURL(e.target.files[0]);
-                  }}
                 />
               </Button>
             }
@@ -107,21 +81,21 @@ export default function AddressForm(props) {
           </Badge>
         </Grid>
         <Grid item xs={12}>
-          <InputField name={firstName.name} label={firstName.label} fullWidth />
+          <Field name="firstname" label="Имя" fullWidth component={TextField}/>
         </Grid>
         <Grid item xs={12}>
-          <InputField name={lastName.name} label={lastName.label} fullWidth />
+          <Field name="lastname" label="Фамилия" fullWidth component={TextField}/>
         </Grid>
         <Grid item xs={12}>
-          <InputField name={email.name} label={email.label} fullWidth />
+          <Field name="email" label="SDU почта" fullWidth component={TextField}/>
         </Grid>
         <Grid item xs={12}>
           <Typography variant="subtitle1" style={{ color: "black" }}>
             Факультет
           </Typography>
           <SelectField
-            name={faculty.name}
-            label={faculty.label}
+            name="faculty"
+            label="Faculty"
             data={faculties}
             fullWidth
           />
@@ -131,8 +105,8 @@ export default function AddressForm(props) {
             Специализация
           </Typography>
           <SelectField
-            name={profession.name}
-            label={profession.label}
+            name="Profession"
+            label="Profession"
             data={professions}
             fullWidth
           />
@@ -141,20 +115,20 @@ export default function AddressForm(props) {
           <Typography variant="subtitle1" sx={{ color: "black" }}>
             Номер телефона
           </Typography>
-          <InputField name={phone.name} label={phone.label} fullWidth />
+          <Field name="phone" label="Номер телефон" fullWidth component={TextField}/>
         </Grid>
         <Grid item xs={9}>
           <SelectField
-            name={language.name}
-            label={language.label}
+            name="language"
+            label="language"
             data={Language}
             fullWidth
           />
         </Grid>
         <Grid item xs={3}>
           <SelectField
-            name={level.name}
-            label={level.label}
+            name="level"
+            label="level"
             data={Level}
             fullWidth
           />
@@ -163,9 +137,20 @@ export default function AddressForm(props) {
           <Typography variant="subtitle1" style={{ color: "black" }}>
             О себе
           </Typography>
-          <TextField multiline maxRows={4} name={about.name} label={about.label} fullWidth />
+          {/* <TextField multiline maxRows={4} name={about.name} label={about.label} fullWidth /> */}
+          <Field multiline name="about" label="О себе" fullWidth component={TextField}/>
         </Grid>
       </Grid>
     </Box>
   );
 }
+
+
+
+AddressForm.label = "Личные данные";
+AddressForm.initialValues = {
+  firstname: "",
+  lastname: ""
+};
+
+export default AddressForm;

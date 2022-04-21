@@ -1,21 +1,20 @@
 export default {
     formId: 'checkoutForm',
     formField: {
-      image: {},
+      image: {
+        name:'image'
+      },
       firstName: {
         name: 'firstName',
         label: 'Имя',
-        requiredErrorMsg: 'First name is required'
       },
       lastName: {
         name: 'lastName',
         label: 'Фамилия',
-        requiredErrorMsg: 'Last name is required'
       },
       email: {
         name: 'email',
         label: 'SDU-почта',
-        requiredErrorMsg: 'Address Line 1 is required'
       },
       faculty: {
         name: 'faculty',
@@ -24,7 +23,6 @@ export default {
       profession: {
         name: 'profession',
         label: 'Специализация',
-        requiredErrorMsg: 'City is required'
       },
       phone: {
         name: 'phone',
@@ -34,12 +32,10 @@ export default {
         name: 'language',
         label: 'Языки',
         requiredErrorMsg: 'Zipcode is required',
-        invalidErrorMsg: 'Zipcode is not valid (e.g. 70000)'
       },
       level: {
         name: 'level',
         label: 'Уровень',
-        requiredErrorMsg: 'Country is required'
       },
       about: {
         name: 'about',
@@ -48,34 +44,51 @@ export default {
       position: {
         name: 'Должность',
         label: 'Должность',
-        requiredErrorMsg: 'Name on card is required'
       },
       organisation: {
         name: 'Организация',
         label: 'Организация',
-        requiredErrorMsg: 'Card number is required',
-        invalidErrorMsg: 'Card number is not valid (e.g. 4111111111111)'
       },
-      startWork: {
-        name: 'Начало работы',
-        label: 'Начало работы',
-        requiredErrorMsg: 'Expiry date is required',
-        invalidErrorMsg: 'Expiry date is not valid'
+      startWorkYear: {
+        name: 'startWorkYear',
+        label: 'Год',
+      },
+      startWorkMonth: {
+        name: 'startWorkMonth',
+        label: 'Месяц'
       },
       endDate: {
         name: 'endDate',
         label: 'По настоящее время',
-        requiredErrorMsg: 'CVV is required',
-        invalidErrorMsg: 'CVV is invalid (e.g. 357)'
       },
+      endWorkMonth: {
+        name: 'endWorkMonth',
+        label: 'Месяц'
+      },
+      endWorkYear: {
+        name: 'endWorkYear',
+        label: 'Год'
+      },
+      certificate: [
+        {
+          index : "ccc",
+          name: '',
+          description: '',
+          photo: ""
+        },
+      ],
       certificate_name: {
         name: 'certificate_name',
         label: 'Название сертификата'
 
       },
       certificate_description: {
-        name: 'certificate_name',
+        name: 'certificate_description',
         label: 'Описание сертификата'
+      },
+      certificate_image: {
+        name: 'c_image',
+        label: 'c_image'
       },
       no_certificate: {
         name: 'no_certificate',

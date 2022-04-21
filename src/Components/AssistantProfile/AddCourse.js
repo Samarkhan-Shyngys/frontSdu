@@ -8,10 +8,13 @@ const format =[
 ]
 const AddCourse=()=>{
     return (
-        <div>
-            <h1>Миниатюра курса</h1>
-            <p>Выберите подходящее фото для курса</p>
-            <PhotoPicker />
+        <div className="w-2/3 space-y-1">
+            <h1 className="text-xl md:text-2xl font-semibold border-b-2">Добавить курс</h1>
+            <div className="py-4 ">
+              <h1 className="text-base md:text-base font-medium">Миниатюра курса</h1>
+              <p className="text-base font-normal text-gray-400 mb-2">Выберите подходящее фото для курса</p>
+              <PhotoPicker />
+            </div>
             <Input text="Название курса" type="text" placeholder="Введите название будущего курса" />
             <h1>Формат курса</h1>
             <Select options={format} placeholder="Выберите формат прохождения курса" />
