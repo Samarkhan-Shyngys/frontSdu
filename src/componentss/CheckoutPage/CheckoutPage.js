@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useStyles from "./styles";
+import {base_url} from "../../utils/request";
 import {
   Stepper,
   Step,
@@ -19,6 +20,22 @@ import Certificate from "./Forms/Certificate";
 import Video from "./Forms/Video";
 import CheckoutSuccess from "./CheckoutSuccess/CheckoutSuccess";
 import SwipeableViews from "react-swipeable-views";
+
+async function submitEven(credentials) {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const id = user.id;
+  const data2 = new FormData();
+  console.log("cred:", credentials)
+  
+  return fetch(`${base_url}/api/student/stepper/${id}`, {
+    method: "POST",
+    body: JSON.stringify(credentials),
+  }).then((response) => {
+    return response;
+  });
+}
+
+
 
 const steps = [AddressForm, Experience, Certificate, Video];
 
@@ -45,11 +62,12 @@ export default function CheckoutPage(props) {
       handleNext();
       return;
     }
+    const token = submitEven(values);
 
     console.log(values);
 
     setTimeout(() => {
-      setSubmitting(false);
+      setSubmitting(true);
     }, 1000);
   };
 
