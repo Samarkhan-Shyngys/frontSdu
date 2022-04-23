@@ -11,6 +11,7 @@ import ConfirmRegistartion from "./pages/ConfirmRegistration";
 import { StudentProfile } from "./pages/StudentProfile";
 import { MyBooks } from "./Components/StudentProfile/MyBooks";
 import CheckoutPage from "./componentss/CheckoutPage/CheckoutPage";
+import CheckoutSuccess from "./componentss/CheckoutPage/CheckoutSuccess/CheckoutSuccess"
 import ApplyCourse from "./pages/ApplyCourse";
 import Allbooks from "./pages/AllBooks";
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/confirm" component={ConfirmRegistartion} />
         <Route path="/profile" component={Profile} />
         <Route path="/beassistant" component={AssistantPage} />
+        <Route path="/checkoutsuccess" component={CheckoutSuccess} />
         {/* <Route path="/apply" component={Apply} /> */}
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
