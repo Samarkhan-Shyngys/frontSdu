@@ -14,6 +14,7 @@ import CheckoutPage from "./componentss/CheckoutPage/CheckoutPage";
 import CheckoutSuccess from "./componentss/CheckoutPage/CheckoutSuccess/CheckoutSuccess"
 import ApplyCourse from "./pages/ApplyCourse";
 import Allbooks from "./pages/AllBooks";
+import Chat from "./pages/Chat";
 function App() {
   return (
     <>
@@ -25,6 +26,7 @@ function App() {
             <Route path="/" exact component={Home} />
           </Switch> */}
         </Route>
+        <Route path="/chat" component={Chat} />
         <Route path="/books" component={Allbooks} />
         <Route path="/student" component={StudentProfile} />
         <Route path="/applycourse" component={ApplyCourse}/>
@@ -37,7 +39,7 @@ function App() {
         {/* <Route path="/apply" component={Apply} /> */}
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
-        <Route path="/assistantt" component={Assistant} />
+        <Route path="/allcourses" component={Assistant} />
         <Route path="/" component={Home} />
         
       </Switch>

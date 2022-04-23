@@ -85,11 +85,11 @@ const initialValues = {
 };
 
 export default function Certificate(){
-  const { values, submitForm } = useFormikContext();
+  const { values } = useFormikContext();
   return(
-    <Box sx={{ }}>
+    <Box>
       <FieldArray name="certificate">
-        {({ remove, push }) => (
+        {({push }) => (
          <Grid container spacing={3} component="section">
             {values.certificate.length > 0 &&
               values.certificate.map((friend, index) => (

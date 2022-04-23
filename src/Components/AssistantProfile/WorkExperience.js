@@ -28,7 +28,7 @@ const WorkExperience = () => {
         </div>
         <Selector title="Окончание" data={months} data1={years} />
         <Input text="Организация" type="text" placeholder="Организация" />
-        <Input text="Должность" type="text" placeholder="UX/UI Designe|" />
+        <Input text="Должность" type="text" placeholder="UX/UI Designer" />
         <div className="flex items-end justify-between space-x-1">
           <Input text="Начало работы" type="text" placeholder="Август" />
           <input
