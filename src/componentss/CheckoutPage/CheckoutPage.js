@@ -10,8 +10,6 @@ import {
   CircularProgress,
   Box,
 } from "@material-ui/core";
-import formInitialValues from "./FormModel/formInitialValues";
-import checkoutFormModel from "./FormModel/checkoutFormModel";
 import { Formik, Form } from "formik";
 import Header from "../../Components/Header";
 import AddressForm from "./Forms/AddressForm";

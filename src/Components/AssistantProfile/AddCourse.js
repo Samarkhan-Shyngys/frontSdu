@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Table from "./Table";
 import MyButton from "./Button";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller , useFieldArray} from "react-hook-form";
 import {Avatar, Badge,TextField,Box,Typography,Grid,MenuItem,Button,} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
@@ -18,18 +18,20 @@ const AddCourse = () => {
       courseName: "",
       format: "",
       about: "",
-      select: [{}],
+      date: [],
     },
+  });
+  const { fields, append } = useFieldArray({
+    control,
+    name: "date",
   });
   const onSubmit = (data) => console.log(data);
   const handleImage=(e)=>{
-    // setAvatarPreview(e.target.files[0]);
     if (window.FileReader) {
       var file = e.target.files[0];
       var reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = function (e) {
-        console.log(e.target.result)
         setValue("image", e.target.result)
         setAvatarPreview(
           e.target.result);
@@ -55,22 +57,13 @@ const AddCourse = () => {
                   component="label"
                   startIcon={<AddIcon />}
                 >
-                  {/* <Controller
-                    name="image"
-                    control={control}
-                    render={({ field }) => ( */}
                       <input
-                        // {...field}
                         name="imag"
                         className="hidden"
                         accept="image/*"
                         type="file"
                          onChange={handleImage}
-                        // onChange={(e)=> setValue("image", String(handleImage(e)))}
-                      />
-                    {/* )} */}
-                  {/* /> */}
-                
+                      />  
                 </Button>
               }
             >
@@ -96,9 +89,7 @@ const AddCourse = () => {
               fullWidth
               defaultValue=""
               label="Формат курса"
-              inputProps={register("format", {
-                required: "Please enter format",
-              })}
+              inputProps={register("format")}
             >
               {format.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
@@ -117,7 +108,7 @@ const AddCourse = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Table />
+            <Table setValue={setValue} append={append}/>
           </Grid>
           <Grid item xs={12}>
             <MyButton text="Сохранить изменения" />
