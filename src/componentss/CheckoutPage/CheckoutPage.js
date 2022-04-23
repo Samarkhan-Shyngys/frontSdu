@@ -1,23 +1,11 @@
 import React, { useState } from "react";
-import useStyles from "./styles";
-import {
-  Stepper,
-  Step,
-  StepLabel,
-  Button,
-  Typography,
-  CircularProgress,
-  Box,
-} from "@material-ui/core";
-import formInitialValues from "./FormModel/formInitialValues";
-import checkoutFormModel from "./FormModel/checkoutFormModel";
+import {Stepper, Step, StepLabel, Button, Box,} from "@material-ui/core";
 import { Formik, Form } from "formik";
 import Header from "../../Components/Header";
 import AddressForm from "./Forms/AddressForm";
 import Experience from "./Forms/Experience";
 import Certificate from "./Forms/Certificate";
 import Video from "./Forms/Video";
-import CheckoutSuccess from "./CheckoutSuccess/CheckoutSuccess";
 import SwipeableViews from "react-swipeable-views";
 
 const steps = [AddressForm, Experience, Certificate, Video];

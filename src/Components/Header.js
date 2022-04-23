@@ -111,7 +111,7 @@ export default function Example() {
                       <Menu.Button className="inline-flex justify-center w-full rounded-md py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-offset-gray-100 focus:ring-indigo-500">
                         {/* <span className="sr-only">View notifications</span>
                           <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
-                        <Badge badgeContent={4} color="primary">
+                        <Badge badgeContent={0} color="primary">
                           <MailIcon color="action" />
                         </Badge>
                       </Menu.Button>

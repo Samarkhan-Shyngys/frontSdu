@@ -9,7 +9,7 @@ const TopCourse = () => {
         <DivTitle
           title="Топ курсы"
           subtitle="Занимайтесь с опытными преподавателями и ваши цели станут ближе"
-          link="/assistant"
+          link="/allcourses"
         />
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <ChevronLeftIcon className="hidden md:block h-8 w-auto absolute inset-y-1/3 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white" />
