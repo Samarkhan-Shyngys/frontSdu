@@ -68,9 +68,9 @@ const AddressForm=(props)=> {
               <Button name="image" variant="text" component="label" startIcon={<AddIcon />}>
                 <Field
                   name="image"
-                  display="none"
-                  accept="image/*"
-                  label="image"
+                  // display="none"
+                  // accept="image/*"
+                  // label="image"
                   type="file"
                   hidden
                 />

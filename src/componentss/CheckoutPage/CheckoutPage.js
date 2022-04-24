@@ -21,12 +21,25 @@ import SwipeableViews from "react-swipeable-views";
 async function submitEven(credentials) {
   const user = JSON.parse(localStorage.getItem("user"));
   const id = user.id;
-  const data2 = new FormData();
-  console.log("cred:", credentials)
   
-  return fetch(`${base_url}/api/student/stepper/${id}`, {
+  console.log("cred:", credentials.image)
+  const data2 = new FormData();
+  
+  if(credentials.image!="null"){
+      var file = credentials.image.target.files[0];
+      
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function (e) {
+        
+        data2.append('file', file)
+      };
+    console.log("sssss");
+    
+  }
+  return fetch(`${base_url}/api/assistant/stepper/${id}`, {
     method: "POST",
-    body: JSON.stringify(credentials),
+    body: data2,
   }).then((response) => {
     return response;
   });
@@ -53,18 +66,19 @@ export default function CheckoutPage(props) {
 
   const onSubmit = (values, formikBag) => {
     const { setSubmitting } = formikBag;
-
+    
+    
     if (!isLastStep()) {
       setSubmitting(false);
       handleNext();
       return;
     }
-    const token = submitEven(values);
-
+    // const token = submitEven(values);
+    console.log(values.image.target.files[0]);
     console.log(values);
 
     setTimeout(() => {
-      setSubmitting(true);
+      setSubmitting(false);
     }, 1000);
   };
 

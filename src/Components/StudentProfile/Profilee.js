@@ -17,7 +17,7 @@ async function editProfile(credentials) {
   data2.append('phone', credentials.phone)
   console.log("cred:", credentials)
   if(credentials.photo!="null"){
-    console.log("sssss");
+    console.log("sssss", credentials.photo );
     data2.append('file', credentials.photo)
   }
   
@@ -83,7 +83,7 @@ const Profilee = () => {
     if (window.FileReader) {
       
       var file = e.target.files[0];
-      
+      console.log("ssss",file)
       var reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = function (e) {

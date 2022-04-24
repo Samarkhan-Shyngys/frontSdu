@@ -1,13 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Table from "./Table";
 import MyButton from "./Button";
 import { useForm, Controller , useFieldArray} from "react-hook-form";
 import {Avatar, Badge,TextField,Box,Typography,Grid,MenuItem,Button,} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import {base_url} from "../../utils/request";
+import axios from "axios";
+const user = JSON.parse(localStorage.getItem("user"));
+const id = user.id;
+async function addCourses(credentials) {
+  
+  console.log("rrr", credentials.date)
+  console.log("ssssyyy", JSON.stringify(credentials.date))
+  const data2 = new FormData();
+  data2.append('courseName', credentials.courseName)
+  data2.append('about', credentials.about)
+  data2.append('format', credentials.format)
+  data2.append('dates', JSON.stringify(credentials.date))
+  data2.append('file', credentials.photo)
+  
+  // if(credentials.image!="null"){
+  //   console.log("sssss");
+  //   data2.append('file', credentials.photo)
+  // }
+  
+
+  return fetch(`${base_url}/api/assistant/add/course/${id}`, {
+    method: "POST",
+    body: data2,
+  }).then((response) => {
+    return response;
+  });
+}
 
 const format = [
-  { label: "Онлайн", value: "Онлайн" },
-  { label: "Оффлайн", value: "Оффлайн" },
+  { label: "Онлайн", value: "1" },
+  { label: "Оффлайн", value: "0" },
 ];
 
 const AddCourse = () => {
@@ -15,6 +43,7 @@ const AddCourse = () => {
   const { control, handleSubmit, register, getValues,setValue} = useForm({
     defaultValues: {
       image: "",
+      photo: "",
       courseName: "",
       format: "",
       about: "",
@@ -25,10 +54,37 @@ const AddCourse = () => {
     control,
     name: "date",
   });
-  const onSubmit = (data) => console.log(data);
+
+  useEffect(async () => {
+    const result = await axios(base_url+
+      '/api/assistant/get/course/'+id
+    );
+    const profile = JSON.parse(JSON.stringify(result.data));
+    console.log(result);
+    
+  }, []);
+
+  const onSubmit = (data) =>{
+    console.log(data)
+    const token =  addCourses(data);
+    if (token.status === 200) {
+      token.json().then((json) => {
+        console.log(json);
+        
+        
+      });
+    }
+  };
+  
+  
+  
+  
+  
+  // console.log(data);
   const handleImage=(e)=>{
     if (window.FileReader) {
       var file = e.target.files[0];
+      setValue("photo", file);
       var reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = function (e) {
