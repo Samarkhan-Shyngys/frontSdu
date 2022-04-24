@@ -58,7 +58,7 @@ const Home = () => {
         '/api/main/',
       );
       setData(JSON.parse(JSON.stringify(result.data)).library);
-      console.log(JSON.parse(JSON.stringify(result.data)).library);
+      console.log(JSON.parse(JSON.stringify(result.data)).library); 
     }, []);
     
 
