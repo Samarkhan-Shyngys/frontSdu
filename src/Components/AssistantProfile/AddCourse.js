@@ -50,7 +50,7 @@ const AddCourse = () => {
       date: [],
     },
   });
-  const { fields, append } = useFieldArray({
+  const { fields, append , remove} = useFieldArray({
     control,
     name: "date",
   });
@@ -164,7 +164,7 @@ const AddCourse = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Table setValue={setValue} append={append}/>
+            <Table setValue={setValue} fields={fields} append={append} remove={remove}/>
           </Grid>
           <Grid item xs={12}>
             <MyButton text="Сохранить изменения" />
