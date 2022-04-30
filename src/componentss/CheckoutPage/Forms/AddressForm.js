@@ -54,14 +54,19 @@ const professions = [
 const AddressForm=(props)=> {
   const [avatarPreview, setAvatarPreview] = useState("../../image/amico.png");
   const values = useFormikContext();
-  const handleImage = (e) => {
+  
+  const handleImage=(e)=>{
     if (window.FileReader) {
       var file = e.target.files[0];
+      console.log(e);
+      values.setFieldValue("image", file);
       var reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = function (e) {
-        values.setFieldValue("image", e.target.result);
-        setAvatarPreview(e.target.result);
+        // values.setFieldValue("image", file);
+        setAvatarPreview(
+          e.target.result);
+      
       };
     }
   };
@@ -80,16 +85,10 @@ const AddressForm=(props)=> {
               <Button  variant="text" component="label" startIcon={<AddIcon />}>
                 <input
                   name="image"
-<<<<<<< HEAD
-                  // display="none"
-                  // accept="image/*"
-                  // label="image"
-=======
                   accept="image/*"
                   label="image"
->>>>>>> 873f69ae0a2e7dd939e4bd9fdb5ff14e05c00156
                   type="file"
-                  hidden
+                  className="hidden"
                   onChange={handleImage}
                 />
               </Button>

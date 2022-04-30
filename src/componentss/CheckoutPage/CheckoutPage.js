@@ -74,7 +74,7 @@ export default function CheckoutPage(props) {
       return;
     }
     // const token = submitEven(values);
-    console.log(values.image.target.files[0]);
+    console.log(values.image);
     console.log(values);
 
     setTimeout(() => {

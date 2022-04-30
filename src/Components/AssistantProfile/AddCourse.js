@@ -7,7 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import {base_url} from "../../utils/request";
 import axios from "axios";
 const user = JSON.parse(localStorage.getItem("user"));
-const id = user.id;
+const id = 1;
 async function addCourses(credentials) {
   
   console.log("rrr", credentials.date)
@@ -84,6 +84,7 @@ const AddCourse = () => {
   const handleImage=(e)=>{
     if (window.FileReader) {
       var file = e.target.files[0];
+      console.log("file:" , file);
       setValue("photo", file);
       var reader = new FileReader();
       reader.readAsDataURL(file);
