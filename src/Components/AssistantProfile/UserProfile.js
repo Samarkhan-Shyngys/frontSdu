@@ -1,132 +1,172 @@
-import React, {useState} from "react";
-import Input from "../Input";
-import Selector from "./Selector";
+import React, { useState } from "react";
 import level from "../../Constants/Level";
 import languages from "../../Constants/Language";
-import Add from "./Add";
 import Button from "./Button";
 import { PlusIcon } from "@heroicons/react/outline";
+import { Grid,Box} from "@mui/material";
+import { Field, Formik, Form, FieldArray } from "formik";
+import { TextField } from "formik-material-ui";
+import SelectField from "../../componentss/FormFields/SelectField";
+
 const UserProfile = () => {
   const [preview, setPreview] = useState(require("../../image/12.webp"));
-  const [data, setData] = useState({
-    photo: "",
-    firstname: "",
-    lastname: "",
+  const initialValues = {
+    image: "",
+    firstName: "",
+    lastName: "",
     email: "",
     faculty: "",
     profession: "",
     phone: "",
-    languages: [{name:"", level:""},],
-    level: "",
-    about: "",
-
-  });
-  const handleChange = (e) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    setData({
-      ...data,
-      [name]: value,
-    });
+    languages: [{ name: "", level: "" }],
+    about: ",",
   };
-  const handleSelect=(e)=>{
-    console.log(e.label)
-    setData({
-      ...data,
-      //languages({[e.value] : e.label}),
-    })
-  }
-  const handleImage=(e)=>{
+
+  const handleImage = (e) => {
     if (window.FileReader) {
       var file = e.target.files[0];
       var reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = function (e) {
+        initialValues.image = e.target.result;
         setPreview(e.target.result);
-        setData({
-          ...data,
-          ["photo"]: e.target.result,
-        });
       };
     }
   };
-  console.log(data);
+  console.log(initialValues);
   return (
-    <div className="w-2/3">
-      <h1 className="text-2xl font-semibold">Профиль</h1>
-      <div>
-       {/* <PhotoPicker /> */}
-       <form className="mt-2">
-          <label>
-            <img
-              src={preview}
-              className="w-32 h-32 rounded-full"
-              alt="profile"
-            />
-            <PlusIcon className="absolute z-10 h-6 w-6 ml-24 -mt-8 bg-gray-900 rounded-full text-white" />
-            <input
-              name="photo"
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleImage}
-            />
-          </label>
-        </form>
+    <Box>
+      <Grid container>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
+        >
+          {({ values }) => (
+            <Form>
+              <FieldArray name="languages">
+                {({ push }) => (
+                  <Grid container spacing={3} component="section">
+                    <Grid item xs={12}>
+                      <label>
+                        <img
+                          src={initialValues.image || preview}
+                          className="relative w-48 h-48 rounded-full"
+                          alt="profile"
+                        />
+                        <PlusIcon className="absolute z-10 h-6 w-6 ml-40 -mt-12 bg-gray-900 rounded-full text-white" />
+                        <input
+                          name="image"
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={handleImage}
+                        />
+                      </label>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Field
+                        name="firstName"
+                        label="Имя"
+                        fullWidth
+                        component={TextField}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Field
+                        name="lastName"
+                        label="Фамилия"
+                        fullWidth
+                        component={TextField}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Field
+                        name="email"
+                        label="SDU-почта"
+                        fullWidth
+                        component={TextField}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Field
+                        name="faculty"
+                        label="Факультет"
+                        fullWidth
+                        component={TextField}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Field
+                        name="profession"
+                        label="Специализация"
+                        fullWidth
+                        component={TextField}
+                      />
+                    </Grid>
 
+                    <Grid item xs={12}>
+                      <Field
+                        name="phone"
+                        label="Номер телефон"
+                        fullWidth
+                        component={TextField}
+                      />
+                    </Grid>
 
-        <Input name="firstname" text="Имя" type="text" placeholder="Жанар" onChanged={handleChange}/>
-        <Input name="lastname" text="Фамилия" type="text" placeholder="Маратова" onChanged={handleChange}/>
-        <Input
-          name="email"
-          text="SDU-почта"
-          type="text"
-          placeholder="220102456@stu.sdu.edu.kz"
-          onChanged={handleChange}
-        />
-        <Input
-          name="faculty"
-          text="Факультет"
-          type="text"
-          placeholder="Инженерии и естественных наук"
-          onChanged={handleChange}
-        />
-        <Input
-          name="profession"
-          text="Специализация"
-          type="text"
-          placeholder="Информационная система"
-          onChanged={handleChange}
-        />
-        <Input
-          name="phone"
-          text="Номер телефона"
-          type="text"
-          placeholder="+7 (701) 123 45-67|"
-          onChanged={handleChange}
-        />
-        <div className="flex justify-between">
-          <label>Языки</label>
-          <label className="mx-24">Уровень</label>
-        </div>
-        <Selector name="language" name1="level" data={languages} data1={level} onChanged={handleSelect} />
-        <Selector data={languages} data1={level} onChanged={handleSelect}/>
-        <Add text="Добавить язык" />
-        <div className="mt-4">
-          <label className="block text-lg font-medium text-gray-700"> О себе</label>
-          <div className="mt-1">
-            <textarea
-              name="about"
-              rows={3}
-              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-              placeholder="О себе"
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-        <Button text="Сохранить изменения" />
-      </div>
-    </div>
+                    {values.languages.length > 0 &&
+                      values.languages.map((friend, index) => (
+                        <>
+                          <Grid item xs={9}>
+                            <label>{"Языки"}</label>
+                            <SelectField
+                              name={`languages.${index}.name`}
+                              label="Языки"
+                              data={languages}
+                              fullWidth
+                            />
+                          </Grid>
+
+                          <Grid item xs={3}>
+                            <label>{"Уровень"}</label>
+                            <SelectField
+                              name={`languages.${index}.level`}
+                              label="Уровень"
+                              data={level}
+                              fullWidth
+                            />
+                          </Grid>
+                        </>
+                      ))}
+                    
+                    <Grid item xs={12}>
+                      <button
+                        type="button"
+                        className="flex space-x-2"
+                        onClick={() => push({ name: "", level: "" })}
+                      >
+                        <PlusIcon className="h-6 w-6 border rounded-full mr-2 border-gray-800" />
+                        <span>Добавить язык </span>
+                      </button>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Field
+                        name="about"
+                        label="О себе"
+                        fullWidth
+                        component={TextField}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Button text="Сохранить изменения" />
+                    </Grid>
+                  </Grid>
+                )}
+              </FieldArray>
+            </Form>
+          )}
+        </Formik>
+      </Grid>
+    </Box>
   );
 };
 

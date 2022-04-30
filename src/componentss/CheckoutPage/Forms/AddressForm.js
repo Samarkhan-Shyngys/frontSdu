@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Field, Formik} from "formik";
+import {Field, useFormikContext} from "formik";
 import {
   Badge,
   Grid,
@@ -53,6 +53,18 @@ const professions = [
 
 const AddressForm=(props)=> {
   const [avatarPreview, setAvatarPreview] = useState("../../image/amico.png");
+  const values = useFormikContext();
+  const handleImage = (e) => {
+    if (window.FileReader) {
+      var file = e.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function (e) {
+        values.setFieldValue("image", e.target.result);
+        setAvatarPreview(e.target.result);
+      };
+    }
+  };
   return (
     <Box  component="section">
       <Typography variant="h6">Личные данные</Typography>
@@ -65,14 +77,14 @@ const AddressForm=(props)=> {
             overlap="circular"
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             badgeContent={
-              <Button name="image" variant="text" component="label" startIcon={<AddIcon />}>
-                <Field
+              <Button  variant="text" component="label" startIcon={<AddIcon />}>
+                <input
                   name="image"
-                  display="none"
                   accept="image/*"
                   label="image"
                   type="file"
                   hidden
+                  onChange={handleImage}
                 />
               </Button>
             }
@@ -149,6 +161,7 @@ const AddressForm=(props)=> {
 
 AddressForm.label = "Личные данные";
 AddressForm.initialValues = {
+  image: "",
   firstname: "",
   lastname: ""
 };

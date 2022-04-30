@@ -115,7 +115,7 @@ const Profilee = () => {
   };
   console.log(data);
   return (
-    <div className="w-2/3 mx-auto">
+    <div className="w-2/3">
       <h1 className="text-2xl font-semibold">Профиль</h1>
       <div>
         {/* <PhotoPicker preview={preview} onChanged={handleImage}/> */}

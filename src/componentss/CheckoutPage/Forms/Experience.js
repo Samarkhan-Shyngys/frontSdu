@@ -21,7 +21,7 @@ const initialValues = {
 };
 
 export default function Experience(props) {
-  const { values, submitForm } = useFormikContext();
+  const {values} = useFormikContext();
   return (
     <Box fullWidth>
       <Typography variant="h6">Опыт работы</Typography>
@@ -52,12 +52,12 @@ export default function Experience(props) {
                       fullWidth
                     />
                   </Grid>
-                  <Grid item xs={11}>
+                  <Grid item xs={12} sx={{ml:2}}>
                     <Field
                       type="checkbox"
                       component={CheckboxWithLabel}
                       name={`job.${index}.endDate`}
-                      Label="endDate" 
+                      Label={{ label: "endDate" }} 
                     />
                   </Grid>
                   <Grid item xs={9}>
@@ -99,7 +99,13 @@ export default function Experience(props) {
               <button
                 type="button"
                 className="secondary"
-                onClick={() => push({ organisation: "", position: "" })}
+                onClick={() => push({organisation: "",
+                    position: "",
+                    startWorkYear: "",
+                    startWorkMonth: "",
+                    endDate: "",
+                    endWorkMonth: "",
+                    endWorkYear: "", })}
               >
                 Add job
               </button>
