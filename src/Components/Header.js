@@ -236,7 +236,7 @@ export default function Example() {
                       <Menu.Item>
                         {({ active }) => (
                           <Link
-                            to="/profile"
+                            to="/student"
                             href="/"
                             className={classNames(
                               active ? "bg-gray-100" : "",

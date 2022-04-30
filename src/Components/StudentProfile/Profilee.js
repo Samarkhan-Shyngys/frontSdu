@@ -33,8 +33,11 @@ async function editProfile(credentials) {
 
 
 const Profilee = () => {
+  
   const user = JSON.parse(localStorage.getItem("user"));
   const id = user.id;
+
+  
 
 
     
@@ -49,25 +52,27 @@ const Profilee = () => {
     profession: "",
     phone: "",
   });
-  
 
   useEffect(async () => {
-    const result = await axios(base_url+
-      '/api/student/profile/'+id
-    );
-    const profile = JSON.parse(JSON.stringify(result.data));
-    console.log(profile.firstname);
-    
-    setData({
-      ...data,
-      ["email"]: user.email,
-      ["firstname"]: profile.firstname,
-      ["lastname"]: profile.lastname,
-      ["faculty"]: profile.faculty,
-      ["profession"]: profile.profession,
-      ["phone"]: profile.phone,
+    if (id !== "") {
+      const result = await axios(base_url+
+        '/api/student/profile/'+id
+      );
+      const profile = JSON.parse(JSON.stringify(result.data));
+      console.log(profile.firstname);
 
-    });
+      setData({
+        ...data,
+        ["email"]: user.email,
+        ["firstname"]: profile.firstname,
+        ["lastname"]: profile.lastname,
+        ["faculty"]: profile.faculty,
+        ["profession"]: profile.profession,
+        ["phone"]: profile.phone,
+  
+      });
+    }
+    
   }, []);
 
   const handleChange = (e) => {
