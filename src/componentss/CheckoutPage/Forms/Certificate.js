@@ -10,8 +10,9 @@ const initialValues = {
       name: "",
       desc: "",
       photo: "",
-    },
+    },    
   ],
+
 };
 
 export default function Certificate(){
@@ -23,10 +24,8 @@ export default function Certificate(){
       var reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = function (e) {
-        console.log(e.target.result);
-        initialValues.certificate[index].photo = e.target.result;
         aa.setFieldValue(`certificate[${index}].photo`, e.target.result)
-        aa.setFieldValue(`photo${index}`, e.target.result);
+
     
       };
     }
@@ -67,10 +66,11 @@ export default function Certificate(){
                       accept="image/*"
                       name={`certificate[${index}].photo`}
                       label=""
+                      value={undefined}
                       component={TextField}
                       fullWidth
                       hidden
-                      // onChange={(e)=>handleImage(e, index)}
+                      onChange={(e)=>handleImage(e, index)}
                     />
                   </Grid>
                  
