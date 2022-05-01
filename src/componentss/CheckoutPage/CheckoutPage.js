@@ -86,7 +86,7 @@ export default function CheckoutPage(props) {
                 ))}
               </Stepper>
 
-              <SwipeableViews index={activeStep}>
+              <SwipeableViews index={activeStep} animateHeight>
                 {steps.map((step, index) => {
                   const Component = steps[index];
                   return <Component key={index}/>;
