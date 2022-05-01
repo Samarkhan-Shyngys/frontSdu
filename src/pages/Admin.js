@@ -1,9 +1,11 @@
 import React from "react";
-import Library from "../Components/Library";
-export default Admin = () => {
+import { Login } from "../Components/Admin/Login";
+import { Main } from "../Components/Admin/Main";
+export default function Admin(){
+    const loggedIn = true;
     return(
         <div>
-            <Library />
+            {loggedIn ? <Main /> : <Login />}
         </div>
     );
 }

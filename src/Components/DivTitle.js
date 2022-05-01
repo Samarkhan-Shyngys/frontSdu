@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 const DivTitle = ({ title, subtitle , link }) => {
   return (
     <div className="space-y-2 mb-8">
-      <h1 className="text-xl md:text-3xl font-semibold leading-6 text-gray-900">
+      <h1 className="text-xl md:text-3xl font-semibold leading-6 text-text_main">
         {title}
       </h1>
       <div className="flex justify-between ">
-        <p className="text-xs md:text-base tracking-normal text-gray-500 w-1/2">{subtitle}</p>
+        <p className="text-xs md:text-base tracking-normal text-text_gray w-1/2">{subtitle}</p>
         <Link className="flex" to={link}>
-          <h3 className="text-black font-medium text-base">Посмотреть все</h3>
+          <h3 className="text-text_main font-medium text-base">Посмотреть все</h3>
           <ChevronRightIcon className="w-auto h-6  " />
         </Link>
       </div>

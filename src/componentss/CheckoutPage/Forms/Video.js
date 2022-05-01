@@ -1,12 +1,12 @@
 import React from 'react';
-import {Button, Grid, Typography , Box} from '@mui/material';
+import {Grid, Typography , Box} from '@mui/material';
 import { TextField } from "formik-material-ui";
 import {Field } from "formik";
 export default function Video(props){
     return (
         <Box >
-            <Typography variant='h5'>Видео</Typography>
-            <Typography variant='subtitle1'>Запишите видео и представтесь студентам</Typography>
+            <Typography variant='h5' pb={1}>Видео</Typography>
+            <Typography variant='subtitle1' pb={2}>Запишите видео и представтесь студентам</Typography>
             <Grid container spacing={3} component="section">
                 <Grid item xs={12}>
                     <Field name="video" label="Video" fullWidth component={TextField}/>

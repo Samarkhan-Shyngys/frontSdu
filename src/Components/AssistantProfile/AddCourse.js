@@ -10,8 +10,7 @@ const user = JSON.parse(localStorage.getItem("user"));
 const id = 1;
 async function addCourses(credentials) {
   
-  console.log("rrr", credentials.date)
-  console.log("ssssyyy", JSON.stringify(credentials.date))
+
   const data2 = new FormData();
   data2.append('courseName', credentials.courseName)
   data2.append('about', credentials.about)

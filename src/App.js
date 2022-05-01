@@ -15,6 +15,7 @@ import CheckoutSuccess from "./componentss/CheckoutPage/CheckoutSuccess/Checkout
 import ApplyCourse from "./pages/ApplyCourse";
 import Allbooks from "./pages/AllBooks";
 import Chat from "./pages/Chat";
+import Admin from "./pages/Admin";
 function App() {
   return (
     <>
@@ -37,6 +38,7 @@ function App() {
         <Route path="/beassistant" component={AssistantPage} />
         <Route path="/checkoutsuccess" component={CheckoutSuccess} />
         {/* <Route path="/apply" component={Apply} /> */}
+        <Route path="/admin" component={Admin} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
         <Route path="/allcourses" component={Assistant} />

@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import useStyles from "./styles";
 import {base_url} from "../../utils/request";
 import {
   Stepper,
   Step,
   StepLabel,
   Button,
-  Typography,
-  CircularProgress,
   Box,
 } from "@material-ui/core";
 import { Formik, Form } from "formik";
@@ -78,9 +75,6 @@ export default function CheckoutPage(props) {
       return;
     }
     const token = submitEven(values);
-    console.log(values.image);
-    console.log(values);
-
     setTimeout(() => {
       setSubmitting(false);
     }, 1000);
@@ -109,10 +103,10 @@ export default function CheckoutPage(props) {
                 ))}
               </Stepper>
 
-              <SwipeableViews index={activeStep}>
+              <SwipeableViews index={activeStep} animateHeight>
                 {steps.map((step, index) => {
                   const Component = steps[index];
-                  return <Component key={index} />;
+                  return <Component key={index}/>;
                 })}
               </SwipeableViews>
               <Button
