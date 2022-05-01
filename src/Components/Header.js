@@ -1,6 +1,5 @@
 import Badge from "@mui/material/Badge";
 import MailIcon from "@mui/icons-material/Mail";
-import {BellIcon} from "@heroicons/react/outline" 
 import { Fragment } from "react";
 import Image from "../image/circle.png";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
@@ -42,7 +41,7 @@ function Btn() {
 }
 
 export default function Example() {
-  const loggedIn = false;
+  let loggedIn = false;
   const loggedInUser = localStorage.getItem("user");
   let username;
   if (loggedInUser) {
@@ -84,9 +83,11 @@ export default function Example() {
                     {navigation.map((item) => (
                       <Link
                         key={item.name}
+                    
                         to={loggedIn? item.href:"/login"}
                         className={classNames(
-                          item.current ? "" : " ", "px-3 py-2 rounded-md text-md font-medium"
+                          item.current ? "" : " ",
+                          "px-3 py-2 rounded-md text-md font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
                       >
@@ -102,14 +103,16 @@ export default function Example() {
                   className="bg-white p-1 rounded-full text-gray-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 >
                   <span className="sr-only">View chats</span>
-                  <ChatIcon className="h-6 w-6 text-text_main" aria-hidden="true" />
+                  <ChatIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
                 <Menu as="div" className="-ml-4">
                   <div className="block">
                     <div>
                       <Menu.Button className="inline-flex justify-center w-full rounded-md py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-offset-gray-100 focus:ring-indigo-500">
+                        {/* <span className="sr-only">View notifications</span>
+                          <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
                         <Badge badgeContent={0} color="primary">
-                          <BellIcon className="h-6 w-6 text-text_main" aria-hidden="true" />
+                          <MailIcon color="action" />
                         </Badge>
                       </Menu.Button>
                     </div>
@@ -233,7 +236,7 @@ export default function Example() {
                       <Menu.Item>
                         {({ active }) => (
                           <Link
-                            to="/student"
+                            to="/profile"
                             href="/"
                             className={classNames(
                               active ? "bg-gray-100" : "",
