@@ -5,6 +5,7 @@ import Months from "../../../Constants/Months";
 import Years from "../../../Constants/Years";
 import { Field, FieldArray, useFormikContext } from "formik";
 import { TextField, CheckboxWithLabel } from "formik-material-ui";
+import { PlusIcon } from "@heroicons/react/outline";
 
 const initialValues = {
   job: [
@@ -21,11 +22,11 @@ const initialValues = {
 };
 
 export default function Experience(props) {
-  const {values} = useFormikContext();
+  const { values } = useFormikContext();
   return (
     <Box fullWidth>
       <Typography variant="h6">Опыт работы</Typography>
-    
+
       <FieldArray name="job">
         {({ remove, push }) => (
           <Grid container spacing={3} component="section">
@@ -33,18 +34,16 @@ export default function Experience(props) {
               values.job.map((job, index) => (
                 <>
                   <Grid item xs={12}>
-                    <label htmlFor={`job.${index}.organisation`}>
-                      {"Organisation"}
-                    </label>
+                  <Typography variant="subtitle1" pb={1}>Организация</Typography>
                     <Field
                       name={`job.${index}.organisation`}
-                      label="Organisation"
+                      label="Организация"
                       component={TextField}
                       fullWidth
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <label htmlFor={`job.${index}.position`}>Position</label>
+                  <Typography variant="subtitle1" pb={1}>Должность</Typography>
                     <Field
                       name={`job.${index}.position`}
                       label="Position"
@@ -52,18 +51,14 @@ export default function Experience(props) {
                       fullWidth
                     />
                   </Grid>
-                  <Grid item xs={12} sx={{ml:2}}>
-                    <Field
-                      type="checkbox"
-                      component={CheckboxWithLabel}
-                      name={`job.${index}.endDate`}
-                      Label={{ label: "endDate" }} 
-                    />
+
+                  <Grid item xs={12}>
+                    <Typography variant="subtitle1">Начало работы</Typography>
                   </Grid>
                   <Grid item xs={9}>
                     <SelectField
                       name={`job.${index}.startWorkMonth`}
-                      label="startWorkMonth"
+                      label="Месяц"
                       data={Months}
                       fullWidth
                     />
@@ -72,15 +67,26 @@ export default function Experience(props) {
                   <Grid item xs={3}>
                     <SelectField
                       name={`job.${index}.startWorkYear`}
-                      label="startWorkYear"
+                      label="Год"
                       data={Years}
                       fullWidth
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="subtitle1">Окончание</Typography>
+                  </Grid>
+                  <Grid item xs={12} sx={{ ml: 2 }}>
+                    <Field
+                      type="checkbox"
+                      component={CheckboxWithLabel}
+                      name={`job.${index}.endDate`}
+                      Label={{ label: "По настоящее время" }}
                     />
                   </Grid>
                   <Grid item xs={9}>
                     <SelectField
                       name={`job.${index}.endWorkMonth`}
-                      label="endWorkMonth"
+                      label="Месяц"
                       data={Months}
                       fullWidth
                     />
@@ -88,7 +94,7 @@ export default function Experience(props) {
                   <Grid item xs={3}>
                     <SelectField
                       name={`job.${index}.endWorkYear`}
-                      label="endWorkYear"
+                      label="Год"
                       data={Years}
                       fullWidth
                     />
@@ -98,16 +104,21 @@ export default function Experience(props) {
             <Grid item xs={12}>
               <button
                 type="button"
-                className="secondary"
-                onClick={() => push({organisation: "",
+                className="secondary flex"
+                onClick={() =>
+                  push({
+                    organisation: "",
                     position: "",
                     startWorkYear: "",
                     startWorkMonth: "",
                     endDate: "",
                     endWorkMonth: "",
-                    endWorkYear: "", })}
+                    endWorkYear: "",
+                  })
+                }
               >
-                Add job
+               <PlusIcon className="h-6 w-6 border rounded-full mr-2 border-gray-800" />
+                <span>Добавить еще место работы</span>
               </button>
             </Grid>
           </Grid>

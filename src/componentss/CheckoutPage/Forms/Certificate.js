@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import InputField from "../../FormFields/InputField";
-import CheckboxField from "../../FormFields/CheckBoxField";
-import { Button, Grid, Typography, Box, Avatar } from "@mui/material";
-import { Formik, Field, Form, FieldArray, useFormikContext } from "formik";
+import React from "react";
+import {Grid, Typography, Box} from "@mui/material";
+import { Field, FieldArray, useFormikContext } from "formik";
 import { TextField } from "formik-material-ui";
+import { PlusIcon } from "@heroicons/react/outline";
+
 const initialValues = {
   certificate: [
     {
@@ -24,6 +24,8 @@ export default function Certificate(){
       reader.readAsDataURL(file);
       reader.onload = function (e) {
         console.log(e.target.result);
+        initialValues.certificate[index].photo = e.target.result;
+        aa.setFieldValue(`certificate[${index}].photo`, e.target.result)
         aa.setFieldValue(`photo${index}`, e.target.result);
     
       };
@@ -38,35 +40,37 @@ export default function Certificate(){
               values.certificate.map((friend, index) => (
                 <>
                 <Grid item xs={12}>
-                    <label>{"Name"}</label>
+                  <Typography pb={2}>Сертификат</Typography>
+                    {/* <label className="mb-2">{"Сертификат"}</label> */}
                     <Field
                       name={`certificate.${index}.name`}
-                      label="Certificate Name"
+                      label="Название сертификата"
                       component={TextField}
                       fullWidth
                     />
                   </Grid>
               
                 <Grid item xs={12}>
-                    <label> {"Name"}</label>
+                <Typography pb={2}>Описание</Typography>
                     <Field
                       name={`certificate.${index}.desc`}
-                      label="Certificate description"
+                      label="Описание сертификата"
                       component={TextField}
                       fullWidth
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <label>{"Photo"} </label>
+                  <Typography pb={2}>Фото сертификата</Typography>
                     <Field
                       type="file"
                       display="none"
                       accept="image/*"
                       name={`certificate[${index}].photo`}
-                      label="Photo"
+                      label=""
                       component={TextField}
                       fullWidth
-                      onChange={(e)=>handleImage(e, index)}
+                      hidden
+                      // onChange={(e)=>handleImage(e, index)}
                     />
                   </Grid>
                  
@@ -76,10 +80,11 @@ export default function Certificate(){
               <Grid item xs={12}>
               <button
               type="button"
-              className="secondary"
+              className="secondary flex"
               onClick={() => push({ name: "", desc: "", photo: "" })}
             >
-              Add certificate
+               <PlusIcon className="h-6 w-6 border rounded-full mr-2 border-gray-800" />
+                <span>Добавить еще сертификат</span>
             </button>
               </Grid>
             

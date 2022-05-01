@@ -5,6 +5,12 @@ module.exports = {
       backgroundImage: {
         assistant: "url('/src/image/img_teacher.png')",
       },
+      colors: {
+        text_main: "#08033A",
+        text_gray: "#77838F",
+        main_red : "#9E2629",
+        blue: "#256699",
+      },
       gridTemplateColumns: {
         sidebar: "300px 1fr",
         course: "800px, 550px",

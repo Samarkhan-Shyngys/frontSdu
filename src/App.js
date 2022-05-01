@@ -14,6 +14,7 @@ import CheckoutPage from "./componentss/CheckoutPage/CheckoutPage";
 import ApplyCourse from "./pages/ApplyCourse";
 import Allbooks from "./pages/AllBooks";
 import Chat from "./pages/Chat";
+import Admin from "./pages/Admin";
 function App() {
   return (
     <>
@@ -34,7 +35,7 @@ function App() {
         <Route path="/confirm" component={ConfirmRegistartion} />
         <Route path="/profile" component={Profile} />
         <Route path="/beassistant" component={AssistantPage} />
-        {/* <Route path="/apply" component={Apply} /> */}
+        <Route path="/admin" component={Admin} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
         <Route path="/allcourses" component={Assistant} />
