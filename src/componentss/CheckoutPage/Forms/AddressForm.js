@@ -58,7 +58,6 @@ const AddressForm=(props)=> {
   const handleImage=(e)=>{
     if (window.FileReader) {
       var file = e.target.files[0];
-      console.log(e);
       values.setFieldValue("image", file);
       var reader = new FileReader();
       reader.readAsDataURL(file);
@@ -122,8 +121,8 @@ const AddressForm=(props)=> {
             Специализация
           </Typography>
           <SelectField
-            name="Profession"
-            label="Profession"
+            name="profession"
+            label="profession"
             data={professions}
             fullWidth
           />

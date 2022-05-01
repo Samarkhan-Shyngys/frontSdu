@@ -4,6 +4,7 @@ import CheckboxField from "../../FormFields/CheckBoxField";
 import { Button, Grid, Typography, Box, Avatar } from "@mui/material";
 import { Formik, Field, Form, FieldArray, useFormikContext } from "formik";
 import { TextField } from "formik-material-ui";
+import { FourGMobiledataOutlined } from "@mui/icons-material";
 const initialValues = {
   certificate: [
     {
@@ -17,16 +18,20 @@ const initialValues = {
 export default function Certificate(){
   const { values } = useFormikContext();
   const aa = useFormikContext();
+  const [images, setImages] = useState([]); 
+  
   const handleImage = (e, index) => {
     if (window.FileReader) {
       var file = e.target.files[0];
+      setImages(...images, file);
       var reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = function (e) {
-        console.log(e.target.result);
-        aa.setFieldValue(`photo${index}`, e.target.result);
+        
+        aa.setFieldValue(`photo`, e.target.result);
     
       };
+      console.log('log: ', images);
     }
   };
   return(
@@ -63,7 +68,6 @@ export default function Certificate(){
                       display="none"
                       accept="image/*"
                       name={`certificate[${index}].photo`}
-                      label="Photo"
                       component={TextField}
                       fullWidth
                       onChange={(e)=>handleImage(e, index)}

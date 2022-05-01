@@ -21,19 +21,23 @@ import SwipeableViews from "react-swipeable-views";
 async function submitEven(credentials) {
   const user = JSON.parse(localStorage.getItem("user"));
   const id = user.id;
-  
-  console.log("cred:", credentials.image)
+
   const data2 = new FormData();
+  data2.append('firstname', credentials.firstname)
+  data2.append('lastname', credentials.lastname)
+  data2.append('job',  JSON.stringify(credentials.job))
+  data2.append('certificate',  JSON.stringify(credentials.certificate))
+  data2.append('profession', credentials.profession)
+  data2.append('about', credentials.about)
+  data2.append('email', credentials.email)
+  data2.append('faculty', credentials.faculty)
+  data2.append('language', credentials.language)
+  data2.append('phone', credentials.phone)
+  data2.append('video', credentials.video)
+  
   
   if(credentials.image!="null"){
-      var file = credentials.image.target.files[0];
-      
-      var reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = function (e) {
-        
-        data2.append('file', file)
-      };
+    data2.append('file', credentials.image)
     console.log("sssss");
     
   }
@@ -73,7 +77,7 @@ export default function CheckoutPage(props) {
       handleNext();
       return;
     }
-    // const token = submitEven(values);
+    const token = submitEven(values);
     console.log(values.image);
     console.log(values);
 
@@ -121,7 +125,7 @@ export default function CheckoutPage(props) {
                 {isLastStep() ? "Submit" : "Next"}
               </Button>
             </Form>
-            <pre>{JSON.stringify(values, null, 2)}</pre>
+            
           </>
         )}
       </Formik>
