@@ -17,7 +17,7 @@ import SwipeableViews from "react-swipeable-views";
 
 async function submitEven(credentials) {
   const user = JSON.parse(localStorage.getItem("user"));
-  const id = user.id;
+  const id = 1;
 
   const data2 = new FormData();
   data2.append('firstname', credentials.firstname)
@@ -35,7 +35,6 @@ async function submitEven(credentials) {
   
   if(credentials.image!="null"){
     data2.append('file', credentials.image)
-    console.log("sssss");
     
   }
   return fetch(`${base_url}/api/assistant/stepper/${id}`, {
@@ -103,7 +102,7 @@ export default function CheckoutPage(props) {
                 ))}
               </Stepper>
 
-              <SwipeableViews index={activeStep} animateHeight>
+              <SwipeableViews index={activeStep}>
                 {steps.map((step, index) => {
                   const Component = steps[index];
                   return <Component key={index}/>;
