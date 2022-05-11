@@ -1,5 +1,4 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import image from "../image/amico.png";
@@ -9,10 +8,9 @@ import image3 from "../image/rafiki3.png";
 import { Link } from "react-router-dom";
 import BreadCrumbs from "../Components/BreadCrumbs";
 const routes = [
-  {name:"Главная ", route: "/" },
-  {name: "Стать ассистентом",}
-
-]
+  { name: "Главная ", route: "/" },
+  { name: "Стать ассистентом" },
+];
 const AssistantPage = () => {
   return (
     <>
@@ -41,12 +39,14 @@ const AssistantPage = () => {
       </div>
       <div className="max-w-7xl mx-auto mt-24">
         <div className=" mx-4 md:mx-0">
-        <h1 className="text-2xl md:text-3xl font-semibold">Как это работает?</h1>
-        <p className="text-lg md:text-xl font-sans text-gray-400">
-          Помогаем достичь цели и развивать карьеру
-        </p>
+          <h1 className="text-2xl md:text-3xl font-semibold">
+            Как это работает?
+          </h1>
+          <p className="text-lg md:text-xl font-sans text-gray-400">
+            Помогаем достичь цели и развивать карьеру
+          </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 pt-8">
           <div className="rounded-md border-2 border-gary-400">
             <div className="bg-white mt-4 px-6 shadow-md border-b-4 border-gray-400">
@@ -112,19 +112,17 @@ const AssistantPage = () => {
       <div className="w-full bg-assistant bg-cover mt-24 h-128 bg-center">
         <div className="max-w-7xl mx-auto space-y-1 py-10 items-center pt-24">
           <div className="mx-6 md:mx-0">
-          <h1 className="text-2xl font-medium ">Станьте ассистентом!</h1>
-          <p className="text-lg text-gray-500 pb-4 md:line-clamp-2 w-1/3">
-            Зарегестрируйтесь и достигайте карьерного роста, обучая сотню других
-            студентов
-          </p>
-          <button className="bg-red-800 py-3 px-5 rounded-md text-white text-base">
-          <Link to="/stepper">
-          Начать преподавать
-                  </Link>
-            
-          </button>
+            <h1 className="text-2xl font-medium ">Станьте ассистентом!</h1>
+            <p className="text-lg text-gray-500 pb-4 md:line-clamp-2 w-1/3">
+              Зарегестрируйтесь и достигайте карьерного роста, обучая сотню
+              других студентов
+            </p>
+            <Link to="/stepper">
+              <button className="bg-red-800 py-3 px-5 rounded-md text-white text-base">
+                Начать преподавать
+              </button>
+            </Link>
           </div>
-          
         </div>
       </div>
       <Footer />

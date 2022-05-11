@@ -1,5 +1,4 @@
 import Badge from "@mui/material/Badge";
-import MailIcon from "@mui/icons-material/Mail";
 import { Fragment } from "react";
 import Image from "../image/circle.png";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
@@ -15,6 +14,7 @@ import {
   LogoutIcon,
   CogIcon,
   BookmarkIcon,
+  BellIcon
 } from "@heroicons/react/outline";
 import logo from "../image/logo.png";
 import { Link } from "react-router-dom";
@@ -33,7 +33,7 @@ function Btn() {
   const router = useHistory();
 
   return (
-    <button className="bg-white text-black font-semibold py-2 px-6 border border-blue-700 rounded mx-2"
+    <button className="bg-white text-text_main font-semibold py-2 px-6 border border-text_main rounded mx-2"
     onClick={()=>router.push("/login")}>
       Войти
     </button>
@@ -100,7 +100,7 @@ export default function Example() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 space-x-2 md:space-x-4">
                 <button
                   type="button"
-                  className="bg-white p-1 rounded-full text-gray-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                  className="bg-white p-1 rounded-full text-text_main hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 >
                   <span className="sr-only">View chats</span>
                   <ChatIcon className="h-6 w-6" aria-hidden="true" />
@@ -109,10 +109,8 @@ export default function Example() {
                   <div className="block">
                     <div>
                       <Menu.Button className="inline-flex justify-center w-full rounded-md py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-offset-gray-100 focus:ring-indigo-500">
-                        {/* <span className="sr-only">View notifications</span>
-                          <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
                         <Badge badgeContent={0} color="primary">
-                          <MailIcon color="action" />
+                        <BellIcon className="h-6 w-6" aria-hidden="true" />
                         </Badge>
                       </Menu.Button>
                     </div>
@@ -126,7 +124,7 @@ export default function Example() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-72 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
                           <a
@@ -152,9 +150,9 @@ export default function Example() {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            <div className="flex">
-                              <DesktopComputerIcon className="h-auto w-4 mr-4" />
-                              Мои курсы
+                            <div className="flex space-x-3 items-center">
+                              <img alt="i" src={logo} className="w-8 h-8 rounded-full"/>
+                              <span className="text-sm">Подтвердил вашу анкету на заявку “Стать ассистентом”</span>
                             </div>
                           </a>
                         )}
@@ -168,41 +166,9 @@ export default function Example() {
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
-                            <div className="flex">
-                              <HeartIcon className="h-auto w-4 mr-4" />
-                              Избранное
-                            </div>
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            <div className="flex">
-                              <BookmarkIcon className="h-auto w-4 mr-4" />
-                              Мои книги
-                            </div>
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            <div className="flex">
-                              <CogIcon className="h-auto w-4 mr-4" />
-                              Настройки
+                            <div className="flex space-x-3 items-center">
+                              <img alt="i" src={logo} className="w-8 h-8 rounded-full"/>
+                              <span className="text-sm">Вы добавлены в общий чат “Monday 10:30”</span>
                             </div>
                           </a>
                         )}
