@@ -58,7 +58,7 @@ export function Content() {
         <Route path="/admin/content/student">
           <Table data={row} />
         </Route>
-        <Route path="/admin/content">
+        <Route path="/admin">
           <Table data={rows} />
         </Route>
       </Switch>

@@ -49,6 +49,7 @@ const Library = (props) => {
 
 
   return (
+    
     <div className="max-w-7xl mx-auto pt-12 container p-6">
 
       <DivTitle
@@ -62,11 +63,11 @@ const Library = (props) => {
           onClick={prevSlide}
         />
 
-        {images.length > 0 && <img src={base_url + images[cur-2<0? images.length + (cur - 2) : cur - 2].url} className="h-64 w-44 rounded-lg" alt="image1" />}
-        {images.length > 0 && <img src={base_url + images[cur === 0 ? images.length - 1 : cur - 1].url} className="h-64 w-44 rounded-lg" alt="image1" />}
-        {images.length > 0 && <img src={base_url + images[cur].url} className="h-64 w-44 rounded-lg" alt="image1" />}
-        {images.length > 0 && <img src={base_url + images[cur === images.length - 1 ? 0 : cur + 1].url} className="h-64 w-44 rounded-lg" alt="image1" />}
-        {images.length > 0 && <img src={base_url + images[cur + 2 >= images.length ? (cur + 2) % images.length : cur + 2].url} className="h-64 w-44 rounded-lg" alt="image1" />}
+        <img src={base_url + images[cur-2<0? images.length + (cur - 2) : cur - 2].url} className="h-64 w-44 rounded-lg" alt="image1" />
+        <img src={base_url + images[cur === 0 ? images.length - 1 : cur - 1].url} className="h-64 w-44 rounded-lg" alt="image1" />
+        <img src={base_url + images[cur].url} className="h-64 w-44 rounded-lg" alt="image1" />
+        <img src={base_url + images[cur === images.length - 1 ? 0 : cur + 1].url} className="h-64 w-44 rounded-lg" alt="image1" />
+        <img src={base_url + images[cur + 2 >= images.length ? (cur + 2) % images.length : cur + 2].url} className="h-64 w-44 rounded-lg" alt="image1" />
        <ChevronRightIcon
           className="hidden md:block absolute h-8 w-auto -right-4 inset-y-2/5 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
           onClick={nextSlide}
@@ -75,7 +76,7 @@ const Library = (props) => {
   
       <div>
         <h1 className="text-center pt-4 text-red-700 font-bold text-xl">
-          {images.length > 0 && images[cur].title}
+          images[cur].title
         </h1>
         <p className="text-center">{images.length > 0 && images[cur].author}</p>
        

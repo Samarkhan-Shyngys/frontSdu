@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import logo from "../../image/logo.png";
 import { Menu} from "@headlessui/react";
 import { SearchIcon, ChevronDownIcon } from "@heroicons/react/outline";
@@ -48,7 +49,6 @@ export function Main() {
                   <Menu.Item>
                     {({ active }) => (
                       <a
-                        href="#"
                         className={classNames(
                           active
                             ? "bg-gray-100 text-gray-900"
@@ -63,7 +63,6 @@ export function Main() {
                   <Menu.Item>
                     {({ active }) => (
                       <a
-                        href="#"
                         className={classNames(
                           active
                             ? "bg-gray-100 text-gray-900"
@@ -102,8 +101,8 @@ export function Main() {
         </div>
         <div>
             <Switch>
-                <Route path="/admin/content" component={Content} />
                 <Route path="/admin/applications" component={Application} />
+                <Route path="/admin" component={Content} />
             </Switch>
             
         </div>

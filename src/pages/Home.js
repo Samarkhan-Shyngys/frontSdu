@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , useRef} from "react";
 import Header from '../Components/Header';
 import Nav from '../Components/Nav';
 import Mobile from '../Components/Mobile';
@@ -10,6 +10,7 @@ import {base_url} from "../utils/request";
 
 const Home = () => {
   const [data, setData] = useState([]);
+  const scrollRef = useRef(null);
 
   useEffect(()=>{
     axios.get( `${base_url}/api/main/`)
@@ -23,8 +24,8 @@ const Home = () => {
         <>
             <Header />
             <Nav />
-            <TopCourse />
-            <Library list={data}/>
+            <TopCourse scrollRef={scrollRef} />
+           { data.length>0 && <Library list={data}/>}
             <Mobile />
             <Footer />
         </>
