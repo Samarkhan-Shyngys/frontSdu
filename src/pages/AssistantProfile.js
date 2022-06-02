@@ -11,7 +11,7 @@ import MyLibrary from "../Components/AssistantProfile/MyLibrary";
 import AddCourse from "../Components/AssistantProfile/AddCourse";
 import AddBook from "../Components/AssistantProfile/AddBook";
 import SidebarMenu from "../Components/SidebarMenu";
-
+import MyStudents from "../Components/AssistantProfile/MyStudents";
 function AssistantProfile() {
   return (
     <>
@@ -19,6 +19,7 @@ function AssistantProfile() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-sidebar mt-12 gap-0 md:gap-8">
         <SidebarMenu data={AssistantData} />
         <Switch>
+          <Route path="/assistantt/mystudents"component={MyStudents} />
           <Route path="/assistantt/addcourse" component={AddCourse} />
           <Route path="/assistantt/addbook" component={AddBook} />
           <Route path="/assistantt/mylibrary" component={MyLibrary} />

@@ -5,6 +5,7 @@ function classNames(...classes) {
   }
 
 export default function Cell({text, value, fields, append, remove}){
+    const [color, setColor] = useState(false);
     const handle=(e)=>{
         setColor((prev)=> !prev)
         if(!color) {
@@ -12,12 +13,11 @@ export default function Cell({text, value, fields, append, remove}){
          }
         else{
             const a = e.target.value;
-            const b = fields.findIndex(el=>el.time==a)
+            const b = fields.findIndex(el=>el.time===a)
             remove(b)
 
         }
     }
-    const [color, setColor] = useState(false);
     return (
         <button value={value} className={classNames(color ? "bg-blue-800" : "bg-white", "border h-12 cursor-pointer text-base font-semibold")} 
         onClick={handle}>{text}</button>

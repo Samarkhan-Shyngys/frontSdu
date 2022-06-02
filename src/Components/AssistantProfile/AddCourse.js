@@ -8,9 +8,8 @@ import {base_url} from "../../utils/request";
 import axios from "axios";
 const user = JSON.parse(localStorage.getItem("user"));
 const id = 1;
-async function addCourses(credentials) {
-  
 
+async function addCourses(credentials) {
   const data2 = new FormData();
   data2.append('courseName', credentials.courseName)
   data2.append('about', credentials.about)
@@ -53,15 +52,22 @@ const AddCourse = () => {
     control,
     name: "date",
   });
-
-  useEffect(async () => {
+  const handleClick=async()=>{
     const result = await axios(base_url+
       '/api/assistant/get/course/'+id
     );
-    const profile = JSON.parse(JSON.stringify(result.data));
+    const profile = (result.data);
     console.log(result);
+
+  }
+  // useEffect(async () => {
+  //   const result = await axios(base_url+
+  //     '/api/assistant/get/course/'+id
+  //   );
+  //   const profile = JSON.parse(JSON.stringify(result.data));
+  //   console.log(result);
     
-  }, []);
+  // }, []);
 
   const onSubmit = (data) =>{
     console.log(data)
@@ -167,7 +173,7 @@ const AddCourse = () => {
             <Table setValue={setValue} fields={fields} append={append} remove={remove}/>
           </Grid>
           <Grid item xs={12}>
-            <MyButton text="Сохранить изменения" />
+            <MyButton text="Сохранить изменения" action={handleClick}/>
           </Grid>
         </Grid>
       </form>

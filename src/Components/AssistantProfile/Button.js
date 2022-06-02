@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ text }, {action}) => {
+const Button = ({ text, action}) => {
   return (
     <div className="mt-8">
       <button type="submit"
