@@ -3,7 +3,7 @@ import { DataGrid,  GridToolbarContainer, GridToolbarFilterButton } from '@mui/x
 import { TrashIcon } from '@heroicons/react/outline';
 const columns = 
     [
-      { field: 'ID',headerName: 'ID', width: 140},
+      { field: 'emailID',headerName: 'emailID', width: 140},
       { field: 'name', headerName: 'Имя, фамилия', width: 200},
       { field: 'faculty', headerName: 'Факультет', width: 240},
       { field: 'profession', headerName: 'Специальность', width: 220,},

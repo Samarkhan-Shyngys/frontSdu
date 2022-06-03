@@ -1,10 +1,12 @@
-import { useState } from "react";
+import React,{ useState, useEffect } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import { Table } from "./Table";
+import {base_url} from "../../utils/request";
+import axios from 'axios';
 const rows = [
   {
     id: 1,
-    ID: "180103247",
+    emailID: "180103247",
     name: "Мадина Мухамеджанова",
     faculty: "Инженерии и Естественных наук",
     profession: "Информационная система",
@@ -13,7 +15,7 @@ const rows = [
   },
   {
     id: 2,
-    ID: "180103247",
+    emailID: "180103247",
     name: "Болат Жанболатов",
     faculty: "Бизнес школа",
     profession: "Диджитал маркетинг",
@@ -24,7 +26,7 @@ const rows = [
 const row = [
   {
     id: 1,
-    ID: "180103247",
+    emailID: "180103247",
     name: "Мадина Мухамеджанова",
     faculty: "Инженерии и Естественных наук",
     profession: "Информационная система",
@@ -38,7 +40,26 @@ function classNames(...classes) {
 }
 
 export function Content() {
-    const [cur_item, setItem] = useState(0);
+  const [item, setItems] = useState();
+  const [students, setStudents] = useState([]);
+  
+  useEffect(()=>{
+    axios.get( `${base_url}/api/admin/contents`)
+    .then((result) =>{
+      if(result!==undefined){
+        setItems(result.data);
+      }
+      
+       
+      
+      //  setStudents(item.students);
+    } 
+    )
+    .catch(((er)=>console.log(er)))
+  }, []);
+  
+ 
+  const [cur_item, setItem] = useState(0);
   return (
     <div className="px-12 mt-10">
       <h1 className="text-2xl text-text_main font-medium mb-4">Пользователи</h1>
@@ -56,10 +77,17 @@ export function Content() {
       </div>
       <Switch>
         <Route path="/admin/content/student">
-          <Table data={row} />
+        
+          {
+            item!==undefined && <Table data={item.students} />
+          }
+          
         </Route>
         <Route path="/admin/content">
-          <Table data={rows} />
+          {
+            item!==undefined && <Table data={item.assistents}/>
+          }
+        
         </Route>
       </Switch>
     </div>

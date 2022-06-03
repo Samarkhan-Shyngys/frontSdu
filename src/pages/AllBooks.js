@@ -2,6 +2,7 @@ import Book from "../Components/Book";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import { useEffect, useState } from "react";
+import {base_url} from "../utils/request";
 import axios from 'axios';
 
 
@@ -12,10 +13,10 @@ export default function Allbooks(){
         {id: 3, title: 'Hello2', author: 'Murat2', url: '../image/book3.png'},
     ]);
 
-    // useEffect(() => {
-    //     axios.get('/https://jsonplaceholder.typicode.com/posts')
-    //     .then(res => setBooks(res.data));
-    // });
+    useEffect(() => {
+        axios.get(`${base_url}/api/main/`)
+        .then(res => setBooks(res.data.library));
+    });
 
     return (
         <div>

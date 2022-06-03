@@ -21,7 +21,7 @@ import { Link } from "react-router-dom";
 
 
 const navigation = [
-  { name: "Найти ассистента", href: "/assistant", current: true },
+  { name: "Найти ассистента", href: "/allcourses", current: true },
   { name: "Стать ассистентом", href: "/beassistant", current: false },
 ];
 
@@ -42,12 +42,20 @@ function Btn() {
 
 export default function Example() {
   let loggedIn = false;
-  const loggedInUser = localStorage.getItem("user");
+  let loggedInUser = localStorage.getItem("user");
   let username;
+  let role = 0;
   if (loggedInUser) {
     loggedIn = true;
     const foundUser = JSON.parse(loggedInUser);
     username = foundUser.username;
+    if(JSON.parse(loggedInUser).roles==='ROLE_ASSISTENT'){
+      role=1;
+      if(navigation.length===2){
+        navigation.pop();
+      }
+    }
+    console.log('sss: ' + JSON.parse(loggedInUser).roles)
   }
 
 
@@ -81,6 +89,8 @@ export default function Example() {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-12">
                     {navigation.map((item) => (
+                    
+                    
                       <Link
                         key={item.name}
                     
@@ -233,11 +243,12 @@ export default function Example() {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
+                      { role===1 && <Menu.Item>
                         {({ active }) => (
+                          
                           <Link
-                            to="/profile"
-                            href="/"
+                            to="/assistantt"
+                            href="/assistantt"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700 items-center"
@@ -249,7 +260,28 @@ export default function Example() {
                             </div>
                           </Link>
                         )}
+                      </Menu.Item>}
+                      {role===0 &&
+                        <Menu.Item>
+                        {({ active }) => (
+                          
+                          <Link
+                            to="/student"
+                            href="/"
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700 items-center"
+                            )}
+                          >
+                            <div className="flex">
+                              <UserIcon className="h-auto w-4 mr-4" />
+                              Профиль
+                            </div>
+                          </Link>
+                        )}
                       </Menu.Item>
+                      }
+                      
                       <Menu.Item>
                         {({ active }) => (
                           <a
@@ -325,7 +357,7 @@ export default function Example() {
                           >
                             <div className="flex">
                               <LogoutIcon className="h-auto w-4 mr-4" />
-                              Выхxxxод
+                              Выход
                             </div>
                           </a>
                         )}

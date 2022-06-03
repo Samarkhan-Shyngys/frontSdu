@@ -1,12 +1,14 @@
 import image from "../image/book1.png";
 import { HeartIcon } from "@heroicons/react/outline";
+import {base_url} from "../utils/request";
 
 export default function Book(props){
+    console.log(props.bookData.url)
     return(
         <div className="">
             <div className="w-full bg-white border rounded-md border-gray-200 mt-8">
                 <div className="relative items-center pt-4">
-                    <img src={props.bookData.url} className="w-52 mx-auto" />
+                    <img src={base_url + props.bookData.url} className="w-52 mx-auto" style={{ height: 170 }}/>
                     <HeartIcon className="absolute top-6 right-2 w-8 h-8 bg-gray-300/30 rounded-full p-2 text-white hover:text-red-600 fill-current"/>
                 </div>
                 <div className="space-y-1 text-center">

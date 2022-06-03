@@ -13,7 +13,8 @@ const Home = () => {
 
   useEffect(()=>{
     axios.get( `${base_url}/api/main/`)
-    .then((result) => console.log(result))
+    .then((result) => setData(result.data.library)
+    )
     .catch(((er)=>console.log(er)))
   }, []);
 

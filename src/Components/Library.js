@@ -38,6 +38,7 @@ import { ImageListItem, TextField } from "@mui/material";
 
 
 const Library = (props) => {
+  console.log(props.list);
   const images = props.list;
   const nextSlide = () => {
     setCur((cur + 1) % images.length);

@@ -36,12 +36,6 @@ const Profilee = () => {
   
   const user = JSON.parse(localStorage.getItem("user"));
   const id = user.id;
-
-  
-
-
-    
-  
   const [preview, setPreview] = useState(require("../../image/12.webp"));
   const [data, setData] = useState({
     photo: "null",

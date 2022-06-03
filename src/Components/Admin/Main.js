@@ -35,7 +35,7 @@ export function Main() {
               <div className="flex space-x-3 items-center">
                 <img alt="user" src={logo} className="h-8 w-8 rounded-full" />
                 <Menu.Button className="inline-flex justify-center w-full rounded-md shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">
-                  Жанар Маратова
+                  Администратор
                   <ChevronDownIcon
                     className="-mr-1 ml-2 h-5 w-5"
                     aria-hidden="true"
@@ -75,23 +75,23 @@ export function Main() {
                       </a>
                     )}
                   </Menu.Item>
-                  <form method="POST" action="#">
+                
                     <Menu.Item>
-                      {({ active }) => (
-                        <button
-                          type="submit"
-                          className={classNames(
-                            active
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-700",
-                            "block w-full text-left px-4 py-2 text-sm"
-                          )}
-                        >
-                          Sign out
-                        </button>
-                      )}
+                    {({ active }) => (
+                      <a
+                        href="/login"
+                        className={classNames(
+                          active
+                            ? "bg-gray-100 text-gray-900"
+                            : "text-gray-700",
+                          "block px-4 py-2 text-sm"
+                        )}
+                      >
+                        Выход
+                      </a>
+                    )}
                     </Menu.Item>
-                  </form>
+                  
                 </div>
               </Menu.Items>
             </Menu>

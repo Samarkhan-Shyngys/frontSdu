@@ -3,7 +3,7 @@ import Footer from "../Components/Footer";
 import LogoHeader from "../Components/LogoHeader";
 import React, { useState} from "react";
 import { useHistory } from "react-router-dom";
-import { LANDING_ROUTE } from "../utils/consts";
+import { LANDING_ROUTE,ADMIN_ROUTE } from "../utils/consts";
 import {base_url} from "../utils/request";
 async function loginUser(credentials) {
   return fetch(base_url+"/api/auth/signin", {
@@ -18,7 +18,12 @@ async function loginUser(credentials) {
 }
 
 export default function Login() {
-  localStorage.removeItem("user");
+  if(localStorage.getItem("user")!==null){
+    localStorage.removeItem("user");
+  }
+  if(sessionStorage.getItem("admin")!==null){
+    sessionStorage.removeItem("admin");
+  }
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [username, setUsername] = useState("");
@@ -33,9 +38,16 @@ export default function Login() {
     });
     if (token.status === 200) {
       token.json().then((json) => {
-        console.log(json);
-        localStorage.setItem("user", JSON.stringify(json));
-        history.push(LANDING_ROUTE);
+        
+        if(json.roles[0]==='ROLE_ADMIN'){
+          sessionStorage.setItem("admin", JSON.stringify(json))
+          history.push(ADMIN_ROUTE);
+        }
+        else{
+          localStorage.setItem("user", JSON.stringify(json));
+          history.push(LANDING_ROUTE); 
+        }
+        
       });
     } else {
       setError(true);

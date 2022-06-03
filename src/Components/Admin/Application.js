@@ -17,6 +17,7 @@ export function Application(){
                         <span className="text-base text-text_gray font-normal">180103123@stu.sdu.edu.kz</span>
                     </div>
                 </div>
+                
                 <div>
                     <ChevronRightIcon className="h-8 w-8 mr-24 text-text_main" onClick={()=>setShowModal(true)}/>
                 </div>

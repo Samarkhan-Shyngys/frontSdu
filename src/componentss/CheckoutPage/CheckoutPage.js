@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {base_url} from "../../utils/request";
 import {
   Stepper,
@@ -14,11 +15,14 @@ import Experience from "./Forms/Experience";
 import Certificate from "./Forms/Certificate";
 import Video from "./Forms/Video";
 import SwipeableViews from "react-swipeable-views";
+import { FlipToBackOutlined } from "@mui/icons-material";
+import { SUCCESS_ROUTE } from "../../utils/consts";
+
 
 async function submitEven(credentials) {
+  
   const user = JSON.parse(localStorage.getItem("user"));
   const id = user.id;
-
   const data2 = new FormData();
   data2.append('firstname', credentials.firstname)
   data2.append('lastname', credentials.lastname)
@@ -35,14 +39,16 @@ async function submitEven(credentials) {
   
   if(credentials.image!="null"){
     data2.append('file', credentials.image)
-    console.log("sssss");
+
     
   }
   return fetch(`${base_url}/api/assistant/stepper/${id}`, {
     method: "POST",
     body: data2,
   }).then((response) => {
-    return response;
+    const statusCode = response.status;
+  
+    return { statusCode };
   });
 }
 
@@ -51,8 +57,9 @@ async function submitEven(credentials) {
 const steps = [AddressForm, Experience, Certificate, Video];
 
 export default function CheckoutPage(props) {
+  const history = useHistory();
   const [activeStep, setActiveStep] = useState(0);
-
+  
   const isLastStep = () => {
     return activeStep === steps.length - 1;
   };
@@ -74,7 +81,16 @@ export default function CheckoutPage(props) {
       handleNext();
       return;
     }
-    const token = submitEven(values);
+    
+    const status = submitEven(values);
+    status.then((res)=>{
+      if(res.statusCode===200){
+        history.push(SUCCESS_ROUTE);
+      }  
+    });    
+    
+     
+    
     setTimeout(() => {
       setSubmitting(false);
     }, 1000);
