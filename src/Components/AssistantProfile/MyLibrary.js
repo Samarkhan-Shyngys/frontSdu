@@ -1,5 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import AddButton from '../AssistantProfile/AddButton';
+import axios from "axios";
+import {base_url} from "../../utils/request";
+import { list } from 'postcss';
+
 const datas = [
   {
     image: require("../../image/book4.png"),
@@ -17,7 +21,24 @@ const datas = [
     author: "Питер Друкар"
   }
 ]
+
+
+
 const MyLibrary =()=>{
+  const user = JSON.parse(localStorage.getItem("user"));
+  const id = user.id;
+  
+  const [theArray, setTheArray] = useState([]);
+  
+  useEffect(()=>{
+    axios.get( `${base_url}/api/assistant/get/books/${id}`)
+    .then((result) => setTheArray(result.data.library)
+    )
+    .catch(((er)=>console.log(er)))
+  }, []);  
+  
+  console.log('ls: ' + theArray.length);
+  
     return(
     <div>
       <div className="flex justify-between border-b items-center pb-4">
@@ -25,9 +46,9 @@ const MyLibrary =()=>{
         <AddButton  link="/assistantt/addbook"/>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6 gap-8">
-        {datas.map((data)=>(
+        {theArray.map((data)=>(
             <div className='border text-center items-center p-4'>
-              <img alt="book" src={data.image} className="items-self-center pl-10 h-64"/>
+              <img alt="book" src={base_url +data.url} className="items-self-center pl-10 h-64"/>
               <p>{data.title}</p>
               <p>{data.author}</p>
 

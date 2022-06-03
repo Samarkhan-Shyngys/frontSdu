@@ -13,7 +13,35 @@ import { useForm, Controller } from "react-hook-form";
 import AddIcon from "@mui/icons-material/Add";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import MyButton from "./Button";
+import {base_url} from "../../utils/request";
+import { useHistory } from "react-router-dom";
+import { ASSISTANT_BOOK } from "../../utils/consts";
+
+async function addBooks(credentials){
+  console.log(credentials.image);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const id = user.id;
+  
+  const data2 = new FormData();
+  data2.append('bookName', credentials.bookName)
+  data2.append('author', credentials.author)
+  data2.append('file', credentials.file)
+  data2.append('id', id);
+  if(credentials.image!="null"){
+    console.log("sssss", credentials.image );
+    data2.append('image', credentials.image)
+  }
+
+  return fetch(`${base_url}/api/assistant/add/book`, {
+    method: "POST",
+    body: data2,
+  }).then((response) => {
+    return response;
+  });
+}
 const AddBook = () => {
+  
+
   const [avatarPreview, setAvatarPreview] = useState("../../images/12.webp");
   const [name, setName] = useState("");
   const { control, handleSubmit, register, getValues, setValue } = useForm({
@@ -24,7 +52,16 @@ const AddBook = () => {
       file: "",
     },
   });
-  const onSubmit = (data) => console.log(data);
+
+  const history = useHistory();
+  // const onSubmit = (data) => addBooks(data);
+  const onSubmit = async(data) =>{
+    const result = await addBooks(data);
+    console.log(result.status)
+    if(result.status===200){
+      history.push(ASSISTANT_BOOK);
+    }
+  }; 
 
 
   const handleImage = (e) => {
@@ -35,7 +72,9 @@ const AddBook = () => {
       reader.onload = function (e) {
         setValue("image", e.target.result);
         setAvatarPreview(e.target.result);
+        setValue("image", file);
       };
+      setValue("image", file);
     }
   };
   const handleName = (e) =>{
@@ -45,7 +84,7 @@ const AddBook = () => {
       var reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = function (e) {
-        setValue("file", e.target.result);
+        setValue("file", file);
       };
     }
 
