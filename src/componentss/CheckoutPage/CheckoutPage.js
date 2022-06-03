@@ -39,7 +39,6 @@ async function submitEven(credentials) {
   
   if(credentials.image!="null"){
     data2.append('file', credentials.image)
-
     
   }
   return fetch(`${base_url}/api/assistant/stepper/${id}`, {
@@ -119,7 +118,7 @@ export default function CheckoutPage(props) {
                 ))}
               </Stepper>
 
-              <SwipeableViews index={activeStep} animateHeight>
+              <SwipeableViews index={activeStep}>
                 {steps.map((step, index) => {
                   const Component = steps[index];
                   return <Component key={index}/>;

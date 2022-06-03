@@ -24,7 +24,7 @@ export const AssistantData = [
   },
   {
     title: "Мои студенты",
-    path: "/",
+    path: "/assistantt/mystudents",
     icon: <AcademicCapIcon />,
     cName: "h-8 w-8",
     current: false,

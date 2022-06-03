@@ -62,7 +62,6 @@ const AddressForm=(props)=> {
       var reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = function (e) {
-        // values.setFieldValue("image", file);
         setAvatarPreview(
           e.target.result);
       

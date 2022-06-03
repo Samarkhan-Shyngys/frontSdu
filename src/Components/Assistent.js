@@ -2,12 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import CourseCard from "./CourseCard";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
+import {TextField, Autocomplete, MenuItem, Select, InputLabel, FormControl } from "@mui/material";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -34,10 +29,6 @@ const Assistant = () => {
             </p>
           </div>
           <div className="flex space-y-2 md:space-y-0 flex-col md:flex-row justify-center my-2 md:my-8 pb-24">
-            {/* <div className="rounded-md border-r-4 bg-white w-full md:w-1/3">
-                    <p className="hidden md:block text-gray-200 ml-4">Название курса</p>
-                    <input type='text'className=" block w-48 md:w-96 h-8 md:h-12  text-gray-700 px-4 leading-tight focus:outline-none  focus:border-gray-500"  placeholder="Doe"  onChange={handleChange}/>
-                  </div> */}
             <div className="">
               <Autocomplete
                 disablePortal
@@ -50,13 +41,6 @@ const Assistant = () => {
                 )}
               />
             </div>
-
-            {/* <p className="hidden md:block text-gray-200 ml-4">Формат урока</p>
-                    <select className="block w-full h-8 md:h-12 px-2 rounded-md" placeholder="Выберите формат">
-                          <option value="online"></option>
-                          <option value="online">Online</option>
-                          <option value="offline">Offline</option>
-                    </select> */}
             <div>
               <FormControl
                 fullWidth

@@ -5,7 +5,7 @@ import Months from "../../../Constants/Months";
 import Years from "../../../Constants/Years";
 import { Field, FieldArray, useFormikContext } from "formik";
 import { TextField, CheckboxWithLabel } from "formik-material-ui";
-import { PlusIcon } from "@heroicons/react/outline";
+import { PlusIcon, MinusIcon } from "@heroicons/react/outline";
 
 const initialValues = {
   job: [
@@ -98,6 +98,16 @@ export default function Experience(props) {
                       data={Years}
                       fullWidth
                     />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <button
+                      type="button"
+                      className="flex"
+                      onClick={() => remove(index)}
+                    >
+                      <MinusIcon className="h-6 w-6 border rounded-full mr-2 border-gray-800" />
+                      <span>Удалить место работы</span>
+                    </button>
                   </Grid>
                 </>
               ))}

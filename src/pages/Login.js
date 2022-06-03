@@ -78,12 +78,9 @@ export default function Login() {
                     SDU-почтa
                   </label>
                   <input
-                    id="email-address"
                     onChange={(e) => setUsername(e.target.value)}
-                    // name="email"
-                    // type="email"
-                    // autoComplete="email"
-                    required
+                    name="email"
+                    type="email"
                     className="relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md sm:text-sm my-2"
                     placeholder="Email address"
                   />
@@ -93,19 +90,16 @@ export default function Login() {
                     <label htmlFor="password" className="">
                       Пароль
                     </label>
-                    <Link to="./forget">
+                    <Link to="/forget">
                       <span className="font-medium text-gray-900 hover:text-indigo-500 text-end">
                         Забыли пароль?
                       </span>
                     </Link>
                   </div>
                   <input
-                    id="password"
                     name="password"
                     type="password"
                     onChange={(e) => setPassword(e.target.value)}
-                    autoComplete="current-password"
-                    required
                     className="rounded-md relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md sm:text-sm my-2"
                     placeholder="Password"
                   />

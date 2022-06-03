@@ -9,7 +9,6 @@ import AssistantProfile from "./pages/AssistantProfile";
 import ForgetPassword from "./pages/ForgetPassword";
 import ConfirmRegistartion from "./pages/ConfirmRegistration";
 import { StudentProfile } from "./pages/StudentProfile";
-import { MyBooks } from "./Components/StudentProfile/MyBooks";
 import CheckoutPage from "./componentss/CheckoutPage/CheckoutPage";
 import CheckoutSuccess from "./componentss/CheckoutPage/CheckoutSuccess/CheckoutSuccess"
 import ApplyCourse from "./pages/ApplyCourse";
@@ -22,10 +21,6 @@ function App() {
       <Switch>
         <Route path="/assistantt">
           <AssistantProfile />
-          {/* <Switch>
-            <Route path="/assistant/profile" component={Profile} />
-            <Route path="/" exact component={Home} />
-          </Switch> */}
         </Route>
         <Route path="/chat" component={Chat} />
         <Route path="/books" component={Allbooks} />

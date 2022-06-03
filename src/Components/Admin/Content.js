@@ -83,11 +83,15 @@ export function Content() {
           }
           
         </Route>
-        <Route path="/admin/content">
+
+        {/* <Route path="/admin/content">
           {
             item!==undefined && <Table data={item.assistents}/>
-          }
+          } */}
         
+        <Route path="/admin">
+          <Table data={rows} />
+
         </Route>
       </Switch>
     </div>

@@ -8,29 +8,28 @@ import {base_url} from "../../utils/request";
 import axios from "axios";
 const user = JSON.parse(localStorage.getItem("user"));
 const id = 1;
-async function addCourses(credentials) {
+
+// async function addCourses(credentials) {
+//   const data2 = new FormData();
+//   data2.append('courseName', credentials.courseName)
+//   data2.append('about', credentials.about)
+//   data2.append('format', credentials.format)
+//   data2.append('dates', JSON.stringify(credentials.date))
+//   data2.append('file', credentials.photo)
+  
+//   // if(credentials.image!="null"){
+//   //   console.log("sssss");
+//   //   data2.append('file', credentials.photo)
+//   // }
   
 
-  const data2 = new FormData();
-  data2.append('courseName', credentials.courseName)
-  data2.append('about', credentials.about)
-  data2.append('format', credentials.format)
-  data2.append('dates', JSON.stringify(credentials.date))
-  data2.append('file', credentials.photo)
-  
-  // if(credentials.image!="null"){
-  //   console.log("sssss");
-  //   data2.append('file', credentials.photo)
-  // }
-  
-
-  return fetch(`${base_url}/api/assistant/add/course/${id}`, {
-    method: "POST",
-    body: data2,
-  }).then((response) => {
-    return response;
-  });
-}
+//   return fetch(`${base_url}/api/assistant/add/course/${id}`, {
+//     method: "POST",
+//     body: data2,
+//   }).then((response) => {
+//     return response;
+//   });
+// }
 
 const format = [
   { label: "Онлайн", value: "1" },
@@ -54,32 +53,19 @@ const AddCourse = () => {
     name: "date",
   });
 
-  useEffect(async () => {
-    const result = await axios(base_url+
-      '/api/assistant/get/course/'+id
-    );
-    const profile = JSON.parse(JSON.stringify(result.data));
-    console.log(result);
-    
-  }, []);
-
   const onSubmit = (data) =>{
     console.log(data)
-    const token =  addCourses(data);
-    if (token.status === 200) {
-      token.json().then((json) => {
-        console.log(json);
+    axios.post(`${base_url}/api/assistant/get/course/${id}`, data)
+    // const token =  addCourses(data);
+    // if (token.status === 200) {
+    //   token.json().then((json) => {
+    //     console.log(json);
         
         
-      });
-    }
+    //   });
+    // }
   };
   
-  
-  
-  
-  
-  // console.log(data);
   const handleImage=(e)=>{
     if (window.FileReader) {
       var file = e.target.files[0];
@@ -89,8 +75,7 @@ const AddCourse = () => {
       reader.readAsDataURL(file);
       reader.onload = function (e) {
         setValue("image", e.target.result)
-        setAvatarPreview(
-          e.target.result);
+        setAvatarPreview(e.target.result);
       
       };
     }
@@ -167,7 +152,7 @@ const AddCourse = () => {
             <Table setValue={setValue} fields={fields} append={append} remove={remove}/>
           </Grid>
           <Grid item xs={12}>
-            <MyButton text="Сохранить изменения" />
+            <MyButton text="Сохранить изменения"/>
           </Grid>
         </Grid>
       </form>
