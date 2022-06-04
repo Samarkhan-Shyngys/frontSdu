@@ -22,7 +22,7 @@ const MyLibrary =()=>{
     <div>
       <div className="flex justify-between border-b items-center pb-4">
         <h1 className="text-2xl font-semibol">Моя библиотека</h1>
-        <AddButton text="Добавить книгу" link="/assistantt/addbook"/>
+        <AddButton text="Добавить книгу" link="/assistant/addbook"/>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6 gap-8">
         {datas.map((data)=>(

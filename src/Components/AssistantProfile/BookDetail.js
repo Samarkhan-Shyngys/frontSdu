@@ -64,10 +64,10 @@ const BookDetail = () => {
   };
   return (
     <Box container>
-      <Typography variant="h6">Добавить курс</Typography>
+      <Typography variant="h6" sx={{pb:2}}>Добавить курс</Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
-          <Grid item xs={12} component="section">
+          <Grid item xs={8} component="section">
             <Badge
               overlap="circular"
               anchorOrigin={{ vertical: "top", horizontal: "right" }}
@@ -95,7 +95,7 @@ const BookDetail = () => {
               />
             </Badge>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={10}>
             <Controller
               name="courseName"
               control={control}
@@ -104,7 +104,7 @@ const BookDetail = () => {
               )}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={10}>
             <TextField
               select
               fullWidth
@@ -119,7 +119,7 @@ const BookDetail = () => {
               ))}
             </TextField>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={10}>
             <Controller
               name="about"
               control={control}
@@ -128,7 +128,7 @@ const BookDetail = () => {
               )}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={10}>
             <Table
               data = {datas.date}
               setValue={setValue}
@@ -137,7 +137,7 @@ const BookDetail = () => {
               remove={remove}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={10 }>
             <MyButton text="Сохранить изменения" />
           </Grid>
         </Grid>

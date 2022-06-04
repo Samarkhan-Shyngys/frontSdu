@@ -20,16 +20,16 @@ function AssistantProfile() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-sidebar mt-12 gap-0 md:gap-8">
         <SidebarMenu data={AssistantData} />
         <Switch>
-          <Route path="/assistantt/mystudents"component={MyStudents} />
-          <Route path="/assistantt/addcourse" component={AddCourse} />
-          <Route path="/assistantt/addbook" component={AddBook} />
-          <Route path="/assistantt/mylibrary" component={MyLibrary} />
-          <Route path="/assistantt/profile" component={UserProfile} />
-          <Route path="/assistantt/mycourses" component={MyCourses} />
-          <Route path="/assistantt/1" component={BookDetail} />
-          <Route path="/assistantt/settings" component={Settings} />
-          <Route path="/assistantt/experience" component={WorkExperience} />
-          <Route path="/assistantt" component={UserProfile} />
+          <Route path="/assistant/mystudents"component={MyStudents} />
+          <Route path="/assistant/addcourse" component={AddCourse} />
+          <Route path="/assistant/addbook" component={AddBook} />
+          <Route path="/assistant/mylibrary" component={MyLibrary} />
+          <Route path="/assistant/profile" component={UserProfile} />
+          <Route path="/assistant/mycourses" component={MyCourses} />
+          <Route path="/assistant/:id" component={BookDetail} />
+          <Route path="/assistant/settings" component={Settings} />
+          <Route path="/assistant/experience" component={WorkExperience} />
+          <Route path="/assistant" component={UserProfile} />
         </Switch>
       </div>
       <Footer />
