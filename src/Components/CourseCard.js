@@ -8,7 +8,7 @@ const CourseCard = () => {
     <div className="flex flex-wrap">
       <div className="w-full p-4">
         <Link
-          to="aa"
+          to="/assistantt/1"
           className="block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden"
         >
           <div className="relative pb-48 overflow-hidden">

@@ -33,10 +33,7 @@ const datas = [
                 day: "Ср",
                 hour: "14:30"
             },
-            {
-                day: "Ср",
-                hour: "14:30"
-            }
+           
         ]
     }
 ]
@@ -45,7 +42,6 @@ const MyStudents = () => {
         <div>
         <div className="flex justify-between border-b items-center pb-4">
           <h1 className="text-lg md:text-2xl font-semibol">Мои студенты</h1>
-          <AddButton link="/assistantt/addcourse"/>
         </div>
         <div className="pt-8">
             {datas.map((data)=>(

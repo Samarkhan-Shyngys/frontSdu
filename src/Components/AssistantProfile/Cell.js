@@ -4,7 +4,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
 
-export default function Cell({text, value, fields, append, remove}){
+export default function Cell({data, text, value, fields, append, remove}){
     const [color, setColor] = useState(false);
     const handle=(e)=>{
         e.preventDefault();
@@ -20,7 +20,7 @@ export default function Cell({text, value, fields, append, remove}){
         }
     }
     return (
-        <button value={value} className={classNames(color ? "bg-[#1e40af]" : "bg-white", "bg-blue-900 border h-12 cursor-pointer text-base font-semibold")} 
+        <button value={value} className={classNames(color || data?.includes(value) ? "bg-[#1e40af]" : "bg-white", "bg-blue-900 border h-12 cursor-pointer text-base font-semibold")} 
         onClick={handle}>{text}</button>
     );
 }

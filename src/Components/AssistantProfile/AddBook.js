@@ -52,7 +52,7 @@ const AddBook = () => {
   }
   return (
     <Box container>
-      <Typography variant="h6">Добавить книгу</Typography>
+      <Typography variant="h6" sx={{mb:2}}>Добавить книгу</Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
           <Grid item xs={8} component="section">
