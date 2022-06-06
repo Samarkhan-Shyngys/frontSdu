@@ -1,7 +1,18 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import AddButton from "./AddButton";
 import AssistantCourse from "./AssistantCourse";
+import axios from "axios";
+import {base_url} from "../../utils/request";
 const MyCourses = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const id = user.id;
+  const [theArray, setTheArray] = useState([]);
+  useEffect(()=>{
+    axios.get( `${base_url}/api/assistant/get/books/${id}`)
+    .then((result) => setTheArray(result.data.library)
+    )
+    .catch(((er)=>console.log(er)))
+  }, []);  
   return (
     <div>
       <div className="flex justify-between border-b items-center pb-4">

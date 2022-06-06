@@ -49,7 +49,7 @@ const MyLibrary =()=>{
         {theArray.map((data)=>(
             <div className='border text-center items-center p-4'>
 
-              <img alt="book" src={base_url +data.image} className="items-self-center pl-10 h-64"/>
+              <img alt="book" src={base_url +data.url} className="items-self-center pl-10 h-64"/>
               <p className='text-text_main text-lg font-medium pt-2'>{data.title}</p>
               <p className='text-text_gary text-sm font-normal'>{data.author}</p>
             </div>

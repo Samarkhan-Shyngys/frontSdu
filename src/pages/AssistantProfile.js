@@ -26,9 +26,10 @@ function AssistantProfile() {
           <Route path="/assistant/mylibrary" component={MyLibrary} />
           <Route path="/assistant/profile" component={UserProfile} />
           <Route path="/assistant/mycourses" component={MyCourses} />
-          <Route path="/assistant/:id" component={BookDetail} />
+          <Route path="/assistant/courseDetails/:id" component={BookDetail} />
           <Route path="/assistant/settings" component={Settings} />
           <Route path="/assistant/experience" component={WorkExperience} />
+          <Route path="/assistant/WorkExperience" component={WorkExperience} />
           <Route path="/assistant" component={UserProfile} />
         </Switch>
       </div>

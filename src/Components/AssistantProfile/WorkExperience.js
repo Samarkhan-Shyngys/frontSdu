@@ -20,18 +20,9 @@ const WorkExperience = () => {
 
   const [theArray, setTheArray] = useState([]);
   const initialValues = {
-    job: theArray.length>0 ? theArray :[
-      {
-        organisation: "",
-        position: "",
-        startWorkYear: "",
-        startWorkMonth: "",
-        endDate: "",
-        endWorkMonth: "",
-        endWorkYear: "",
-      }    
-    ] 
+    job:  theArray 
   };
+
   useEffect(()=>{
     axios.get( `${base_url}/api/assistant/get/work/${id}`)
     .then((result) => setTheArray(result.data.jobs))
@@ -53,7 +44,7 @@ const WorkExperience = () => {
             <FieldArray name="job">
               {({ remove, push, control }) => (
                 <Grid container spacing={3} component="section">
-                  {values.job.length > 0 &&
+                  {values.job.length > 1 &&
                     values.job.map((job, index) => (
                       <React.Fragment key={`${index}${job.organisation}`}>
                         <Grid item xs={12}>
