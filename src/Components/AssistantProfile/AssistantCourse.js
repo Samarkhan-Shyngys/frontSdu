@@ -1,9 +1,10 @@
 import React from "react";
-import image from "../image/img_course.png";
+import image from "../../image/img_course.png";
 import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
 import { HeartIcon, UserCircleIcon } from "@heroicons/react/outline";
-const CourseCard = () => {
+
+export default function AssistantCourse() {
   return (
     <div className="flex flex-wrap">
       <div className="w-full p-4">
@@ -17,9 +18,8 @@ const CourseCard = () => {
               src={image}
               alt="course"
             />
-            <HeartIcon className="absolute right-5 top-5 h-5 w-auto text-white rounded-full" />
           </div>
-          <div className="p-4">
+          <div className="py-2 px-4">
             <h2 className=" mb-2  font-bold">Алгоритмы, структуры да...</h2>
             <div className="flex space-x-2 items-center">
               <img alt="profile" src={image} className="h-6 w-6 rounded-full" />
@@ -44,14 +44,9 @@ const CourseCard = () => {
               <UserCircleIcon className="h-5 w-auto" />
               <span className="text-sm font-medium">36 студентов</span>
             </div>
-            <button className="w-full bg-sky-700 text-xl text-white font-semibold rounded-md mt-4 py-2">
-              Подробнее
-            </button>
           </div>
         </Link>
       </div>
     </div>
   );
-};
-
-export default CourseCard;
+}

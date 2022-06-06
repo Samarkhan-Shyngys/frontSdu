@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <Switch>
-        <Route path="/assistantt">
+        <Route path="/assistant">
           <AssistantProfile />
         </Route>
         <Route path="/chat" component={Chat} />
@@ -32,7 +32,6 @@ function App() {
         <Route path="/profile" component={Profile} />
         <Route path="/beassistant" component={AssistantPage} />
         <Route path="/checkoutsuccess" component={CheckoutSuccess} />
-        {/* <Route path="/apply" component={Apply} /> */}
         <Route path="/admin" component={Admin} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />

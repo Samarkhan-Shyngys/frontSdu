@@ -43,15 +43,15 @@ const MyLibrary =()=>{
     <div>
       <div className="flex justify-between border-b items-center pb-4">
         <h1 className="text-2xl font-semibol">Моя библиотека</h1>
-        <AddButton  link="/assistantt/addbook"/>
+        <AddButton text="Добавить книгу" link="/assistant/addbook"/>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-6 gap-8">
         {theArray.map((data)=>(
             <div className='border text-center items-center p-4'>
-              <img alt="book" src={base_url +data.url} className="items-self-center pl-10 h-64"/>
-              <p>{data.title}</p>
-              <p>{data.author}</p>
 
+              <img alt="book" src={base_url +data.image} className="items-self-center pl-10 h-64"/>
+              <p className='text-text_main text-lg font-medium pt-2'>{data.title}</p>
+              <p className='text-text_gary text-sm font-normal'>{data.author}</p>
             </div>
         ))}
       </div>

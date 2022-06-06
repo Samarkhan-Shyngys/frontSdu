@@ -8,7 +8,7 @@ function classNames(...classes) {
 const SidebarMenu=({data})=>{
     const [cur_item, setItem] = useState(0);
     return(
-        <nav className="overflow-y-auto py-4 bg-gray-50 rounded w-64 h-80">
+        <nav className="overflow-y-auto py-4 bg-[#F3F3F3] rounded w-64 h-80">
           <ul className="space-y-2">
             {data.map((item, index) => {
               return (
