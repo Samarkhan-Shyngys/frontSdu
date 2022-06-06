@@ -5,7 +5,7 @@ import TopCourse from "../Components/TopCourse";
 import Footer from "../Components/Footer";
 import Rating from "@mui/material/Rating";
 import { HeartIcon, UserCircleIcon , CubeIcon} from "@heroicons/react/outline";
-import Table from "../Components/Table";
+import ApplyCourseTable from "../Components/ApplyCourseTable";
 import BreadCrumbs from "../Components/BreadCrumbs";
 const route = [
   {name: "Главная", route: "/" },
@@ -174,7 +174,7 @@ const ApplyCourse = () => {
           </div>
         </div>
         <div>
-          <Table />
+          <ApplyCourseTable />
         </div>
       </div>
       <TopCourse />
