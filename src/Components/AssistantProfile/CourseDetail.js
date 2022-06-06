@@ -25,7 +25,7 @@ const format = [
 
 
 
-const BookDetail = () => {
+const CourseDetail = () => {
     const datas = 
         {
           image: require("../../image/book4.png"),
@@ -146,4 +146,4 @@ const BookDetail = () => {
   );
 };
 
-export default BookDetail;
+export default CourseDetail;

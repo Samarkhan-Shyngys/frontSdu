@@ -1,7 +1,10 @@
 import Cell from "./Cell";
 export default function Table({data, fields, append, remove}){
     const alltime = []
-    data.forEach(element=>alltime.push(element.time))
+    if(data){
+
+        data.forEach(element=>alltime.push(element.time))
+    }
 
     return (
         <div className="grid grid-cols-8 border gap-0 mt-6">
