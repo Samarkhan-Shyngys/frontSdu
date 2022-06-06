@@ -5,31 +5,34 @@ import { useForm, Controller , useFieldArray} from "react-hook-form";
 import {Avatar, Badge,TextField,Box,Typography,Grid,MenuItem,Button,} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import {base_url} from "../../utils/request";
+import { ASSISTANT_COURSE } from "../../utils/consts";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+
 const user = JSON.parse(localStorage.getItem("user"));
 const id = 1;
 
-// async function addCourses(credentials) {
-//   const data2 = new FormData();
-//   data2.append('courseName', credentials.courseName)
-//   data2.append('about', credentials.about)
-//   data2.append('format', credentials.format)
-//   data2.append('dates', JSON.stringify(credentials.date))
-//   data2.append('file', credentials.photo)
+async function addCourses(credentials) {
+  const data2 = new FormData();
+  data2.append('courseName', credentials.courseName)
+  data2.append('about', credentials.about)
+  data2.append('format', credentials.format)
+  data2.append('dates', JSON.stringify(credentials.date))
+  data2.append('file', credentials.photo)
   
-//   // if(credentials.image!="null"){
-//   //   console.log("sssss");
-//   //   data2.append('file', credentials.photo)
-//   // }
+  // if(credentials.image!="null"){
+  //   console.log("sssss");
+  //   data2.append('file', credentials.photo)
+  // }
   
 
-//   return fetch(`${base_url}/api/assistant/add/course/${id}`, {
-//     method: "POST",
-//     body: data2,
-//   }).then((response) => {
-//     return response;
-//   });
-// }
+  return fetch(`${base_url}/api/assistant/add/course/${id}`, {
+    method: "POST",
+    body: data2,
+  }).then((response) => {
+    return response;
+  });
+}
 
 const format = [
   { label: "Онлайн", value: "1" },
@@ -52,18 +55,15 @@ const AddCourse = () => {
     control,
     name: "date",
   });
-
-  const onSubmit = (data) =>{
-    console.log(data)
-    axios.post(`${base_url}/api/assistant/get/course/${id}`, data)
-    // const token =  addCourses(data);
-    // if (token.status === 200) {
-    //   token.json().then((json) => {
-    //     console.log(json);
-        
-        
-    //   });
-    // }
+  const history = useHistory();
+  const onSubmit = async(data) =>{
+    
+    // axios.post(`${base_url}/api/assistant/get/course/${id}`, data)
+    const token =  await addCourses(data);
+    if (token.status === 200) {
+      history.push(ASSISTANT_COURSE);
+      
+    }
   };
   
   const handleImage=(e)=>{

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import Button from "./Button";
 import { Grid, Typography, Box } from "@mui/material";
 import SelectField from "../../componentss/FormFields/SelectField";
@@ -7,48 +7,40 @@ import Years from "../../Constants/Years";
 import { Formik,Form,  Field, FieldArray} from "formik";
 import { TextField} from "formik-material-ui";
 import {PlusIcon, MinusIcon} from "@heroicons/react/outline"
+import {base_url} from "../../utils/request";
+import axios from "axios";
 
 // 
 const data = false;
-const initialValues = {
-  job: data ? [
-    {
-      organisation: "",
-      position: "",
-      startWorkYear: "",
-      startWorkMonth: "",
-      endDate: "",
-      endWorkMonth: "",
-      endWorkYear: "",
-    }
-   
-    
-  ] : [
-    {
-      organisation: "SDU",
-      position: "Teacher",
-      startWorkYear: "2018",
-      startWorkMonth: "Март",
-      endDate: "",
-      endWorkMonth: "",
-      endWorkYear: "2017",
-    },
-    {
-      organisation: "saaa",
-      position: "bbb",
-      startWorkYear: "",
-      startWorkMonth: "",
-      endDate: "",
-      endWorkMonth: "",
-      endWorkYear: "",
-    },
-  ],
-};
+
 
 const WorkExperience = () => {
-  useEffect(()=>(
-    console.log("render")
-  ))
+  const user = JSON.parse(localStorage.getItem("user"));
+  const id = user.id;
+
+  const [theArray, setTheArray] = useState([]);
+  const initialValues = {
+    job: theArray.length>0 ? theArray :[
+      {
+        organisation: "",
+        position: "",
+        startWorkYear: "",
+        startWorkMonth: "",
+        endDate: "",
+        endWorkMonth: "",
+        endWorkYear: "",
+      }    
+    ] 
+  };
+  useEffect(()=>{
+    axios.get( `${base_url}/api/assistant/get/work/${id}`)
+    .then((result) => setTheArray(result.data.jobs))
+    .catch(((er)=>console.log(er)))
+  }, []);
+  // setTheWorks(theArray);
+  console.log('ls: ' + theArray); 
+  console.log('ls2: ' + initialValues.job.length); 
+  console.log('lss: ' + JSON.stringify(initialValues.job[0]))
   return (
     <Box fullWidth>
       <Formik
@@ -56,6 +48,7 @@ const WorkExperience = () => {
        onSubmit={values =>console.log(values)}
        >
       {({ values }) => (
+
         <Form>
             <FieldArray name="job">
               {({ remove, push, control }) => (

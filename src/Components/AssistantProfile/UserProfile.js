@@ -19,6 +19,8 @@ async function editProfile(credentials) {
   data2.append('faculty', credentials.faculty)
   data2.append('profession', credentials.profession)
   data2.append('phone', credentials.phone)
+  data2.append('about', credentials.about)
+  data2.append('languages', credentials.languages)
   console.log("cred:", credentials)
   if(credentials.photo!="null"){
     console.log("sssss", credentials.photo );
