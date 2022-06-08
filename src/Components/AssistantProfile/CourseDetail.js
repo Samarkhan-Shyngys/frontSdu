@@ -27,7 +27,8 @@ const formats = [
 
 
 
-const BookDetail = () => {
+
+const CourseDetail = () => {
   const params = useParams();
   const courseId = params.id;
   const [theArray, setTheArray] = useState();
@@ -192,4 +193,4 @@ const BookDetail = () => {
   );
 };
 
-export default BookDetail;
+export default CourseDetail;

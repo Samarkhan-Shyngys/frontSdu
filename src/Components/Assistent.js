@@ -1,18 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import CourseCard from "./CourseCard";
-import {TextField, Autocomplete, MenuItem, Select, InputLabel, FormControl } from "@mui/material";
+import {
+  TextField,
+  Autocomplete,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   FilterIcon,
 } from "@heroicons/react/outline";
 
+const options = ["Option 1", "Option 2"];
+
 const Assistant = () => {
-  const [age, setAge] = React.useState("");
+  const [value, setValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [format, setFormat] = React.useState("");
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setFormat(event.target.value);
   };
   return (
     <>
@@ -31,10 +42,19 @@ const Assistant = () => {
           <div className="flex space-y-2 md:space-y-0 flex-col md:flex-row justify-center my-2 md:my-8 pb-24">
             <div className="">
               <Autocomplete
-                disablePortal
-                id="combo-box-demo"
-                options={top100Films}
-                sx={{minWidth:"450px", bgcolor: "white" }}
+               getOptionLabel={(option) => {
+                return option
+              }}
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+                inputValue={inputValue}
+                onInputChange={(event, newInputValue) => {
+                  setInputValue(newInputValue);
+                }}
+                options={options}
+                sx={{ minWidth: "450px", bgcolor: "white" }}
                 fullWidth
                 renderInput={(params) => (
                   <TextField {...params} label="Название курса" />
@@ -52,7 +72,7 @@ const Assistant = () => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={age}
+                  value={format}
                   label="Формат урока"
                   onChange={handleChange}
                 >
@@ -62,7 +82,10 @@ const Assistant = () => {
               </FormControl>
             </div>
             <div>
-              <button className="w-full md:w-36 bg-red-800 text-xl text-white px-12 py-2 md:py-3 font-semibold rounded md:ml-8">
+              <button
+                className="w-full md:w-36 bg-red-800 text-xl text-white px-12 py-2 md:py-3 font-semibold rounded md:ml-8"
+                onClick={() => console.log(value)}
+              >
                 Найти
               </button>
             </div>
@@ -113,8 +136,7 @@ const Assistant = () => {
 export default Assistant;
 
 const top100Films = [
-  { label: "Алгоритмы, структуры данных и программирования", year: 1994 },
-  { label: "Алгоритмы, структуры данных и программирования", year: 1972 },
-  { label: "Алгоритмы, структуры данных и программирования", year: 1974 },
-
+  { label: "Алгоритмы, структуры данных и программирования" },
+  { label: "Алгоритмы, структуры данных и программирова" },
+  { label: "Алгоритмы, структуры данных и программировани" },
 ];

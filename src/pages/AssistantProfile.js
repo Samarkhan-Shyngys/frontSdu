@@ -12,7 +12,7 @@ import AddCourse from "../Components/AssistantProfile/AddCourse";
 import AddBook from "../Components/AssistantProfile/AddBook";
 import SidebarMenu from "../Components/SidebarMenu";
 import MyStudents from "../Components/AssistantProfile/MyStudents";
-import BookDetail from "../Components/AssistantProfile/BookDetail";
+import CourseDetail from "../Components/AssistantProfile/CourseDetail";
 function AssistantProfile() {
   return (
     <>
@@ -26,7 +26,7 @@ function AssistantProfile() {
           <Route path="/assistant/mylibrary" component={MyLibrary} />
           <Route path="/assistant/profile" component={UserProfile} />
           <Route path="/assistant/mycourses" component={MyCourses} />
-          <Route path="/assistant/courseDetails/:id" component={BookDetail} />
+          <Route path="/assistant/courseDetails/:id" component={CourseDetail} />
           <Route path="/assistant/settings" component={Settings} />
           <Route path="/assistant/experience" component={WorkExperience} />
           <Route path="/assistant/WorkExperience" component={WorkExperience} />
