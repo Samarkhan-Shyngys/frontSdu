@@ -19,18 +19,20 @@ const WorkExperience = () => {
   const id = user.id;
 
   const [theArray, setTheArray] = useState([]);
-  const initialValues = {
-    job:  theArray 
-  };
-
+  
+  const [theInitials, setTheInitials] = useState();
   useEffect(()=>{
     axios.get( `${base_url}/api/assistant/get/work/${id}`)
     .then((result) => setTheArray(result.data.jobs))
     .catch(((er)=>console.log(er)))
   }, []);
+  const initialValues = {
+    job: 
+    theArray
+  };
   // setTheWorks(theArray);
   console.log('ls: ' + theArray); 
-  console.log('ls2: ' + initialValues.job.length); 
+  console.log('ls2: ' ); 
   console.log('lss: ' + JSON.stringify(initialValues.job[0]))
   return (
     <Box fullWidth>
@@ -44,7 +46,7 @@ const WorkExperience = () => {
             <FieldArray name="job">
               {({ remove, push, control }) => (
                 <Grid container spacing={3} component="section">
-                  {values.job.length > 1 &&
+                  {
                     values.job.map((job, index) => (
                       <React.Fragment key={`${index}${job.organisation}`}>
                         <Grid item xs={12}>
@@ -55,6 +57,15 @@ const WorkExperience = () => {
                             component={TextField}
                             fullWidth
                           />
+                          <Field
+                        name="firstName"
+                        label="Имя"
+                        fullWidth
+                        component={TextField}
+                        value={job.organisation}
+                        placeholder={"Введите ваше имя"}
+                        
+                      />
                         </Grid>
                         <Grid item xs={12}>
                           <Field
