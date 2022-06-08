@@ -8,11 +8,12 @@ const MyCourses = () => {
   const id = user.id;
   const [theArray, setTheArray] = useState([]);
   useEffect(()=>{
-    axios.get( `${base_url}/api/assistant/get/books/${id}`)
-    .then((result) => setTheArray(result.data.library)
+    axios.get( `${base_url}/api/assistant/get/allCourses/${id}`)
+    .then((result) => setTheArray(result.data.courses)
     )
     .catch(((er)=>console.log(er)))
   }, []);  
+  
   return (
     <div>
       <div className="flex justify-between border-b items-center pb-4">
@@ -20,9 +21,11 @@ const MyCourses = () => {
         <AddButton text="Добавить курс" link="/assistant/addcourse"/>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-
-        <AssistantCourse />
-        <AssistantCourse />
+        {theArray.map((data)=>(
+          <AssistantCourse courseId={data.courseId} image={data.pathImage} assistant={data.assistant} name={data.courseName} students={data.studentCount} rating={data.rating} point={data.point}/>
+        ))}
+        
+        {/* <AssistantCourse /> */}
 
       </div>
     </div>

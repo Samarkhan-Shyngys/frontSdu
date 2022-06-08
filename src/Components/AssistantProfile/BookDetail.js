@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Table from "./Table";
 import MyButton from "./Button";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
+import {Route, Link, Routes, useParams} from 'react-router-dom';
+import Select from 'react-select';
 import {
   Avatar,
   Badge,
@@ -18,41 +20,83 @@ import axios from "axios";
 const user = JSON.parse(localStorage.getItem("user"));
 const id = 1;
 
-const format = [
-  { label: "Онлайн", value: "0" },
-  { label: "Оффлайн", value: "1" },
+const formats = [
+  { label: "Онлайн", value: "onn" },
+  { label: "Оффлайн", value: "off" },
 ];
 
 
 
 const BookDetail = () => {
+  const params = useParams();
+  const courseId = params.id;
+  const [theArray, setTheArray] = useState();
+  const [data, setData] = useState({
+    image: "null",
+    courseName: "",
+    format: "",
+    about: "",
+    date: [],
+  });
+  // useEffect(()=>{
+  //   axios.get( `${base_url}/api/assistant/get/assistant/course/${courseId}`)
+  //   .then((result) => setTheArray(result.data.courses)
+  //   )
+  //   .catch(((er)=>console.log(er)))
+  // }, []);  
+  const [avatarPreview, setAvatarPreview] = useState("../../images/12.webp");
+  useEffect(async () => {
+    if (courseId !== "") {
+      const result = await axios(base_url+
+        '/api/assistant/get/assistant/course/'+courseId
+      );
+      const profile = JSON.parse(JSON.stringify(result.data));
+      console.log(profile.courseName);
+      setTheArray(profile.format);
+      setData({
+        ...data,
+        ["courseName"]: profile.courseName,
+        ["image"]: profile.photoPath,
+        ["format"]: profile.format,
+        ["about"]: profile.about,
+        ["date"]: profile.dates,
+        
+      });
+    }
+    
+    
+  }, []);
     const datas = 
         {
           image: require("../../image/book4.png"),
-          courseName: "Algorithm",
-          format: "0",
-          about: "Good book",
-          date: [{ time: "Monday-10" }, { time: "Wednesday-11" }, { time: "Friday-12" }, { time: "Friday-15" }],
+          courseName: "",
+          format: "off",
+          about: "",
+          date: [],
         };
-    
-  const [avatarPreview, setAvatarPreview] = useState("../../images/12.webp");
-  const { control, handleSubmit, register, getValues, setValue } = useForm({
-    defaultValues: datas
-  });
+        
+  
+
+  const { control, handleSubmit, register, getValues, setValue, reset } = useForm({
+      defaultValues: data
+    });
   const { fields, append, remove } = useFieldArray({
     control,
     name: "date",
   });
-
+  
+  console.log('array ' + data.format)
   const onSubmit = (data) => {
     console.log(data);
-    axios.post(`${base_url}/api/assistant/get/course/${id}`, data);
+    // axios.post(`${base_url}/api/assistant/get/course/${id}`, data);
   };
-
+  useEffect(() => {
+    // reset form with user data
+    reset(data);
+}, [data]);
   const handleImage = (e) => {
     if (window.FileReader) {
       var file = e.target.files[0];
-      console.log("file:", file);
       setValue("photo", file);
       var reader = new FileReader();
       reader.readAsDataURL(file);
@@ -89,7 +133,7 @@ const BookDetail = () => {
               }
             >
               <Avatar
-                src={getValues("image") || avatarPreview}
+                src={base_url + data.image}
                 sx={{ width: 300, height: 150 }}
                 variant="square"
               />
@@ -99,6 +143,7 @@ const BookDetail = () => {
             <Controller
               name="courseName"
               control={control}
+              
               render={({ field }) => (
                 <TextField {...field} fullWidth label="Название курса" />
               )}
@@ -108,17 +153,18 @@ const BookDetail = () => {
             <TextField
               select
               fullWidth
-              defaultValue={datas.format || ""}
+              defaultValue={theArray}
               label="Формат курса"
               inputProps={register("format")}
             >
-              {format.map((option) => (
+              {formats.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}
                 </MenuItem>
               ))}
             </TextField>
           </Grid>
+          
           <Grid item xs={10}>
             <Controller
               name="about"
@@ -130,7 +176,7 @@ const BookDetail = () => {
           </Grid>
           <Grid item xs={10}>
             <Table
-              data = {datas.date}
+              data = {data.date}
               setValue={setValue}
               fields={fields}
               append={append}
