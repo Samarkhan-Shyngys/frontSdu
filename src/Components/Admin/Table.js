@@ -10,7 +10,7 @@ const columns =
       { field: 'phone', headerName: 'Номер телефона', width: 180},
       { field: 'icon', headerName: '',
       renderCell: ({row: icon }) => {
-          return <TrashIcon className='h-6 w-6 ml-6'/>
+          return <TrashIcon className='h-6 w-6 ml-6' onClick={()=>console.log("aaa")}/>
       },
       width: 100, editable: true, sortable: false}
 
