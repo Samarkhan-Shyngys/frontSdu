@@ -18,8 +18,6 @@ import {
 import image from "../image/img_course.png";
 import user_image from "../image/circle.png";
 
-const options = ["Option 1", "Option 2"];
-
 const courses = [
   {
     id: "1",
@@ -65,7 +63,7 @@ const courses = [
 const Assistant = () => {
   const [value, setValue] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const [format, setFormat] = React.useState("");
+  const [format, setFormat] = useState("");
   const handleChange = (event) => {
     setFormat(event.target.value);
   };
@@ -183,8 +181,3 @@ const Assistant = () => {
 
 export default Assistant;
 
-const top100Films = [
-  { label: "Алгоритмы, структуры данных и программирования" },
-  { label: "Алгоритмы, структуры данных и программирова" },
-  { label: "Алгоритмы, структуры данных и программировани" },
-];
