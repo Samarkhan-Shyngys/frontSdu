@@ -22,7 +22,7 @@ const CourseCard = ({ data }) => {
               alt="course"
             />
             <button onClick={()=>setLiked(!liked)}>
-              <HeartIcon className={classNames(liked ? "bg-red-800/10  fill-red-800" : "fill-white",  "absolute right-5 top-5 h-8 w-8 text-white rounded-full")} />
+              <HeartIcon className={classNames(liked ? "bg-red-800/10  fill-red-800" : "",  "absolute right-5 top-5 h-6 w-6 text-white rounded-full")} />
             </button>
           </div>
           <div className="p-4">

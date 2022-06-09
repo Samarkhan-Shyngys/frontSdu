@@ -24,7 +24,7 @@ const courses = [
   {
     id: "1",
     image: image,
-    title: "Алгоритмы, структуры да...",
+    title: "Алгоритмы, структуры да.",
     user_image: user_image,
     rating: 2,
     total_rating: 200,
@@ -34,7 +34,7 @@ const courses = [
   {
     id: "2",
     image: image,
-    title: "Алгоритмы, структуры да...",
+    title: "Алгоритмы, структуры дата",
     user_image: user_image,
     rating: 2,
     total_rating: 200,
@@ -44,7 +44,7 @@ const courses = [
   {
     id: "3",
     image: image,
-    title: "Алгоритмы, структуры да...",
+    title: "Дата",
     user_image: user_image,
     rating: 2,
     total_rating: 150,
@@ -54,7 +54,7 @@ const courses = [
   {
     id: "4",
     image: image,
-    title: "Алгоритмы, структуры да...",
+    title: "Алгоритмы, структуры да..",
     user_image: user_image,
     rating: 4,
     total_rating: 200,
@@ -69,6 +69,14 @@ const Assistant = () => {
   const handleChange = (event) => {
     setFormat(event.target.value);
   };
+  let filtered = courses.filter((el) =>
+  el.title.includes(inputValue)) ;
+  
+  function handleClick(){
+    filtered = courses.filter((el) =>
+    el.title.includes(inputValue))
+  }
+  
   return (
     <>
       <div className="">
@@ -87,17 +95,17 @@ const Assistant = () => {
             <div className="">
               <Autocomplete
                 getOptionLabel={(option) => {
-                  return option;
+                  return option.title;
                 }}
-                value={value}
+                freeSolo
                 onChange={(event, newValue) => {
-                  setValue(newValue);
+                  setValue(newValue?.title);
                 }}
                 inputValue={inputValue}
                 onInputChange={(event, newInputValue) => {
                   setInputValue(newInputValue);
                 }}
-                options={options}
+                options={courses || []}
                 sx={{ minWidth: "450px", bgcolor: "white" }}
                 fullWidth
                 renderInput={(params) => (
@@ -128,7 +136,7 @@ const Assistant = () => {
             <div>
               <button
                 className="w-full md:w-36 bg-red-800 text-xl text-white px-12 py-2 md:py-3 font-semibold rounded md:ml-8"
-                onClick={() => console.log(value)}
+                onClick={handleClick}
               >
                 Найти
               </button>
@@ -139,7 +147,7 @@ const Assistant = () => {
       <div className="max-w-7xl mx-auto pt-12">
         <div className="flex justify-between mx-4 md:mx-0">
           <h1 className="text-base md:text-lg font-medium tracking-tight text-gray-400">
-            Найдено 12 результатов
+            Найдено {filtered.length} результатов
           </h1>
           <div className="inline-flex items-center space-x-1">
             <FilterIcon className="w-4 h-4" />
@@ -149,7 +157,7 @@ const Assistant = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-8">
-          {courses.map((course)=>(
+          {filtered.map((course)=>(
              <CourseCard key={course.id} data={course}/>
 
           ))}
