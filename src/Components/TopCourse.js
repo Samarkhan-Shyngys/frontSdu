@@ -2,6 +2,62 @@ import React from "react";
 import CourseCard from "./CourseCard";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import DivTitle from "./DivTitle";
+import image from "../image/img_course.png";
+import user_image from "../image/circle.png";
+
+const courses = [
+  {
+    id: "1",
+    image: image,
+    title: "Алгоритмы, структуры да...",
+    user_image: user_image,
+    rating: 2,
+    total_rating: 200,
+    students: 24,
+    liked: false,
+  },
+  {
+    id: "2",
+    image: image,
+    title: "Алгоритмы, структуры да...",
+    user_image: user_image,
+    rating: 2,
+    total_rating: 200,
+    students: 24,
+    liked: false,
+  },
+  {
+    id: "3",
+    image: image,
+    title: "Алгоритмы, структуры да...",
+    user_image: user_image,
+    rating: 2,
+    total_rating: 150,
+    students: 24,
+    liked: false,
+  },
+  {
+    id: "4",
+    image: image,
+    title: "Алгоритмы, структуры да...",
+    user_image: user_image,
+    rating: 4,
+    total_rating: 200,
+    students: 24,
+    liked: false,
+  },
+  {
+    id: "5",
+    image: image,
+    title: "Алгоритмы, структуры да...",
+    user_image: user_image,
+    rating: 4,
+    total_rating: 200,
+    students: 24,
+    liked: false,
+  },
+];
+
 const TopCourse = ({ scrollRef }) => {
   const scroll = (direction) => {
     if (!scrollRef || scrollRef.current == null) {
@@ -38,14 +94,10 @@ const TopCourse = ({ scrollRef }) => {
             onClick={() => scroll("left")}
           />
           <ul ref={scrollRef} className="grid w-full snap-x snap-mandatory auto-cols-[calc((100%-64px)/2)] grid-flow-col gap-5 sm:auto-cols-[calc((100%-2*32px)/3)] lg:auto-cols-[calc((100%-3*64px)/4)] xl:auto-cols-[calc((100%-4*17px)/4)] overflow-x-scroll scrollbar-hide">
-            <CourseCard scrollRef={scrollRef} />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
+          {courses.map((course)=>(
+             <CourseCard key={course.id} data={course}/>
+
+          ))}
           </ul>
 
           <ChevronRightIcon

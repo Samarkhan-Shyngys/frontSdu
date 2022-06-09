@@ -5,7 +5,7 @@ import axios from "axios";
 import {base_url} from "../../utils/request";
 const MyCourses = () => {
   const user = JSON.parse(localStorage.getItem("user"));
-  const id = user.id;
+  const id = 1;
   const [theArray, setTheArray] = useState([]);
   useEffect(()=>{
     axios.get( `${base_url}/api/assistant/get/allCourses/${id}`)

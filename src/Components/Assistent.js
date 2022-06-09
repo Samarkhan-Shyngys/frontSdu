@@ -15,9 +15,53 @@ import {
   ChevronRightIcon,
   FilterIcon,
 } from "@heroicons/react/outline";
+import image from "../image/img_course.png";
+import user_image from "../image/circle.png";
 
 const options = ["Option 1", "Option 2"];
 
+const courses = [
+  {
+    id: "1",
+    image: image,
+    title: "Алгоритмы, структуры да...",
+    user_image: user_image,
+    rating: 2,
+    total_rating: 200,
+    students: 24,
+    liked: false,
+  },
+  {
+    id: "2",
+    image: image,
+    title: "Алгоритмы, структуры да...",
+    user_image: user_image,
+    rating: 2,
+    total_rating: 200,
+    students: 24,
+    liked: false,
+  },
+  {
+    id: "3",
+    image: image,
+    title: "Алгоритмы, структуры да...",
+    user_image: user_image,
+    rating: 2,
+    total_rating: 150,
+    students: 24,
+    liked: false,
+  },
+  {
+    id: "4",
+    image: image,
+    title: "Алгоритмы, структуры да...",
+    user_image: user_image,
+    rating: 4,
+    total_rating: 200,
+    students: 24,
+    liked: false,
+  },
+];
 const Assistant = () => {
   const [value, setValue] = useState("");
   const [inputValue, setInputValue] = useState("");
@@ -42,9 +86,9 @@ const Assistant = () => {
           <div className="flex space-y-2 md:space-y-0 flex-col md:flex-row justify-center my-2 md:my-8 pb-24">
             <div className="">
               <Autocomplete
-               getOptionLabel={(option) => {
-                return option
-              }}
+                getOptionLabel={(option) => {
+                  return option;
+                }}
                 value={value}
                 onChange={(event, newValue) => {
                   setValue(newValue);
@@ -105,14 +149,10 @@ const Assistant = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-8">
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
+          {courses.map((course)=>(
+             <CourseCard key={course.id} data={course}/>
+
+          ))}
         </div>
       </div>
 
