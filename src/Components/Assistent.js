@@ -17,13 +17,55 @@ import {
   ChevronRightIcon,
   FilterIcon,
 } from "@heroicons/react/outline";
+import image from "../image/img_course.png";
+import user_image from "../image/circle.png";
 
-const options = ["Option 1", "Option 2"];
-
+const courses = [
+  {
+    id: "1",
+    image: image,
+    title: "Алгоритмы, структуры да.",
+    user_image: user_image,
+    rating: 2,
+    total_rating: 200,
+    students: 24,
+    liked: false,
+  },
+  {
+    id: "2",
+    image: image,
+    title: "Алгоритмы, структуры дата",
+    user_image: user_image,
+    rating: 2,
+    total_rating: 200,
+    students: 24,
+    liked: false,
+  },
+  {
+    id: "3",
+    image: image,
+    title: "Дата",
+    user_image: user_image,
+    rating: 2,
+    total_rating: 150,
+    students: 24,
+    liked: false,
+  },
+  {
+    id: "4",
+    image: image,
+    title: "Алгоритмы, структуры да..",
+    user_image: user_image,
+    rating: 4,
+    total_rating: 200,
+    students: 24,
+    liked: false,
+  },
+];
 const Assistant = () => {
   const [value, setValue] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const [format, setFormat] = React.useState("");
+  const [format, setFormat] = useState("");
   const handleChange = (event) => {
     setFormat(event.target.value);
   };
@@ -37,6 +79,16 @@ const Assistant = () => {
   }, []);  
   console.log('log: ' + theArray)
   console.log('format ' + format)
+
+  let filtered = courses.filter((el) =>
+  el.title.includes(inputValue)) ;
+  
+  function handleClick(){
+    filtered = courses.filter((el) =>
+    el.title.includes(inputValue))
+  }
+  
+
   return (
     <>
       <div className="">
@@ -54,18 +106,18 @@ const Assistant = () => {
           <div className="flex space-y-2 md:space-y-0 flex-col md:flex-row justify-center my-2 md:my-8 pb-24">
             <div className="">
               <Autocomplete
-               getOptionLabel={(option) => {
-                return option
-              }}
-                value={value}
+                getOptionLabel={(option) => {
+                  return option.title;
+                }}
+                freeSolo
                 onChange={(event, newValue) => {
-                  setValue(newValue);
+                  setValue(newValue?.title);
                 }}
                 inputValue={inputValue}
                 onInputChange={(event, newInputValue) => {
                   setInputValue(newInputValue);
                 }}
-                options={options}
+                options={courses || []}
                 sx={{ minWidth: "450px", bgcolor: "white" }}
                 fullWidth
                 renderInput={(params) => (
@@ -96,7 +148,7 @@ const Assistant = () => {
             <div>
               <button
                 className="w-full md:w-36 bg-red-800 text-xl text-white px-12 py-2 md:py-3 font-semibold rounded md:ml-8"
-                onClick={() => console.log(value)}
+                onClick={handleClick}
               >
                 Найти
               </button>
@@ -107,7 +159,7 @@ const Assistant = () => {
       <div className="max-w-7xl mx-auto pt-12">
         <div className="flex justify-between mx-4 md:mx-0">
           <h1 className="text-base md:text-lg font-medium tracking-tight text-gray-400">
-            Найдено 12 результатов
+            Найдено {filtered.length} результатов
           </h1>
           <div className="inline-flex items-center space-x-1">
             <FilterIcon className="w-4 h-4" />
@@ -117,10 +169,12 @@ const Assistant = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-8">
+
         {theArray.map((data)=>(
           <CourseCard courseId={data.courseId} image={data.pathImage} assistant={data.assistant} name={data.courseName} students={data.studentCount} rating={data.rating} point={data.point}/>
         ))}
           {/* <CourseCard /> */}
+
 
         </div>
       </div>
@@ -144,8 +198,3 @@ const Assistant = () => {
 
 export default Assistant;
 
-const top100Films = [
-  { label: "Алгоритмы, структуры данных и программирования" },
-  { label: "Алгоритмы, структуры данных и программирова" },
-  { label: "Алгоритмы, структуры данных и программировани" },
-];

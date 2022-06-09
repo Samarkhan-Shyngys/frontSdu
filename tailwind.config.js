@@ -19,7 +19,9 @@ module.exports = {
       },
       height: {
         '128': '32rem',
-      }
+      },
+      opacity: ['disabled']
+
     },
   },
   plugins: [

@@ -15,7 +15,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 600,
-  height: 600,
+  height: 630,
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 3,
@@ -33,11 +33,9 @@ export default function StudentModal({ showModal, handleClose }) {
       <Modal
         open={showModal}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <div>
+          <div className="justify-between">
             <div className="flex justify-between border-b mb-2">
               <h1 className="text-xl text-text_main font-bold">Анкета ассистента</h1>
               <XIcon className="h-6 w-6" onClick={handleClick}/>
@@ -65,7 +63,7 @@ export default function StudentModal({ showModal, handleClose }) {
               <Route path="/admin/applications/video" component={Video} />
               <Route path="/admin/applications" component={Personal} />
             </Switch>
-          <Buttons />
+            <Buttons />
           </div>
         </Box>
       </Modal>

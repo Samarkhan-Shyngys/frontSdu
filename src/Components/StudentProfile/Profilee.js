@@ -35,7 +35,7 @@ async function editProfile(credentials) {
 const Profilee = () => {
   
   const user = JSON.parse(localStorage.getItem("user"));
-  const id = user.id;
+  const id = 1;
   const [preview, setPreview] = useState(require("../../image/12.webp"));
   const [data, setData] = useState({
     photo: "null",
