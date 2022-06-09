@@ -45,7 +45,7 @@ export function Personal() {
         <h1 className="text-lg font-semibold text-text_main mt-2">Языки</h1>
         <ul className="list-disc text-base font-normal mx-4">
           {data.languages.map((item)=>(
-            <li key={item.email}>
+            <li key={item.language}>
             <div className="flex space-x-5">
               <p className="text-text_gray">{item.level}</p>
               <p className=" text-text_main">{item.language}</p>

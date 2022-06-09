@@ -24,8 +24,8 @@ export function Application() {
         <div className="grid grid-rows-1 gap-5">
           {datas.map((data, index) => (
             <>
-              <div className="flex justify-between items-center">
-                <div className="flex space-x-4 items-center" key={index}>
+              <div className="flex justify-between items-center" key={`${index}${data.email}`}>
+                <div className="flex space-x-4 items-center" >
                   <img
                     alt="img"
                     src={data.image}

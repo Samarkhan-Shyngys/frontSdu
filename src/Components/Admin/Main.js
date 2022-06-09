@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { useState } from "react";
 import logo from "../../image/logo.png";
 import { Menu} from "@headlessui/react";
 import { SearchIcon, ChevronDownIcon } from "@heroicons/react/outline";
@@ -10,7 +11,23 @@ import { Application } from "./Application";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+
+const datas = [
+  {
+    name: "Болат Жанболатов",
+    email: "180103123@stu.sdu.edu.kz",
+    image: require("../../image/12.webp"),
+  },
+  {
+    name: "Болат Жанбола",
+    email: "180103203@stu.sdu.edu.kz",
+    image: require("../../image/12.webp"),
+  },
+];
+
 export function Main() {
+  const [input, setInput] = useState("");
+
   return (
     <>
       <div className="grid grid-cols-[300px,1fr] grid-rows-[80px,1fr] divide-x divide-y">
@@ -28,6 +45,7 @@ export function Main() {
                 type="search"
                 name="search"
                 placeholder="Поиск или новый чат"
+                onChange={(e)=>setInput(e.target.value)}
               />
             </div>
           </div>
