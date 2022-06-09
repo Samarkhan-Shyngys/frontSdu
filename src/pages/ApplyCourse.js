@@ -7,11 +7,38 @@ import Rating from "@mui/material/Rating";
 import { HeartIcon, UserCircleIcon , CubeIcon} from "@heroicons/react/outline";
 import ApplyCourseTable from "../Components/ApplyCourseTable";
 import BreadCrumbs from "../Components/BreadCrumbs";
+
 const route = [
   {name: "Главная", route: "/" },
   {name: "Найти ассистента",route: "/"},
   {name: "Подробнее о курсе", route: "/"},
 ];
+
+const data = {
+  cover: image,
+  title: "Алгоритмы, структуры да...",
+  tutor: "Арман Болатов",
+  rating: 3,
+  total_rating: 200,
+  format: "Онлайн",
+  students: 35,
+  courses: 3,
+  about: "Этот курс направлен на подробное изучение разработку дизайна мобильных приложении без воды, но главное - немедленное применение его на практике. Это значит, что вы получите материал для работы и мы вместе будем создавать реальные проекты шаг за шагом. Вторая часть курса - это изучение самой популярной библиотеки на основе UX/UI - Figma со всеми необходимыми технологиями (в том числе и UI-kit)",
+  about_tutor: "Привет! Меня зовут Арман Болатов. 20+ лет в дизайне. Вместе со своей командой проектирую сайты и мобильные приложения для «МТС», «ВТБ», «Сбера», «Госуслуг», «Азбуки вкуса», Simplewine, «Ашана», «Дом.рф», «Мираторга» и других крупнейших компаний. В моей копилке уже несколько организованных и записанных авторских онлайн курсов, люблю помогать людям и делиться с ними знаниями. Я фрилансер, очень люблю путешествовать, выступать на различных конференциях и передавать свой опыт другим.",
+  education: [{date: "2018-2019", profession: "Информационные системы"}],
+  experience: [
+    {type: "Профессия UX-дизайнер", organization: "Skillbox"},
+    {type: "Курс по интерактивному дизайну и анимации интерфейсов", organization: "Breezzly company (Job Shadowing)"},
+    {type: "UX/UI дизайнер", organization: "Основы создания мобильных приложений и сайтов"},
+    {type: "Экспертное мнение по визуалу необычных вещей", organization: "Culture life about design"}
+  ],
+  certificate : [
+    {about: "Профессия UX-дизайнер", organization: "Skillbox"},
+    {about: "Курс по интерактивному дизайну и анимации интерфейсов", organization: "Breezzly company (Job Shadowing)"},
+    {about: "UX/UI дизайнер", organization: "Основы создания мобильных приложений и сайтов"},
+  ]
+
+}
 const ApplyCourse = () => {
   const scrollRef = useRef(null)
   return (
@@ -22,155 +49,83 @@ const ApplyCourse = () => {
         <div className="space-x-4 md:space-y-8">
           <div className="flex flex-row pt-12">
             <div className="relative pb-4 overflow-hidden aspect-[16/9]">
-              <img className="aspect-[16/10] w-[256px] md:w-[356px] rounded-md" src={image} alt="course" />
+              <img className="aspect-[16/10] w-[256px] md:w-[356px] rounded-md" src={data.cover} alt="course" />
               <HeartIcon className="absolute right-5 top-5 h-5 w-auto text-white rounded-full" />
             </div>
             <div className="p-1 md:p-4 ml-6">
-              <h2 className=" mb-2 text-base md:text-lg font-bold truncate">Алгоритмы, структуры да...</h2>
-              <p className="text-sm md:text-base font-medium">Арман Болатов</p>
+              <h2 className="mb-2 text-xl font-bold truncate text-text_main">{data.title}</h2>
+              <p className="text-base font-medium text-[#383838]">{data.tutor}</p>
 
               <div className="pt-1 md:pt-3 flex items-center">
-                <p className="text-yellow-500 mr-2 text-sm">4.78</p>
+                <p className="text-text_grau mr-2 text-sm">{data.rating}</p>
                 <Rating
                   name="size-small"
-                  defaultValue={3}
+                  defaultValue={data.rating}
                   precision={0.5}
                   readOnly
                 />
-                <span className="ml-2 text-gray-600 text-sm">(205)</span>
+                <span className="ml-2 text-text_gray text-sm">({data.total_rating})</span>
               </div>
-              <p className="mt-2 text-base font-medium">Онлайн</p>
+              <p className="mt-2 text-base font-medium text-text_gray">{data.format}</p>
               <div className="flex items-center mt-2 space-x-1">
                 <UserCircleIcon className="h-8 w-auto" />
-                <span className="text-sm font-medium">36 студентов</span>
+                <span className="text-sm font-medium text-text_gray">{data.students} студентов</span>
               </div>
               <div className="flex items-center mt-2 space-x-1">
                 <CubeIcon className="h-8 w-auto" />
-                <span className="text-sm font-medium">3 курсов</span>
+                <span className="text-sm font-medium text-text_gray">{data.courses} курсов</span>
               </div>
             </div>
           </div>
           <div className="mt-2 md:mt-6 px-4 md:px-0">
-            <h1 className="text-xl font-semibold">О курсе</h1>
-            <p className="text-base leading-5 font-normal">
-              Этот курс направлен на подробное изучение разработку дизайна
-              мобильных приложении без воды, но главное - немедленное применение
-              его на практике. Это значит, что вы получите материал для работы и
-              мы вместе будем создавать реальные проекты шаг за шагом. Вторая
-              часть курса - это изучение самой популярной библиотеки на основе
-              UX/UI - Figma со всеми необходимыми технологиями (в том числе и
-              UI-kit)
-            </p>
+            <h1 className="text-xl font-semibold text-head">О курсе</h1>
+            <p className="text-base leading-5 font-normal text-[#77838F]">{data.about} </p>
           </div>
           <div className="mt-2 md:mt-6 px-4 md:px-0">
-            <h1 className="text-xl font-semibold">О преподавателе</h1>
-            <p className="text-base leading-5 font-normal">
-              Привет! Меня зовут Арман Болатов. 20+ лет в дизайне. Вместе со
-              своей командой проектирую сайты и мобильные приложения для «МТС»,
-              «ВТБ», «Сбера», «Госуслуг», «Азбуки вкуса», Simplewine, «Ашана»,
-              «Дом.рф», «Мираторга» и других крупнейших компаний. В моей копилке
-              уже несколько организованных и записанных авторских онлайн курсов,
-              люблю помогать людям и делиться с ними знаниями. Я фрилансер,
-              очень люблю путешествовать, выступать на различных конференциях и
-              передавать свой опыт другим.
-            </p>
+            <h1 className="text-xl font-semibold text-head">О преподавателе</h1>
+            <p className="text-base leading-5 font-normal text-[#77838F]">{data.about_tutor}</p>
           </div>
           <div className="px-4 md:px-0">
-            <h1 className="text-xl font-semibold">Образование</h1>
+            <h1 className="text-xl font-semibold text-head">Образование</h1>
             <div className="list-disc">
-              <li>
-                <span className="text-gray-500">2018-2019</span> Информационные
-                системы
-              </li>
+              {data.education.map((item)=>(
+                 <li ley={item.profession} className="space-x-6">
+                 <span className="text-text_main text-base">{item.profession}</span>
+               </li>
+
+              ))}
             </div>
           </div>
 
           <div className="space-y-2 px-4 md:px-0">
-            <h1 className="text-xl font-semibold">Опыт работы</h1>
-            <div className="list-disc">
-              <li>
+            <h1 className="text-xl font-semibold text-head">Опыт работы</h1>
+            <div className="list-disc space-y-3">
+              {data.experience.map((item)=>(
+                <li key={item.type}>
                 <div className="inline-flex space-x-6">
-                  <span className="text-gray-500">2018-2019 </span>
                   <div className="flex flex-col">
-                    <span>UX/UI дизайнер</span>
-                    <span  className="text-gray-500">
-                      Образовательная ассоциация Netherhall - Хэмпстед, Лондон,
-                      Великобритания
-                    </span>
+                    <span className="text-text_main text-base font-normal">{item.type}</span>
+                    <span  className="text-[#77838F] text-sm font-normal">{item.organization}</span>
                   </div>
                 </div>
               </li>
-            </div>
-            <div className="list-disc">
-              <li>
-                <div className="inline-flex space-x-6">
-                  <span className="text-gray-500">2019-2020</span>
-                  <div className="flex flex-col">
-                    <span>Курс по интерактивному дизайну и анимации интерфейсов</span>
-                    <span  className="text-gray-500">
-                    Breezzly company (Job Shadowing)
-                    </span>
-                  </div>
-                </div>
-              </li>
-            </div>
-            <div className="list-disc">
-              <li>
-                <div className="inline-flex space-x-6">
-                  <span className="text-gray-500">2020-2021</span>
-                  <div className="flex flex-col">
-                    <span>UX/UI дизайнер</span>
-                    <span  className="text-gray-500">Дизайн студио Dala Development / Фриланс</span>
-                  </div>
-                </div>
-              </li>
+
+              ))}
             </div>
           </div>
           <div className="space-y-2 px-4 md:px-0">
-            <h1 className="text-xl font-semibold">Сертификаты</h1>
-            <div className="list-disc">
-              <li>
+            <h1 className="text-xl font-semibold text-head">Сертификаты</h1>
+            <div className="list-disc space-y-3">
+            {data.certificate.map((item)=>(
+                <li key={item.about}>
                 <div className="inline-flex space-x-6">
-                  <span className="text-gray-500">2018-2019 </span>
                   <div className="flex flex-col">
-                    <span>Профессия UX-дизайнер</span>
-                    <span  className="text-gray-500">Skillbox</span>
+                    <span className="text-text_main text-base font-normal">{item.about}</span>
+                    <span  className="text-[#77838F] text-sm font-normal">{item.organization}</span>
                   </div>
                 </div>
               </li>
-            </div>
-            <div className="list-disc">
-              <li>
-                <div className="md:inline-flex space-x-6">
-                  <span className="text-gray-500">2019-2020</span>
-                  <div className="flex flex-col">
-                    <span className="">Курс по интерактивному дизайну и анимации интерфейсов</span>
-                    <span  className="text-gray-500">Breezzly company (Job Shadowing)</span>
-                  </div>
-                </div>
-              </li>
-            </div>
-            <div className="list-disc">
-              <li>
-                <div className="inline-flex space-x-6">
-                  <span className="text-gray-500">2020-2021</span>
-                  <div className="flex flex-col">
-                    <span>UX/UI дизайнер</span>
-                    <span  className="text-gray-500">Основы создания мобильных приложений и сайтов</span>
-                  </div>
-                </div>
-              </li>
-            </div>
-            <div className="list-disc">
-              <li>
-                <div className="inline-flex space-x-6">
-                  <span className="text-gray-500">2021-2022</span>
-                  <div className="flex flex-col">
-                    <span>Экспертное мнение по визуалу необычных вещей</span>
-                    <span  className="text-gray-500">Culture life about design</span>
-                  </div>
-                </div>
-              </li>
+              ))}
             </div>
           </div>
         </div>

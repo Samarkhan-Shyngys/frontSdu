@@ -10,6 +10,7 @@ module.exports = {
         text_gray: "#77838F",
         main_red : "#9E2629",
         blue: "#256699",
+        head: "#2F2D51"
       },
       gridTemplateColumns: {
         sidebar: "300px 1fr",
