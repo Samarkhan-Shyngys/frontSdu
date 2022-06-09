@@ -25,7 +25,7 @@ function App() {
         <Route path="/chat" component={Chat} />
         <Route path="/books" component={Allbooks} />
         <Route path="/student" component={StudentProfile} />
-        <Route path="/applycourse" component={ApplyCourse}/>
+        <Route path="/applycourse/:id" component={ApplyCourse}/>
         <Route path="/stepper" component={CheckoutPage} />
         <Route path="/forget" component={ForgetPassword} />
         <Route path="/confirm" component={ConfirmRegistartion} />
