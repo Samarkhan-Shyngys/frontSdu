@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import image from "../image/img_course.png";
 import Header from "../Components/Header";
 import TopCourse from "../Components/TopCourse";
@@ -13,6 +13,7 @@ const route = [
   {name: "Подробнее о курсе", route: "/"},
 ];
 const ApplyCourse = () => {
+  const scrollRef = useRef(null)
   return (
     <>
       <Header />
@@ -177,7 +178,7 @@ const ApplyCourse = () => {
           <ApplyCourseTable />
         </div>
       </div>
-      <TopCourse />
+      <TopCourse scrollRef={scrollRef}/>
       <Footer />
     </>
   );
