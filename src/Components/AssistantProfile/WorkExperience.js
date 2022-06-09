@@ -47,7 +47,7 @@ const WorkExperience = () => {
   return (
     <Box fullWidth>
       {
-        isFormReady? <Formik
+        theInitials.job.length>2? <Formik
         initialValues={theInitials}
         onSubmit={values =>console.log(values)}
         >

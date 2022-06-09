@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import CourseCard from "./CourseCard";
+import axios from "axios";
+import {base_url} from "../utils/request";
 import {
   TextField,
   Autocomplete,
@@ -25,6 +27,16 @@ const Assistant = () => {
   const handleChange = (event) => {
     setFormat(event.target.value);
   };
+
+  const [theArray, setTheArray] = useState([]);
+  useEffect(()=>{
+    axios.get( `${base_url}/api/main/get/allCourses`)
+    .then((result) => setTheArray(result.data.courses)
+    )
+    .catch(((er)=>console.log(er)))
+  }, []);  
+  console.log('log: ' + theArray)
+  console.log('format ' + format)
   return (
     <>
       <div className="">
@@ -105,26 +117,23 @@ const Assistant = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-8">
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
+        {theArray.map((data)=>(
+          <CourseCard courseId={data.courseId} image={data.pathImage} assistant={data.assistant} name={data.courseName} students={data.studentCount} rating={data.rating} point={data.point}/>
+        ))}
+          {/* <CourseCard /> */}
+
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto ">
         <div className="flex items-center space-x-4 justify-end mt-4">
-          <ChevronLeftIcon className="h-4 w-4" />
+          {/* <ChevronLeftIcon className="h-4 w-4" />
           <span className="border-b border-black items-baseline">1</span>
           <span>2</span>
           <span>3</span>
           <span>...</span>
           <span>18</span>
-          <ChevronRightIcon className="h-4 w-4" />
+          <ChevronRightIcon className="h-4 w-4" /> */}
         </div>
       </div>
 

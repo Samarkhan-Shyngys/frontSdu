@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState, useEffect } from "react";
 import image from "../image/img_course.png";
 import Header from "../Components/Header";
 import TopCourse from "../Components/TopCourse";
@@ -7,12 +7,39 @@ import Rating from "@mui/material/Rating";
 import { HeartIcon, UserCircleIcon , CubeIcon} from "@heroicons/react/outline";
 import ApplyCourseTable from "../Components/ApplyCourseTable";
 import BreadCrumbs from "../Components/BreadCrumbs";
+import axios from "axios";
+import {base_url} from "../utils/request";
+import {Route, Link, Routes, useParams} from 'react-router-dom';
 const route = [
   {name: "Главная", route: "/" },
-  {name: "Найти ассистента",route: "/"},
+  {name: "Найти ассистента",route: "/allcourses"},
   {name: "Подробнее о курсе", route: "/"},
 ];
 const ApplyCourse = () => {
+  const params = useParams();
+  const courseId = params.id;
+  console.log("id+ " + courseId)
+  useEffect(async () => {
+    if (courseId !== "") {
+      const result = await axios(base_url+
+        '/api/main/get/course/'+courseId
+      );
+      const course = JSON.parse(JSON.stringify(result.data));
+      console.log(course);
+      
+      // setData({
+      //   ...data,
+      //   ["courseName"]: profile.courseName,
+      //   ["image"]: profile.photoPath,
+      //   ["format"]: profile.format,
+      //   ["about"]: profile.about,
+      //   ["date"]: profile.dates,
+        
+      // });
+    }
+    
+    
+  }, []);
   return (
     <>
       <Header />

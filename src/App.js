@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router-dom";
-import Assistent from "./Components/Assistent";
+import Assistant from "./Components/Assistent";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -25,7 +25,7 @@ function App() {
         <Route path="/chat" component={Chat} />
         <Route path="/books" component={Allbooks} />
         <Route path="/student" component={StudentProfile} />
-        <Route path="/applycourse" component={ApplyCourse}/>
+        <Route path="/applycourse/:id" component={ApplyCourse}/>
         <Route path="/stepper" component={CheckoutPage} />
         <Route path="/forget" component={ForgetPassword} />
         <Route path="/confirm" component={ConfirmRegistartion} />
@@ -35,7 +35,7 @@ function App() {
         <Route path="/admin" component={Admin} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
-        <Route path="/allcourses" component={Assistent} />
+        <Route path="/allcourses" component={Assistant} />
         <Route path="/" component={Home} />
         
       </Switch>
