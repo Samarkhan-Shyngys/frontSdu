@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import image from "../image/img_course.png";
 import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
 import { HeartIcon, UserCircleIcon } from "@heroicons/react/outline";
@@ -29,7 +28,7 @@ const CourseCard = ({ data }) => {
             </button>
           </div>
           <div className="p-4">
-            <h2 className=" mb-2  font-bold">{data.title}</h2>
+            <h2 className=" mb-2 font-bold">{data.title}</h2>
             <div className="flex space-x-2 items-center">
               <img
                 alt="profile"
@@ -55,7 +54,7 @@ const CourseCard = ({ data }) => {
             </span>
           </div>
           <div className="p-4 border-t border-b text-xs text-gray-700">
-            <div className="flex items-center mb-1 space-x-4">
+            <div className="flex items-center mb-1 space-x-2">
               <UserCircleIcon className="h-5 w-auto" />
               <span className="text-sm font-medium">
                 {data.students} студентов

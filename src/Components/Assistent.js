@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import CourseCard from "./CourseCard";
@@ -24,20 +24,22 @@ const courses = [
     image: image,
     title: "Алгоритмы, структуры да.",
     user_image: user_image,
-    rating: 2,
+    rating: 3,
     total_rating: 200,
     students: 24,
     liked: false,
+    format: "Онлайн"
   },
   {
     id: "2",
     image: image,
     title: "Алгоритмы, структуры дата",
     user_image: user_image,
-    rating: 2,
+    rating: 5,
     total_rating: 200,
     students: 24,
     liked: false,
+    format: "Онлайн"
   },
   {
     id: "3",
@@ -48,6 +50,7 @@ const courses = [
     total_rating: 150,
     students: 24,
     liked: false,
+    format: "Онлайн"
   },
   {
     id: "4",
@@ -58,21 +61,40 @@ const courses = [
     total_rating: 200,
     students: 24,
     liked: false,
+    format: "Онлайн"
+  },
+  {
+    id: "5",
+    image: image,
+    title: "Алгоритмы, структуры да..",
+    user_image: user_image,
+    rating: 4,
+    total_rating: 200,
+    students: 24,
+    liked: false,
+    format: "Оффлайн"
   },
 ];
 const Assistant = () => {
   const [value, setValue] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [format, setFormat] = useState("");
+  const [filtered, setFiltered] = useState([]);
   const handleChange = (event) => {
     setFormat(event.target.value);
   };
-  let filtered = courses.filter((el) =>
-  el.title.includes(inputValue)) ;
-  
+  useEffect(()=>{
+    setFiltered(courses.filter((el) =>
+    el.title.includes(inputValue)))
+  }, [inputValue])
+
+
   function handleClick(){
-    filtered = courses.filter((el) =>
-    el.title.includes(inputValue))
+    setFiltered(courses.filter((el) =>
+    el.format===format && el.title.includes(inputValue)))
+  }
+  function handleSort(){
+    setFiltered((num) => [...num.sort((a, b) => (a.rating > b.rating) ? 1 : -1)])
   }
   
   return (
@@ -81,10 +103,10 @@ const Assistant = () => {
         <Header />
         <div className=" pt-16 bg-gray-200">
           <div className="text-center ">
-            <h1 className="text-lg md:text-3xl font-semibold">
+            <h1 className="text-lg md:text-[32px] font-medium text-text_main">
               Улучшение знания начинается здесь с ассистентами СДУ
             </h1>
-            <p className="text-xl font-normal mt-2">
+            <p className="text-[22px] font-normal mt-2 text-text_gray">
               Мы вам предлагаем самых профессиональных ассистентов для хорошей
               успеваемости
             </p>
@@ -126,8 +148,8 @@ const Assistant = () => {
                   label="Формат урока"
                   onChange={handleChange}
                 >
-                  <MenuItem value={1}>Онлайн</MenuItem>
-                  <MenuItem value={2}>Оффлайн</MenuItem>
+                  <MenuItem value={"Онлайн"}>Онлайн</MenuItem>
+                  <MenuItem value={"Оффлайн"}>Оффлайн</MenuItem>
                 </Select>
               </FormControl>
             </div>
@@ -147,7 +169,7 @@ const Assistant = () => {
           <h1 className="text-base md:text-lg font-medium tracking-tight text-gray-400">
             Найдено {filtered.length} результатов
           </h1>
-          <div className="inline-flex items-center space-x-1">
+          <div className="inline-flex items-center space-x-1 cursor-pointer" onClick={handleSort}>
             <FilterIcon className="w-4 h-4" />
             <h1 className="text-base md:text-lg tracking-tight font-medium">
               Сортировать по: Популярности
@@ -155,10 +177,10 @@ const Assistant = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-8">
-          {filtered.map((course)=>(
+          {filtered.length>0 ? filtered.map((course)=>(
              <CourseCard key={course.id} data={course}/>
 
-          ))}
+          )):<p className="text-center">Not found</p>}
         </div>
       </div>
 

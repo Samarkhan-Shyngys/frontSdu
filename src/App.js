@@ -4,7 +4,6 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import AssistantPage from "./pages/BeAssistant";
-import Profile from "./pages/Profile";
 import AssistantProfile from "./pages/AssistantProfile";
 import ForgetPassword from "./pages/ForgetPassword";
 import ConfirmRegistartion from "./pages/ConfirmRegistration";
@@ -29,7 +28,6 @@ function App() {
         <Route path="/stepper" component={CheckoutPage} />
         <Route path="/forget" component={ForgetPassword} />
         <Route path="/confirm" component={ConfirmRegistartion} />
-        <Route path="/profile" component={Profile} />
         <Route path="/beassistant" component={AssistantPage} />
         <Route path="/checkoutsuccess" component={CheckoutSuccess} />
         <Route path="/admin" component={Admin} />
