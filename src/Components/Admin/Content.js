@@ -22,6 +22,15 @@ const rows = [
     phone: "+7 (702) 123 45-67",
     icon: "",
   },
+  {
+    id: 3,
+    emailID: "180103247",
+    name: "Болат Жанболатов",
+    faculty: "Бизнес школа",
+    profession: "Диджитал маркетинг",
+    phone: "+7 (702) 123 45-67",
+    icon: "",
+  },
 ];
 
 function classNames(...classes) {
