@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CourseCard from "./CourseCard";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import DivTitle from "./DivTitle";
@@ -56,9 +56,13 @@ const courses = [
     students: 24,
     liked: false,
   },
+  
+  
 ];
 
 const TopCourse = ({ scrollRef }) => {
+  const dots = Math.ceil(courses.length/4);
+  const [current, setCurrent] =  useState(0)
   const scroll = (direction) => {
     if (!scrollRef || scrollRef.current == null) {
       return;
@@ -80,6 +84,27 @@ const TopCourse = ({ scrollRef }) => {
     });
     initialPosition = initialPosition - scrollRef.current.clientWidth;
   };
+  function handleLeft(){
+    current!==0 && setCurrent(current-1);
+    scroll("left")
+
+  }
+  function handleRight(){
+    current!==dots-1 && setCurrent(current+1);
+    scroll("right")
+
+  }
+  function handleDot(e){
+    setCurrent(e.target.value);
+    current > e.target.value ? handleLeft() : handleRight(); 
+
+  }
+  let filledArray = [];
+    for(let i=0; i< dots;i++){
+      filledArray[i] = i===current ? <button className="h-2 w-4 bg-red-800 rounded-full mx-2 mb-2 cursor-pointer" value={i} onClick={handleDot}/> : <button className="h-2 w-2 bg-[#C8C8D6] rounded-full mx-2 mb-2 cursor-pointer" value={i} onClick={handleDot} />;
+  }
+
+
   return (
     <div className="bg-white mt-12 text-gray-900 font-sans p-6">
       <div className="container mx-auto max-w-7xl relative">
@@ -90,8 +115,8 @@ const TopCourse = ({ scrollRef }) => {
         />
         <div className="">
           <ChevronLeftIcon
-            className="hidden md:block h-8 w-auto absolute inset-y-1/3 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
-            onClick={() => scroll("left")}
+            className="hidden md:block h-8 p-2 w-auto absolute inset-y-1/3 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
+            onClick={handleLeft}
           />
           <ul ref={scrollRef} className="grid w-full snap-x snap-mandatory auto-cols-[calc((100%-64px)/2)] grid-flow-col gap-5 sm:auto-cols-[calc((100%-2*32px)/3)] lg:auto-cols-[calc((100%-3*64px)/4)] xl:auto-cols-[calc((100%-4*17px)/4)] overflow-x-scroll scrollbar-hide">
           {courses.map((course)=>(
@@ -101,16 +126,16 @@ const TopCourse = ({ scrollRef }) => {
           </ul>
 
           <ChevronRightIcon
-            className="hidden md:block h-8 w-auto absolute right-2 inset-y-1/3 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
-            onClick={() => scroll("right")}
+            className="hidden md:block h-8 p-2 w-auto absolute right-1 inset-y-1/3 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
+            onClick={handleRight}
           />
         </div>
         <div className="flex justify-center mt-2">
-          <span className="h-2 w-2 bg-gray-700 rounded-full mx-2 mb-2 cursor-pointer"></span>
-          <span className="h-2 w-4 bg-gray-700 rounded-full mx-2 mb-2 cursor-pointer"></span>
-          <span className="h-2 w-2 bg-gray-700 rounded-full mx-2 mb-2 cursor-pointer"></span>
-          <span className="h-2 w-2 bg-gray-700 rounded-full mx-2 mb-2 cursor-pointer"></span>
-          <span className="h-2 w-2 bg-gray-700 rounded-full mx-2 mb-2 cursor-pointer"></span>
+          {filledArray.map((item, index)=>(
+            <React.Fragment key={index}>
+              {item}
+            </React.Fragment>
+          ))}
         </div>
       </div>
     </div>
