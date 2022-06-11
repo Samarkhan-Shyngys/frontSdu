@@ -3,10 +3,10 @@ import {Switch, Route } from "react-router-dom";
 import Header from '../Components/Header';
 import Footer from "../Components/Footer";
 import {StudentSidebar} from '../Constants/StudentSidebar';
-import Settings from "../Components/AssistantProfile/Settings";
+import Settings from "../Components/StudentProfile/Settings";
 import { MyBooks } from "../Components/StudentProfile/MyBooks";
 import Favourite from "../Components/StudentProfile/Favourite";
-import Profilee from "../Components/StudentProfile/Profilee";
+import Profile from "../Components/StudentProfile/Profile";
 import StudentCourses from "../Components/StudentProfile/StudentCourses";
 import BreadCrumbs from "../Components/BreadCrumbs";
 import SidebarMenu from "../Components/SidebarMenu";
@@ -27,7 +27,7 @@ export function StudentProfile(){
                 <Route path="/student/mybooks" component={MyBooks} />
                 <Route path="/student/liked" component={Favourite} />
                 <Route path="/student/settings" component={Settings} />
-                <Route path="/student" component={Profilee} />
+                <Route path="/student" component={Profile} />
               
             </Switch>
           </div>

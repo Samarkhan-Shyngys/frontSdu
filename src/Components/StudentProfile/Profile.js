@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import PhotoPicker from "../PhotoPicker";
 import Input from "../Input";
-import Button from "../AssistantProfile/Button";
 import { PlusIcon } from "@heroicons/react/outline";
 import {base_url} from "../../utils/request";
-import { data } from "autoprefixer";
 import axios from "axios";
 
 async function editProfile(credentials) {
@@ -16,7 +13,7 @@ async function editProfile(credentials) {
   data2.append('profession', credentials.profession)
   data2.append('phone', credentials.phone)
   console.log("cred:", credentials)
-  if(credentials.photo!="null"){
+  if(credentials.photo!=="null"){
     console.log("sssss", credentials.photo );
     data2.append('file', credentials.photo)
   }
@@ -32,7 +29,7 @@ async function editProfile(credentials) {
 
 
 
-const Profilee = () => {
+const Profile = () => {
   
   const user = JSON.parse(localStorage.getItem("user"));
   const id = 1;
@@ -47,7 +44,7 @@ const Profilee = () => {
     phone: "",
   });
 
-  useEffect(async () => {
+  useEffect(async() => {
     if (id !== "") {
       const result = await axios(base_url+
         '/api/student/profile/'+id
@@ -135,7 +132,7 @@ const Profilee = () => {
           text="Имя"
           type="text"
           value={data.firstname}
-          placeholder={data.firstname!=""?data.firstname:"Введите ваше имя"}
+          placeholder={data.firstname!==""?data.firstname:"Введите ваше имя"}
           onChanged={handleChange}
         />
         <Input
@@ -190,4 +187,4 @@ const Profilee = () => {
   );
 };
 
-export default Profilee;
+export default Profile;
