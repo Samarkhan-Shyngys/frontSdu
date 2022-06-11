@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
-import { HeartIcon, UserCircleIcon } from "@heroicons/react/outline";
+import { UserCircleIcon } from "@heroicons/react/outline";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 const CourseCard = ({ data }) => {
   const [liked, setLiked] = useState(data.liked);
   return (
@@ -18,13 +15,24 @@ const CourseCard = ({ data }) => {
               src={data.image}
               alt="course"
             />
-            <button onClick={() => setLiked(!liked)}>
-              <HeartIcon
-                className={classNames(
-                  liked ? "bg-red-800/10  fill-red-800" : "",
-                  "absolute right-5 top-5 h-6 w-6 text-white rounded-full"
-                )}
-              />
+            <button
+              onClick={() => setLiked(!liked)}
+              className="absolute right-5 top-5 h-8 w-8 p-2 text-white rounded-full bg-slate-700/30">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill={liked ? "#9E2629" : "none"}
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 15.1875C9 15.1875 1.96875 11.25 1.96875 6.46876C1.96889 5.62369 2.26171 4.80476 2.79741 4.1512C3.33312 3.49763 4.07865 3.04977 4.90724 2.88376C5.73584 2.71775 6.59636 2.84384 7.34249 3.24059C8.08863 3.63734 8.67432 4.28026 9.00001 5.06004L8.99999 5.06005C9.32567 4.28027 9.91137 3.63734 10.6575 3.24059C11.4036 2.84384 12.2642 2.71775 13.0928 2.88376C13.9214 3.04977 14.6669 3.49763 15.2026 4.1512C15.7383 4.80476 16.0311 5.62369 16.0312 6.46876C16.0312 11.25 9 15.1875 9 15.1875Z"
+                  stroke="white"
+                  strokeWidth="1.3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </button>
           </div>
           <div className="p-4">

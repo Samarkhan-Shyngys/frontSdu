@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import CourseCard from "./CourseCard";
@@ -10,14 +10,10 @@ import {
   InputLabel,
   FormControl,
 } from "@mui/material";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  FilterIcon,
-} from "@heroicons/react/outline";
+import { FilterIcon } from "@heroicons/react/outline";
 import image from "../image/img_course.png";
 import user_image from "../image/circle.png";
-
+import Pagination from "./Pagination";
 const courses = [
   {
     id: "1",
@@ -28,7 +24,7 @@ const courses = [
     total_rating: 200,
     students: 24,
     liked: false,
-    format: "Онлайн"
+    format: "Онлайн",
   },
   {
     id: "2",
@@ -38,8 +34,8 @@ const courses = [
     rating: 5,
     total_rating: 200,
     students: 24,
-    liked: false,
-    format: "Онлайн"
+    liked: true,
+    format: "Онлайн",
   },
   {
     id: "3",
@@ -50,7 +46,7 @@ const courses = [
     total_rating: 150,
     students: 24,
     liked: false,
-    format: "Онлайн"
+    format: "Онлайн",
   },
   {
     id: "4",
@@ -61,7 +57,7 @@ const courses = [
     total_rating: 200,
     students: 24,
     liked: false,
-    format: "Онлайн"
+    format: "Онлайн",
   },
   {
     id: "5",
@@ -72,7 +68,29 @@ const courses = [
     total_rating: 200,
     students: 24,
     liked: false,
-    format: "Оффлайн"
+    format: "Оффлайн",
+  },
+  {
+    id: "6",
+    image: image,
+    title: "Алгоритмы, структуры да..",
+    user_image: user_image,
+    rating: 4,
+    total_rating: 200,
+    students: 24,
+    liked: false,
+    format: "Оффлайн",
+  },
+  {
+    id: "7",
+    image: image,
+    title: "Алгоритмы, структуры да..",
+    user_image: user_image,
+    rating: 4,
+    total_rating: 200,
+    students: 24,
+    liked: false,
+    format: "Оффлайн",
   },
 ];
 const Assistant = () => {
@@ -83,20 +101,30 @@ const Assistant = () => {
   const handleChange = (event) => {
     setFormat(event.target.value);
   };
-  useEffect(()=>{
-    setFiltered(courses.filter((el) =>
-    el.title.includes(inputValue)))
-  }, [inputValue])
+  useEffect(() => {
+    setFiltered(courses.filter((el) => el.title.includes(inputValue)));
+  }, [inputValue]);
 
+  function handleClick() {
+    setFiltered(
+      courses.filter(
+        (el) => el.format === format && el.title.includes(inputValue)
+      )
+    );
+  }
+  function handleSort() {
+    setFiltered((num) => [
+      ...num.sort((a, b) => (a.rating < b.rating ? 1 : -1)),
+    ]);
+  }
+  const [currentPage, setCurrentPage] = useState(1);
+  let PageSize = 3;
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return filtered.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, filtered, PageSize]);
 
-  function handleClick(){
-    setFiltered(courses.filter((el) =>
-    el.format===format && el.title.includes(inputValue)))
-  }
-  function handleSort(){
-    setFiltered((num) => [...num.sort((a, b) => (a.rating > b.rating) ? 1 : -1)])
-  }
-  
   return (
     <>
       <div className="">
@@ -167,9 +195,12 @@ const Assistant = () => {
       <div className="max-w-7xl mx-auto pt-12">
         <div className="flex justify-between mx-4 md:mx-0">
           <h1 className="text-base md:text-lg font-medium tracking-tight text-gray-400">
-            Найдено {filtered.length} результатов
+            Найдено {currentTableData.length} результатов
           </h1>
-          <div className="inline-flex items-center space-x-1 cursor-pointer" onClick={handleSort}>
+          <div
+            className="inline-flex items-center space-x-1 cursor-pointer"
+            onClick={handleSort}
+          >
             <FilterIcon className="w-4 h-4" />
             <h1 className="text-base md:text-lg tracking-tight font-medium">
               Сортировать по: Популярности
@@ -177,23 +208,23 @@ const Assistant = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-8">
-          {filtered.length>0 ? filtered.map((course)=>(
-             <CourseCard key={course.id} data={course}/>
-
-          )):<p className="text-center">Not found</p>}
+          {filtered.length > 0 ? (
+            currentTableData.map((course) => (
+              <CourseCard key={course.id} data={course} />
+            ))
+          ) : (
+            <p className="text-center">Not found</p>
+          )}
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto ">
-        <div className="flex items-center space-x-4 justify-end mt-4">
-          <ChevronLeftIcon className="h-4 w-4" />
-          <span className="border-b border-black items-baseline">1</span>
-          <span>2</span>
-          <span>3</span>
-          <span>...</span>
-          <span>18</span>
-          <ChevronRightIcon className="h-4 w-4" />
-        </div>
+        <Pagination
+          currentPage={currentPage}
+          totalCount={filtered.length}
+          pageSize={PageSize}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
       </div>
 
       <Footer />
@@ -202,4 +233,3 @@ const Assistant = () => {
 };
 
 export default Assistant;
-
