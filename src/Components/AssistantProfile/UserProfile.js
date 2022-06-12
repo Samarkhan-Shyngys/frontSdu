@@ -47,7 +47,7 @@ const UserProfile = () => {
     faculty: "",
     profession: "",
     phone: "",
-    languages: [{ name: "", level: "" }],
+    languages: [{ name: "Русский", level: "" }],
     about: ",",
   };
   const [data, setData] = useState({
@@ -58,7 +58,9 @@ const UserProfile = () => {
     faculty: "",
     profession: "",
     phone: "",
-    languages: [{ name: "rus", level: "A1" }],
+    languages: [{ name: "Русский", level: "A1" },
+                { name: "Русский", level: "B1" },
+                { name: "Русский", level: "B1" }],
   });
   useEffect(async () => {
     if (id !== "") {
@@ -122,7 +124,7 @@ const UserProfile = () => {
     <Box>
       <Grid container>
         <Formik
-          initialValues={initialValues}
+          initialValues={data}
           onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
         >
           {({ values }) => (
@@ -216,17 +218,21 @@ const UserProfile = () => {
                       />
                     </Grid>
 
-                    {data.languages.length > 0 &&
+                    {data.languages.length > 2 &&
                       data.languages.map((friend, index) => (
+                        
                         <>
                           <Grid item xs={9}>
                             <SelectField
                               name={`languages.${index}.name`}
                               label="Языки"
                               data={languages}
-                              value={languages[index].value}
+                            
                               fullWidth
                             />
+                          
+                        
+                      
                           </Grid>
 
                           <Grid item xs={3}>

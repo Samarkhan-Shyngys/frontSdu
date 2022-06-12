@@ -13,17 +13,24 @@ export default function Allbooks(){
         {id: 2, title: 'Hello1', author: 'Murat1', image:image},
         {id: 3, title: 'Hello2', author: 'Murat2', image:image},
     ]);
+    useEffect(()=>{
+        axios.get( `${base_url}/api/main/`)
+        .then((result) => setBooks(result.data.library)
+        )
+        .catch(((er)=>console.log(er)))
+      }, []);  
 
-    useEffect(() => {
-        axios.get(`${base_url}/api/main/`)
-        .then(res => setBooks(res.data.library));
-    });
+    // useEffect(() => {
+    //     axios.get(`${base_url}/api/main/`)
+    //     .then(res => setBooks(res.data.library));
+    // });
 
     return (
         <div>
             <Header />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 max-w-7xl mx-auto gap-10">
-            {books.map(book => <Book data={book} key={book.id} />)}
+            {books.map((book) => 
+                (<Book data={book} />))}
             </div>
             <Footer />
         </div>

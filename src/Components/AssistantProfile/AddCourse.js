@@ -58,7 +58,6 @@ const AddCourse = () => {
   const history = useHistory();
   const onSubmit = async(data) =>{
     
-    // axios.post(`${base_url}/api/assistant/get/course/${id}`, data)
     const token =  await addCourses(data);
     if (token.status === 200) {
       history.push(ASSISTANT_COURSE);

@@ -29,7 +29,7 @@ function classNames(...classes) {
 }
 
 export function Content() {
-  const [item, setItems] = useState();
+  const [item, setItems] = useState([]);
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
@@ -37,7 +37,9 @@ export function Content() {
       .get(`${base_url}/api/admin/contents`)
       .then((result) => {
         if (result !== undefined) {
-          setItems(result.data);
+          setItems(result.data.assistents)
+          setStudents(result.data.students)
+
         }
 
         //  setStudents(item.students);
@@ -74,7 +76,7 @@ export function Content() {
       </div>
       <Switch>
         <Route path="/admin/content/student">
-          {item !== undefined && <Table data={item.students} />}
+          {students !== undefined && <Table data={students} />}
         </Route>
 
         {/* <Route path="/admin/content">
@@ -83,7 +85,7 @@ export function Content() {
           } */}
 
         <Route path="/admin">
-          <Table data={rows} />
+          <Table data={item} />
         </Route>
       </Switch>
     </div>

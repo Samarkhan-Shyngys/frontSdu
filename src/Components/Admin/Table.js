@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { DataGrid,  GridToolbarContainer, GridToolbarFilterButton } from '@mui/x-data-grid';
 import { TrashIcon } from '@heroicons/react/outline';
+import {base_url} from "../../utils/request";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 const columns = 
     [
       { field: 'emailID',headerName: 'emailID', width: 140},
@@ -10,11 +13,19 @@ const columns =
       { field: 'phone', headerName: 'Номер телефона', width: 180},
       { field: 'icon', headerName: '',
       renderCell: ({row: icon }) => {
-          return <TrashIcon className='h-6 w-6 ml-6' onClick={()=>console.log("aaa")}/>
+          return <TrashIcon className='h-6 w-6 ml-6' onClick={()=>onSubmit(icon.emailID)}/>
       },
       width: 100, editable: true, sortable: false}
 
     ]
+    
+    const onSubmit = async(data) =>{
+    
+      console.log('log '+ data);
+      axios.get(`${base_url}/api/admin/delete/${data}`)
+      
+      
+    };    
 
 const CustomToolbar = ({ setFilterButtonEl }) => (
     <GridToolbarContainer>
@@ -23,6 +34,9 @@ const CustomToolbar = ({ setFilterButtonEl }) => (
   );
 
 export function Table(props) {
+  const history = useHistory();
+  
+  console.log('table data ' +props)
     const [filterButtonEl, setFilterButtonEl] = useState(null);
   return (
     <div style={{ height: 250, width: '100%'}}>

@@ -4,7 +4,23 @@ import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
 import {base_url} from "../utils/request";
 import { HeartIcon, UserCircleIcon } from "@heroicons/react/outline";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 export default function CourseCard({courseId, image, assistant, name, students, rating, point}){
+  const [liked, setLiked] = useState(false)
+  const onSubmit = async(data) =>{
+    setLiked(!liked); 
+    console.log('log ' + courseId + ' '+ !data);
+    // axios.post(`${base_url}/api/assistant/get/course/${id}`, data)
+    // const token =  await addCourses(data);
+    // if (token.status === 200) {
+    //   history.push(ASSISTANT_COURSE);
+      
+    // }
+  };
+
   return (
     <div className="flex flex-wrap">
       <div className="w-full p-4">
@@ -20,7 +36,7 @@ export default function CourseCard({courseId, image, assistant, name, students, 
               src={base_url + image}
               alt="course"
             />
-            <button onClick={()=>setLiked(!liked)}>
+            <button onClick={()=>onSubmit(liked)}>
               <HeartIcon className={classNames(liked ? "bg-red-800/10  fill-red-800" : "",  "absolute right-5 top-5 h-6 w-6 text-white rounded-full")} />
             </button>
           </div>
@@ -40,7 +56,7 @@ export default function CourseCard({courseId, image, assistant, name, students, 
             <p className="text-yellow-500 mr-2 text-sm">{rating}</p>
             <Rating
               name="size-small"
-              defaultValue={data.rating}
+              defaultValue={rating}
               precision={0.5}
               readOnly
             />

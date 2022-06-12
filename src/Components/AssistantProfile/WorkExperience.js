@@ -12,11 +12,31 @@ import axios from "axios";
 
 // 
 const data = false;
+const user = JSON.parse(localStorage.getItem("user"));
+const id = user.id;
+async function editWork(credentials) {
+  console.log('credentials' +JSON.stringify(credentials.job))
+  const data2 = new FormData();
+  data2.append('jobs', JSON.stringify(credentials.job))
+  
+  
+  // if(credentials.image!="null"){
+  //   console.log("sssss");
+  //   data2.append('file', credentials.photo)
+  // }
+  
+
+  return fetch(`${base_url}/api/assistant/edit/work/${id}`, {
+    method: "POST",
+    body: data2,
+  }).then((response) => {
+    return response;
+  });
+}
 
 
 const WorkExperience = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const id = user.id;
+  
   const [isFormReady, setIsFormReady] = useState(false)
   const [theArray, setTheArray] = useState([]);
   const initialValues = {
@@ -49,7 +69,9 @@ const WorkExperience = () => {
       {
         theInitials.job.length>2? <Formik
         initialValues={theInitials}
-        onSubmit={values =>console.log(values)}
+        onSubmit={values =>
+          editWork(values)
+        }
         >
        {({ values }) => (
        
