@@ -28,7 +28,7 @@ export function Personal() {
   return (
     <div className="mx-2">
       <div className="flex items-center space-x-3">
-        <img alt="profile" src={image} className="w-16 h-16 rounded-full" />
+        <img alt="profile" src={base_url + item.imagePath} className="w-16 h-16 rounded-full" />
         <div>
           <h1 className="text-base text-text_main font-medium">{item.fio}</h1>
           <p className="text-sm text-text_gray font-normal">{item.phone}</p>

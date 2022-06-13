@@ -47,7 +47,7 @@ export function Application() {
                 <div className="flex space-x-4 items-center" key={index}>
                   <img
                     alt="img"
-                    src={data.icon}
+                    src={base_url + data.icon}
                     className="h-14 w-14 rounded-full"
                   />
                   <div className="flex flex-col">

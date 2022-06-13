@@ -17,8 +17,32 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import { base_url } from "../../utils/request";
 import axios from "axios";
+import { ASSISTANT_COURSE } from "../../utils/consts";
+import { useHistory } from "react-router-dom";
 const user = JSON.parse(localStorage.getItem("user"));
 const id = 1;
+
+async function editCourse(credentials, courseId) {
+  const data2 = new FormData();
+  data2.append('courseName', credentials.courseName)
+  data2.append('about', credentials.about)
+  data2.append('format', credentials.format)
+  data2.append('dates', JSON.stringify(credentials.date))
+  data2.append('file', credentials.photo)
+  
+  // if(credentials.image!="null"){
+  //   console.log("sssss");
+  //   data2.append('file', credentials.photo)
+  // }
+  
+
+  return fetch(`${base_url}/api/assistant/edit/course/${courseId}`, {
+    method: "POST",
+    body: data2,
+  }).then((response) => {
+    return response;
+  });
+}
 
 const formats = [
   { label: "Онлайн", value: "onn" },
@@ -87,8 +111,13 @@ const CourseDetail = () => {
   });
   
   console.log('array ' + data.format)
-  const onSubmit = (data) => {
-    console.log(data);
+  const history = useHistory();
+  const onSubmit = async(data) => {
+    const token =  await editCourse(data, courseId);
+    if (token.status === 200) {
+      history.push(ASSISTANT_COURSE);
+      
+    }
     // axios.post(`${base_url}/api/assistant/get/course/${id}`, data);
   };
   useEffect(() => {

@@ -51,7 +51,7 @@ export function Certificate(){
                                 <span className="text-lg text-text_main">{data.title}</span>
                                 <span className="text-base text-text_gray">{data.company}</span>
                             </div>
-                            <img alt="c_img" src={data.image} className="h-8 w-10 rounded-md"/>
+                            <img alt="c_img" src={base_url + data.image} className="h-8 w-10 rounded-md"/>
                         </div>
                     </li>
 

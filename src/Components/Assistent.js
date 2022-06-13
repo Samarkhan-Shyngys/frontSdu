@@ -171,7 +171,7 @@ const Assistant = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-8">
 
         {theArray.map((data)=>(
-          <CourseCard courseId={data.courseId} image={data.pathImage} assistant={data.assistant} name={data.courseName} students={data.studentCount} rating={data.rating} point={data.point}/>
+          <CourseCard courseId={data.courseId} image={data.pathImage} assistant={data.assistant} name={data.courseName} students={data.studentCount} rating={data.rating} point={data.point} assImage={data.assImage}/>
         ))}
           {/* <CourseCard /> */}
 

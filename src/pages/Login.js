@@ -39,7 +39,7 @@ export default function Login() {
     if (token.status === 200) {
       token.json().then((json) => {
         
-        if(json.roles[0]==='ROLE_ADMIN'){
+        if(json.roles==='ROLE_ADMIN'){
           sessionStorage.setItem("admin", JSON.stringify(json))
           history.push(ADMIN_ROUTE);
         }

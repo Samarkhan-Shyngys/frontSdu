@@ -113,7 +113,7 @@ console.log('log ingo2 ' + data.Monday);
   }
     
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log('user: ' + user)
+  console.log('user applay course: ' + user.roles)
   let id = 0;
   if(user!==null){
     id = user.id
@@ -178,7 +178,7 @@ console.log('log ingo2 ' + data.Monday);
         </div>
         <div className="flex items-center ml-1">
             <img alt="sun1" src={require("../image/sun1.png")} className="h-10 w-10 mr-3" />
-            <button  className="disabled:opacity-50 text-base font-semibold border border-1 py-2 w-28 rounded-l-md text-text_main hover:bg-slate-200" disabled={!disableHour('09:00-10:00')} value="09:00-10:00" onClick={handleHour}>09:00-10:00</button>
+            <button  className="disabled:opacity-50 text-base font-semibold border border-1 py-2 w-28 rounded-l-md text-text_main hover:bg-slate-200" disabled={!disableHour('9:00-10:00')} value="9:00-10:00" onClick={handleHour}>09:00-10:00</button>
             <button className="disabled:opacity-50 text-base font-semibold border border-1 py-2 w-28 text-text_main hover:bg-slate-200" disabled={!disableHour('10:00-11:00')} value="10:00-11:00" onClick={handleHour}>10:00-11:00</button>
             <button className="disabled:opacity-50 text-base font-semibold border border-1 py-2 w-28 rounded-r-md text-text_main hover:bg-slate-200" disabled={!disableHour('11:00-12:00')} value="11:00-12:00" onClick={handleHour}>11:00-12:00</button>
         </div>
@@ -200,10 +200,13 @@ console.log('log ingo2 ' + data.Monday);
             <button className="text-base font-semibold border border-1 py-2 w-28 text-text_main disabled:opacity-50 hover:bg-slate-200" value="19:00-20:00" onClick={handleHour} disabled={!disableHour('19:00-20:00')}>19:00-20:00</button>
             <button className="text-base font-semibold border border-1 py-2 w-28 rounded-r-md text-text_main disabled:opacity-50 hover:bg-slate-200" value="20:00-21:00" onClick={handleHour} disabled={!disableHour('20:00-21:00')}>20:00-21:00</button>
         </div>
+        {user.roles==="ROLE_STUDENT" && 
         <div className="flex flex-col space-y-2">
-            <button className="w-96 py-2 bg-red-700 text-white rounded-md"  type="submit" onClick={handleSubmit}>Записаться</button>
-            {/* <button className="w-96 py-2 bg-white text-red-700 border-red-700 border-2 rounded-md">Сообщение</button> */}
+        <button className="w-96 py-2 bg-red-700 text-white rounded-md"  type="submit" onClick={handleSubmit}>Записаться</button>
+        {/* <button className="w-96 py-2 bg-white text-red-700 border-red-700 border-2 rounded-md">Сообщение</button> */}
         </div>
+        }
+        
     </div>
 
   

@@ -54,7 +54,7 @@ const TopCourse = ({ scrollRef }) => {
 
             {/* <CourseCard scrollRef={scrollRef} /> */}
             {theArray.map((data)=>(
-          <CourseCard courseId={data.courseId} image={data.pathImage} assistant={data.assistant} name={data.courseName} students={data.studentCount} rating={data.rating} point={data.point}/>
+          <CourseCard courseId={data.courseId} image={data.pathImage} assistant={data.assistant} name={data.courseName} students={data.studentCount} rating={data.rating} point={data.point} assImage ={data.assImage}/>
         ))}
            
           </ul>

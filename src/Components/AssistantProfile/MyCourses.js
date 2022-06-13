@@ -5,7 +5,11 @@ import axios from "axios";
 import {base_url} from "../../utils/request";
 const MyCourses = () => {
   const user = JSON.parse(localStorage.getItem("user"));
-  const id = 1;
+  let id= 0;
+  if(user!==null){
+    id = user.id
+  }
+
   const [theArray, setTheArray] = useState([]);
   useEffect(()=>{
     axios.get( `${base_url}/api/assistant/get/allCourses/${id}`)
@@ -22,7 +26,7 @@ const MyCourses = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {theArray.map((data)=>(
-          <AssistantCourse courseId={data.courseId} image={data.pathImage} assistant={data.assistant} name={data.courseName} students={data.studentCount} rating={data.rating} point={data.point}/>
+          <AssistantCourse courseId={data.courseId} image={data.pathImage} assistant={data.assistant} name={data.courseName} students={data.studentCount} rating={data.rating} point={data.point} assImage={data.assImage}/>
         ))}
         
         {/* <AssistantCourse /> */}

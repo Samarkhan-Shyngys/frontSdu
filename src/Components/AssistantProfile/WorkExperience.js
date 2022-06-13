@@ -14,10 +14,10 @@ import axios from "axios";
 const data = false;
 const user = JSON.parse(localStorage.getItem("user"));
 console.log('user ' + user)
-let id = 0;
-if(user!==null){
-      id = user.id
-}
+let id = 3;
+// if(user!==null){
+//       id = user.id
+// }
 console.log('id for shyngys ' + id)  
 async function editWork(credentials) {
   console.log('credentials' +JSON.stringify(credentials.job))
@@ -41,7 +41,7 @@ async function editWork(credentials) {
 
 
 const WorkExperience = () => {
-  
+  let num = 0;
   const [isFormReady, setIsFormReady] = useState(false)
   const [theArray, setTheArray] = useState([]);
   const initialValues = {
@@ -61,18 +61,18 @@ const WorkExperience = () => {
   const [theInitials, setTheInitials] = useState(initialValues);
   useEffect(()=>{
     axios.get( `${base_url}/api/assistant/get/work/${id}`)
-    .then((result) => setTheInitials({job:  result.data.jobs}), setIsFormReady(true))
+    .then((result) => setTheInitials({job:  result.data.jobs}), num = 1)
     .catch(((er)=>console.log(er)))
   }, []);
   // setTheWorks(theArray);
   console.log('ls: ' + JSON.stringify(theInitials.job)); 
-  console.log('isReady: ' + isFormReady)
+  console.log('isReady: ' + num)
   // console.log('ls2: ' + JSON.stringify(theInitials.job[0])); 
-  // console.log('lss: ' + JSON.stringify(initialValues.job[0]))
+  // console.log('lss: ' + JSON.stringify(initialValues.job[0]))theInitials.job.length>=2
   return (
     <Box fullWidth>
       {
-        theInitials.job.length>2? <Formik
+        theInitials.job[0].endDate!=="" && <Formik
         initialValues={theInitials}
         onSubmit={values =>
           editWork(values)
@@ -182,7 +182,7 @@ const WorkExperience = () => {
              </FieldArray>
              </Form>
        )}
-        </Formik>: null
+        </Formik>
       }
       
     </Box>

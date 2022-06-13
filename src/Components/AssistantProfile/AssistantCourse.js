@@ -4,7 +4,7 @@ import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
 import { HeartIcon, UserCircleIcon } from "@heroicons/react/outline";
 import {base_url} from "../../utils/request";
-export default function AssistantCourse({courseId, image, assistant, name, students, rating, point}){
+export default function AssistantCourse({courseId, image, assistant, name, students, rating, point, assImage}){
   return (
     <div className="flex flex-wrap">
       <div className="w-full p-4">
@@ -22,7 +22,7 @@ export default function AssistantCourse({courseId, image, assistant, name, stude
           <div className="py-2 px-4">
             <h2 className=" mb-2  font-bold">{name}</h2>
             <div className="flex space-x-2 items-center">
-              <img alt="profile" src={base_url + image} className="h-6 w-6 rounded-full" />
+              <img alt="profile" src={base_url + assImage} className="h-6 w-6 rounded-full" />
               <p className="text-sm font-medium text-text_main">
                 {assistant}
               </p>
