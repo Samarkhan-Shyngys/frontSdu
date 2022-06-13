@@ -1,9 +1,10 @@
 import { ChatIcon } from "@heroicons/react/outline";
+import {base_url} from "../../utils/request";
 const ListItem = ({ image, name, desc, times }) => {
   return (
     <div className="w-full h-16 flex space-x-4 justify-between">
       <div className="flex space-x-4 w-1/2">
-        <img alt="profile" src={image} className="h-14 w-14 rounded-full" />
+        <img alt="profile" src={base_url + image} className="h-14 w-14 rounded-full" />
         <div className="flex flex-col">
           <p className="text-text_main font-medium text-lg">{name}</p>
           <p className="text-text_gray font-normal text-sm">{desc}</p>
@@ -13,8 +14,8 @@ const ListItem = ({ image, name, desc, times }) => {
       <div className="flex space-x-4">
         {times.map((time) => (
           <div className="flex flex-col items-center space-x-0">
-            <p className="text-text_gray font-semibold text-base">{time.day}</p>
-            <p  className="text-text_gray font-normal text-base">{time.hour}</p>
+            <p className="text-text_gray font-semibold text-base">{time.dayStr}</p>
+            <p  className="text-text_gray font-normal text-base">{time.hourStr}</p>
           </div>
         ))}
       </div>

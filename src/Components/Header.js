@@ -1,8 +1,9 @@
 import Badge from "@mui/material/Badge";
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import Image from "../image/circle.png";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {useHistory} from "react-router-dom";
+import axios from "axios";
 import {
   MenuIcon,
   XIcon,
@@ -18,6 +19,7 @@ import {
 } from "@heroicons/react/outline";
 import logo from "../image/logo.png";
 import { Link } from "react-router-dom";
+import { base_url } from "../utils/request";
 
 
 const navigation = [
@@ -44,20 +46,40 @@ export default function Example() {
   let loggedIn = false;
   let loggedInUser = localStorage.getItem("user");
   let username;
+  let id = 0;
+  let urlStr  = 'student'
   let role = 0;
   if (loggedInUser) {
+    id = JSON.parse(loggedInUser).id
     loggedIn = true;
     const foundUser = JSON.parse(loggedInUser);
     username = foundUser.username;
     if(JSON.parse(loggedInUser).roles==='ROLE_ASSISTENT'){
+      console.log('role: home page header ' + JSON.parse(loggedInUser).roles)
       role=1;
       if(navigation.length===2){
         navigation.pop();
       }
+      urlStr = 'assistant'
     }
-    console.log('sss: ' + JSON.parse(loggedInUser).roles)
+    console.log('sss: ' + role)
   }
+  const [data, setData] = useState({
+    photo: "",
+  });
 
+  useEffect(async () => {
+    if (id !== "") {
+      const result = await axios(base_url+
+        '/api/'+urlStr  +'/profile/'+id
+      );
+      const profile = JSON.parse(JSON.stringify(result.data));
+      console.log('image asistant ' + profile.image);
+
+      setData({ ["photo"]:profile.image,});
+    }
+    
+  }, []);
 
   return (
     <Disclosure as="nav" className="bg-white shadow-md">
@@ -193,7 +215,7 @@ export default function Example() {
                     {loggedIn ? (
                       <Menu.Button className="inline-flex items-center justify-center w-full rounded-md md:py-2 bg-white text-sm font-medium text-gray-700">
 
-                          <img className="h-8 w-8 mr-1" src={Image} alt=""/>
+                          <img className="h-8 w-8 mr-1" src={base_url + data.photo} alt=""/>
                           <p className='hidden md:block'>{username}</p>
                           <ChevronDownIcon className="-mr-2 ml-1 h-5 w-5" aria-hidden="true" />  
                       </Menu.Button> ) : <Btn />
@@ -213,8 +235,8 @@ export default function Example() {
                         {({ active }) => (
                           
                           <Link
-                            to="/assistantt"
-                            href="/assistantt"
+                            to="/assistant"
+                            href="/assistant"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700 items-center"
@@ -222,7 +244,7 @@ export default function Example() {
                           >
                             <div className="flex">
                               <UserIcon className="h-auto w-4 mr-4" />
-                              Your Profile
+                              Профиль
                             </div>
                           </Link>
                         )}
@@ -248,10 +270,10 @@ export default function Example() {
                       </Menu.Item>
                       }
                       
-                      <Menu.Item>
+                      {role===1 &&<Menu.Item>
                         {({ active }) => (
                           <a
-                            href="/"
+                            href="/assistant/mycourses"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -263,11 +285,28 @@ export default function Example() {
                             </div>
                           </a>
                         )}
-                      </Menu.Item>
+                      </Menu.Item> }
+                      {role===0 &&<Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/student/mycourses"
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            <div className="flex">
+                              <DesktopComputerIcon className="h-auto w-4 mr-4" />
+                              Мои курсы
+                            </div>
+                          </a>
+                        )}
+                      </Menu.Item> }
+                     {role===0 &&
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="/"
+                            href="/student/liked"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -280,10 +319,31 @@ export default function Example() {
                           </a>
                         )}
                       </Menu.Item>
-                      <Menu.Item>
+                     }
+                     {
+                        role===1 &&
+                        <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="/"
+                            href="/assistant/mylibrary"
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            <div className="flex">
+                              <BookmarkIcon className="h-auto w-4 mr-4" />
+                              Мои книги
+                            </div>
+                          </a>
+                        )}
+                      </Menu.Item>}
+                      {
+                        role===0 &&
+                        <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/student/mybooks"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -296,10 +356,13 @@ export default function Example() {
                           </a>
                         )}
                       </Menu.Item>
-                      <Menu.Item>
+                      }
+                      {
+                        role===1 &&
+                        <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="/"
+                            href="/assistant/settings"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
@@ -312,6 +375,26 @@ export default function Example() {
                           </a>
                         )}
                       </Menu.Item>
+                      }
+                      {
+                        role===0 &&
+                        <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="/student/settings"
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            <div className="flex">
+                              <CogIcon className="h-auto w-4 mr-4" />
+                              Настройки
+                            </div>
+                          </a>
+                        )}
+                      </Menu.Item>
+                      }
                       <Menu.Item>
                         {({ active }) => (
                           <a

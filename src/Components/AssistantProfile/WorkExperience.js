@@ -13,7 +13,12 @@ import axios from "axios";
 // 
 const data = false;
 const user = JSON.parse(localStorage.getItem("user"));
-const id = user.id;
+console.log('user ' + user)
+let id = 0;
+if(user!==null){
+      id = user.id
+}
+console.log('id for shyngys ' + id)  
 async function editWork(credentials) {
   console.log('credentials' +JSON.stringify(credentials.job))
   const data2 = new FormData();

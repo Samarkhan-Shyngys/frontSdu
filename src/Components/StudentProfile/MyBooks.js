@@ -2,6 +2,9 @@ import { Title } from "./Title";
 import Empty from "../Empty";
 import Book from "../Book";
 import image from "../../image/book1.png";
+import axios from "axios";
+import {base_url} from "../../utils/request";
+import React, {useState, useEffect} from 'react';
 const books = [
   {
     id: "1",
@@ -12,12 +15,26 @@ const books = [
   },
 ];
 export function MyBooks() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  let id = 0;
+  if(user!==null){
+    id= user.id
+  }
+  const [theArray, setTheArray] = useState([]);
+  
+  useEffect(()=>{
+    axios.get( `${base_url}/api/student/get/books/${id}`)
+    .then((result) => setTheArray(result.data.library)
+    )
+    .catch(((er)=>console.log(er)))
+  }, []);  
+  console.log('student book ' + theArray)
   return (
     <div className="w-full">
       <Title text="Мои книги" />
       {books ? (
         <div className="grid grid-cols-3">
-          {books.map((book) => (
+          {theArray.map((book) => (
             <Book key={book.id} data={book} />
           ))}
         </div>

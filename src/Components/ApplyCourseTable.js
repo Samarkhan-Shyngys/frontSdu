@@ -2,7 +2,8 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {base_url} from "../utils/request";
 import {Route, Link, Routes, useParams} from 'react-router-dom';
-
+import { useHistory } from "react-router-dom";
+import { STUDENT_COURSE } from "../utils/consts";
 const data = {
   Monday: ["10:00-11:00", "09:00-10:00"],
   Tuesday: [ "09:00-10:00"],
@@ -13,9 +14,23 @@ const data = {
   Sunday: []
 };
 
+async function createCourse(credentials, courId, userId) {
+  const data2 = new FormData();
+  data2.append('times', JSON.stringify(credentials))
+  data2.append('userId', userId)
+ 
+  return fetch(`${base_url}/api/student/add/course/${courId}`, {
+    method: "POST",
+    body: data2,
+  }).then((response) => {
+
+    return response;
+  });
+}
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+
 const ApplyCourseTable = () => {
   const [theTables, setTheTables] = useState({
     Monday: [],
@@ -96,9 +111,27 @@ console.log('log ingo2 ' + data.Monday);
       default: break
       }
   }
-  function handleSubmit(){
-    console.log(theTables)
+    
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log('user: ' + user)
+  let id = 0;
+  if(user!==null){
+    id = user.id
   }
+  
+  // function handleSubmit (){
+  //   const token = createCourse(theTables, courseId, id);
+    
+  //   if (token.status === 200) {
+  //     token.json().then((json) => {
+  //       console.log('json ' + json);
+        
+        
+  //     });
+  //   }
+
+  //   console.log(theTables)
+  // }
   const ClassName = "py-1 border border-1 text-xl w-14 text-text_main disabled:opacity-50";
 
   function disableHour(time){
@@ -121,6 +154,17 @@ console.log('log ingo2 ' + data.Monday);
     }
 
   }
+  const history = useHistory();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const token = await createCourse(theTables, courseId, id);
+    if (token.status === 200) {
+      
+      history.push(STUDENT_COURSE);
+    }
+  };
+
   return (
     <div className="space-y-4 bg-white mt-12 text-text_main" >
         <div>
@@ -157,8 +201,8 @@ console.log('log ingo2 ' + data.Monday);
             <button className="text-base font-semibold border border-1 py-2 w-28 rounded-r-md text-text_main disabled:opacity-50 hover:bg-slate-200" value="20:00-21:00" onClick={handleHour} disabled={!disableHour('20:00-21:00')}>20:00-21:00</button>
         </div>
         <div className="flex flex-col space-y-2">
-            <button className="w-96 py-2 bg-red-700 text-white rounded-md" onClick={handleSubmit}>Записаться</button>
-            <button className="w-96 py-2 bg-white text-red-700 border-red-700 border-2 rounded-md">Сообщение</button>
+            <button className="w-96 py-2 bg-red-700 text-white rounded-md"  type="submit" onClick={handleSubmit}>Записаться</button>
+            {/* <button className="w-96 py-2 bg-white text-red-700 border-red-700 border-2 rounded-md">Сообщение</button> */}
         </div>
     </div>
 

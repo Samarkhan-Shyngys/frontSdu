@@ -35,7 +35,12 @@ async function editProfile(credentials) {
 const Profilee = () => {
   
   const user = JSON.parse(localStorage.getItem("user"));
-  const id = 1;
+  console.log('user: ' + user)
+  let id = 0;
+  if(user!==null){
+    id = user.id
+  }
+  
   const [preview, setPreview] = useState(require("../../image/12.webp"));
   const [data, setData] = useState({
     photo: "null",
@@ -63,6 +68,7 @@ const Profilee = () => {
         ["faculty"]: profile.faculty,
         ["profession"]: profile.profession,
         ["phone"]: profile.phone,
+        ["photo"]:profile.image,
   
       });
     }
@@ -116,7 +122,7 @@ const Profilee = () => {
         <form>
           <label>
             <img
-              src={preview}
+              src={data.photo!==null? base_url+data.photo: preview}
               className="w-32 h-32 rounded-full"
               alt="profile"
             />

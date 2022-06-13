@@ -8,10 +8,30 @@ import { HeartIcon, UserCircleIcon } from "@heroicons/react/outline";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-export default function CourseCard({courseId, image, assistant, name, students, rating, point}){
-  const [liked, setLiked] = useState(false)
+async function likeCourse(credentials,courseId, id) {
+  
+  const data2 = new FormData();
+  data2.append('liked', credentials)
+  data2.append('id', courseId)
+ 
+  return fetch(`${base_url}/api/student/like/course/${id}`, {
+    method: "POST",
+    body: data2,
+  }).then((response) => {
+    return response;
+  });
+}
+export default function CourseCard({parLike, courseId, image, assistant, name, students, rating, point}){
+  const user = JSON.parse(localStorage.getItem("user"));
+    let id = 0;
+    if(user!==null){
+        id= user.id
+    }
+
+  const [liked, setLiked] = useState(parLike)
   const onSubmit = async(data) =>{
     setLiked(!liked); 
+    likeCourse(!liked, courseId, id)
     console.log('log ' + courseId + ' '+ !data);
     // axios.post(`${base_url}/api/assistant/get/course/${id}`, data)
     // const token =  await addCourses(data);
@@ -70,7 +90,7 @@ export default function CourseCard({courseId, image, assistant, name, students, 
               <span className="text-sm font-medium">{students} студентов</span>
 
             </div>
-            <Link to="/allcourses/1">
+            <Link to={`/applycourse/${courseId}`}>
             <button className="w-full bg-sky-700 text-xl text-white font-semibold rounded-md mt-4 py-2">
               Подробнее
             </button>

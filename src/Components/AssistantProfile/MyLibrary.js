@@ -26,8 +26,10 @@ const datas = [
 
 const MyLibrary =()=>{
   const user = JSON.parse(localStorage.getItem("user"));
-  const id = user.id;
-  
+  let id = 0;
+  if(user!==null){
+    id= user.id
+  }
   const [theArray, setTheArray] = useState([]);
   
   useEffect(()=>{

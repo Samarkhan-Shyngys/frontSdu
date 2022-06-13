@@ -29,7 +29,7 @@ function AssistantProfile() {
           <Route path="/assistant/courseDetails/:id" component={CourseDetail} />
           <Route path="/assistant/settings" component={Settings} />
           <Route path="/assistant/experience" component={WorkExperience} />
-          <Route path="/assistant/WorkExperience" component={WorkExperience} />
+          <Route path="/assistant/WorkExperience/:id" component={WorkExperience} />
           <Route path="/assistant" component={UserProfile} />
         </Switch>
       </div>

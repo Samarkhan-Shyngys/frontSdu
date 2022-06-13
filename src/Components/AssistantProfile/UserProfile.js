@@ -58,6 +58,7 @@ const UserProfile = () => {
     faculty: "",
     profession: "",
     phone: "",
+    image:"",
     languages: [{ name: "Русский", level: "A1" },
                 { name: "Русский", level: "B1" },
                 { name: "Русский", level: "B1" }],
@@ -79,6 +80,7 @@ const UserProfile = () => {
         ["profession"]: profile.profession,
         ["phone"]: profile.phone,
         ["about"]:profile.about,
+        ["image"]:profile.image,
   
       });
     }
@@ -120,6 +122,7 @@ const UserProfile = () => {
       });
     }
   };
+  console.log('image ss ' + data.image )
   return (
     <Box>
       <Grid container>
@@ -135,7 +138,7 @@ const UserProfile = () => {
                     <Grid item xs={12}>
                       <label>
                         <img
-                          src={initialValues.image || preview}
+                          src={base_url + data.image}
                           className="relative w-48 h-48 rounded-full"
                           alt="profile"
                         />
