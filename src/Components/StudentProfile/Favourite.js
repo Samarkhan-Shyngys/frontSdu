@@ -38,7 +38,7 @@ const Favourite=()=>{
             <Title text="Избранное"/>
             {det ? <div className="grid grid-cols-3">
                 {theArray.map((data)=>(
-                    <CourseCard parLike={data.liked} courseId={data.courseId} image={data.pathImage} assistant={data.assistant} name={data.courseName} students={data.studentCount} rating={data.rating} point={data.point} />
+                    <CourseCard parLike={data.liked} courseId={data.courseId} image={data.pathImage} assistant={data.assistant} name={data.courseName} students={data.studentCount} rating={data.rating} point={data.point} assImage={data.assImage}/>
                 ))}
 
             </div> : <Empty 

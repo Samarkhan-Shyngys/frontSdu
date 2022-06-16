@@ -10,7 +10,11 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const user = JSON.parse(localStorage.getItem("user"));
-const id = 1;
+let id = 0;
+if(user!==null){
+  id = 1;
+}
+
 
 async function addCourses(credentials) {
   const data2 = new FormData();

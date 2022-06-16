@@ -42,19 +42,19 @@ function classNames(...classes) {
 export default function StudentModal({id, handleClose }) {
   const history = useHistory();
   const handleAClick = async() => {
-    const result =  await addBooks(index, true);
+    const result =  await addBooks(id, true);
     console.log('result' + result)
     if(result.status===200){
       history.push(ADMIN_CONTENT);
     }
   }
   const handleCClick = async() => {
-    const result = await  addBooks(index, false);
+    const result = await  addBooks(id, false);
     if(result.status===200){
       history.push(ADMIN_APPLY);
     }
   }
- 
+ console.log('apppl ' + id)
   const [index, setIndex] = useState(0);
   const[stId, setStId] = useState(id);
   const handleClick=()=> handleClose();

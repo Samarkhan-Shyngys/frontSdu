@@ -64,11 +64,11 @@ const Library = (props) => {
           onClick={prevSlide}
         />
        
-        <img src={images.length>2?base_url + images[cur-2<0? images.length + (cur - 2) : cur - 2].url:null} className="h-64 w-44 rounded-lg" alt="image1" />
-        <img src={images.length>2?base_url + images[cur === 0 ? images.length - 1 : cur - 1].url:null} className="h-64 w-44 rounded-lg" alt="image1" />
-        <img src={images.length>2? base_url + images[cur].url:null} className="h-64 w-44 rounded-lg" alt="image1" />
-        <img src={images.length>2?base_url + images[cur === images.length - 1 ? 0 : cur + 1].url:null} className="h-64 w-44 rounded-lg" alt="image1" />
-        <img src={images.length>2?base_url + images[cur + 2 >= images.length ? (cur + 2) % images.length : cur + 2].url:null} className="h-64 w-44 rounded-lg" alt="image1" />
+        <img src={base_url + images[cur-2<0? images.length + (cur - 2) : cur - 2].url} className="h-64 w-44 rounded-lg" alt="image1" />
+        <img src={base_url + images[cur === 0 ? images.length - 1 : cur - 1].url} className="h-64 w-44 rounded-lg" alt="image1" />
+        <img src={base_url + images[cur].url} className="h-64 w-44 rounded-lg" alt="image1" />
+        <img src={base_url + images[cur === images.length - 1 ? 0 : cur + 1].url} className="h-64 w-44 rounded-lg" alt="image1" />
+        <img src={base_url + images[cur + 2 >= images.length ? (cur + 2) % images.length : cur + 2].url} className="h-64 w-44 rounded-lg" alt="image1" />
        <ChevronRightIcon
           className="hidden md:block absolute h-8 w-auto -right-4 inset-y-2/5 z-10 bg-white text-red-800 rounded-full hover:bg-red-700 hover:text-white"
           onClick={nextSlide}
